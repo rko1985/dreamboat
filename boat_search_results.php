@@ -1,8 +1,5 @@
 
 
-<?php include("includes/header.php"); ?>
-
-
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -71,4 +68,3 @@
 </table>
 
 
-<?php include("includes/footer.php"); ?>

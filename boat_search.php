@@ -1,6 +1,3 @@
-<?php include("includes/header.php"); ?>
-
-    <!-- Start Here -->
 
 
 
@@ -23,4 +20,3 @@
 
 
 
-<?php include("includes/footer.php"); ?>

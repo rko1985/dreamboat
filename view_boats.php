@@ -1,4 +1,4 @@
-<?php include("includes/header.php"); ?>
+
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -67,4 +67,3 @@ if(isset($_GET['delete'])){
 
 ?>
 
-<?php include("includes/footer.php"); ?>
