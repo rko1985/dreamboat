@@ -1,7 +1,10 @@
 
+<div class="container">
+    <div class="row pt-4">
+<?php
 
-
-<table class="table table-bordered table-hover">
+if(isset($_GET['Search_Boat'])){
+echo "<table class='table table-bordered table-hover'>
     <thead>
         <tr>
             <th>Boat Id</th>
@@ -11,7 +14,10 @@
             <th>Image</th>
         </tr>
     </thead>                        
-    <tbody>
+    <tbody>";
+}
+?>
+
         <?php 
 
         if(isset($_GET['Search_Boat'])){
@@ -42,39 +48,41 @@
             $query = "SELECT * FROM boats WHERE ";
             if($year_beg && $year_end !== null) {
                 $query .= "(boat_year BETWEEN $year_beg AND $year_end) ";
+            } else {
+                $query .= "(boat_year BETWEEN 1 AND 9999) "; //This default parameter needs to be set for the following AND conditions to work
             }
             if($loa_min && $loa_max !== null) {
-                $query .= "(LOA BETWEEN $loa_min AND $loa_max) ";
+                $query .= "AND (LOA BETWEEN $loa_min AND $loa_max) ";
             }
             if(!empty($boat_type)) {
-                $query .= "(boat_type = $boat_type) ";
+                $query .= "AND (boat_type = $boat_type) ";
             }
             if(!empty($builder)) {
-                $query .= "(builder = '{$builder}' ) ";
+                $query .= "AND (builder = '{$builder}' ) ";
             }
             if(!empty($designer)) {
-                $query .= "(designer = '{$designer}') ";
+                $query .= "AND (designer = '{$designer}') ";
             }
             if($lod_min && $lod_max !== null) {
-                $query .= "(LOD BETWEEN $lod_min AND $lod_max) ";
+                $query .= "AND (LOD BETWEEN $lod_min AND $lod_max) ";
             }
             if($lwl_min && $lwl_max !== null) {
-                $query .= "(LWL BETWEEN $lwl_min AND $lwl_max) ";
+                $query .= "AND (LWL BETWEEN $lwl_min AND $lwl_max) ";
             }
             if($beam_min && $beam_max !== null) {
-                $query .= "(beam BETWEEN $beam_min AND $beam_max) ";
+                $query .= "AND (beam BETWEEN $beam_min AND $beam_max) ";
             }
             if($ballast_min && $ballast_max !== null) {
-                $query .= "(ballast BETWEEN $ballast_min AND $ballast_max) ";
+                $query .= "AND (ballast BETWEEN $ballast_min AND $ballast_max) ";
             }
             if($displacement_min && $displacement_max !== null) {
-                $query .= "(displacement BETWEEN $displacement_min AND $displacement_max) ";
+                $query .= "AND (displacement BETWEEN $displacement_min AND $displacement_max) ";
             }
             if($ballast_displacement_min && $ballast_displacement_max !== null) {
-                $query .= "(ballast_displacement BETWEEN $ballast_displacement_min AND $ballast_displacement_max) ";
+                $query .= "AND (ballast_displacement BETWEEN $ballast_displacement_min AND $ballast_displacement_max) ";
             }
             if($draft_min && $draft_max !== null) {
-                $query .= "(draft BETWEEN $draft_min AND $draft_max) ";
+                $query .= "AND (draft BETWEEN $draft_min AND $draft_max) ";
             }
                 
 
@@ -125,5 +133,5 @@
         
     </tbody>
 </table>
-
-
+    </div>
+</div>

@@ -1,4 +1,4 @@
-
+<?php include("includes/header.php"); ?>
 
 <table class="table table-bordered table-hover">
     <thead>
@@ -40,7 +40,7 @@
 
             }
 
-            echo "<td><img width='100' src='images/$boat_image' alt='image'></td>";            
+            echo "<td><img width='50' src='images/$boat_image' alt='image'></td>";            
             echo "<td><a href='view_boats.php?delete={$boat_id}'>Delete</a></td>";                                            
             
                                         
@@ -61,9 +61,10 @@ if(isset($_GET['delete'])){
 
     $query = "DELETE FROM boats WHERE boat_id = $the_boat_id";
     $delete_query = mysqli_query($connection, $query);
-
+    header("Location: view_boats.php");
 
 }
 
 ?>
 
+<?php include("includes/footer.php"); ?>
