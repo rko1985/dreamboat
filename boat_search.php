@@ -16,10 +16,10 @@
         <label for="boat_type">Boat Type</label>
         <select name="boat_type" class="form-control">
             <option value=''>Any</option>
-            <option value="1">Sail</option>
-            <option value="2">Power</option> 
-            <option value="3">Motor Sail</option> 
-            <option value="4">Fishing</option>     
+            <option value="Sail">Sail</option>
+            <option value="Power">Power</option> 
+            <option value="Motor Sail">Motor Sail</option> 
+            <option value="Fishing">Fishing</option>          
         </select>
     </div>
 

@@ -55,7 +55,7 @@ echo "<table class='table table-bordered table-hover'>
                 $query .= "AND (LOA BETWEEN $loa_min AND $loa_max) ";
             }
             if(!empty($boat_type)) {
-                $query .= "AND (boat_type = $boat_type) ";
+                $query .= "AND (boat_type = '{$boat_type}') ";
             }
             if(!empty($builder)) {
                 $query .= "AND (builder = '{$builder}' ) ";
@@ -107,17 +107,8 @@ echo "<table class='table table-bordered table-hover'>
                 echo "<td>$boat_id</td>";
                 echo "<td>$boat_name</td>";
                 echo "<td>$boat_year</td>";
-
-                $query = "SELECT * FROM types WHERE boat_type_id = $boat_type ";
-                $select_boat_type = mysqli_query($connection, $query);
-
-                while($row = mysqli_fetch_assoc($select_boat_type)) {
-                $boat_type = $row['boat_type_id'];
-                $type_title = $row['type_title'];
-
-                echo "<td>{$type_title}</td>";
-
-                }
+                echo "<td>$boat_type</td>";
+                
 
                 echo "<td><img width='50' src='images/$boat_image' alt='image'></td>";            
                                             
