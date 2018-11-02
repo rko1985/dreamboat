@@ -15,7 +15,6 @@
         $boat_year = $_POST['boat_year'];
         $boat_year = !empty($boat_year) ? $boat_year : "NULL"; //checks if empty and if empty sends null (for optional data)
         $boat_type = $_POST['boat_type'];
-        $boat_type = !empty($boat_type) ? $boat_year : "NULL";
         $boat_image = $_FILES['boat_image']['name'];
         $boat_image_temp = $_FILES['boat_image']['tmp_name'];
         $builder = $_POST['builder'];
