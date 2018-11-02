@@ -1,0 +1,24 @@
+body{
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+form {
+    background-color: rgba(0,0,0,.5);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.table {
+    background-color: rgba(0,0,0,.7);
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.jumbotron {
+    background-color: rgba(0,0,0,.9) !important;    
+    color: white;
+}

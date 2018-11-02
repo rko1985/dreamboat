@@ -1,4 +1,7 @@
 <?php include("includes/header.php"); ?>
+<?php include("includes/navbar.php"); ?>
+
+<h1 class="text-center mt-4">All Boats</h1>
 
 <table class="table table-bordered table-hover">
     <thead>

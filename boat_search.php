@@ -2,17 +2,17 @@
 
 
     
-<h1>Boat Search</h1>
+<h3 class="mt-3">Boat Search</h3>
 
 <form action="index.php" method="post">
     
     <label for="boat_year">Year Range</label>        
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="year_beg" placeholder="ex. 1965">
+            <input type="number" class="form-control form-control-sm " name="year_beg" placeholder="ex. 1965">
         </div>
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="year_end" placeholder="ex. 2015">
+            <input type="number" class="form-control form-control-sm " name="year_end" placeholder="ex. 2015">
         </div>
     </div>
 
@@ -47,24 +47,23 @@
         </select>
     </div>
 
-    
     <label for="loa">LOA</label>
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="loa_min" placeholder="ex. 1">
+            <input type="number" class="form-control form-control-sm " name="loa_min" placeholder="ex. 1">
         </div>
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="loa_max" placeholder="ex. 5000">
+            <input type="number" class="form-control form-control-sm " name="loa_max" placeholder="ex. 5000">
         </div>
     </div>
         
     <label for="lod">LOD</label>   
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="lod_min" placeholder="ex. 1">
+            <input type="number" class="form-control form-control-sm " name="lod_min" placeholder="ex. 1">
         </div>
         <div class="col">
-        <input type="text" class="form-control form-control-sm " name="lod_max" placeholder="ex. 5000">
+        <input type="number" class="form-control form-control-sm " name="lod_max" placeholder="ex. 5000">
         </div>
     </div>
 
@@ -72,30 +71,30 @@
     <label for="LWL">LWL</label>
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="lwl_min" placeholder="ex. 1">
+            <input type="number" class="form-control form-control-sm " name="lwl_min" placeholder="ex. 1">
         </div>
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="lwl_max" placeholder="ex. 5000">
+            <input type="number" class="form-control form-control-sm " name="lwl_max" placeholder="ex. 5000">
         </div>
     </div>
 
     <label for="beam">BEAM</label>
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="beam_min" placeholder="ex. 1">
+            <input type="number" class="form-control form-control-sm " name="beam_min" placeholder="ex. 1">
         </div>
         <div class="col">
-          <input type="text" class="form-control form-control-sm " name="beam_max" placeholder="ex. 5000">
+          <input type="number" class="form-control form-control-sm " name="beam_max" placeholder="ex. 5000">
         </div>
     </div>
 
     <label for="ballast">Ballast</label>
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="ballast_min" placeholder="ex. 1">
+            <input type="number" class="form-control form-control-sm " name="ballast_min" placeholder="ex. 1">
         </div>
         <div class="col">
-             <input type="text" class="form-control form-control-sm " name="ballast_max" placeholder="ex. 5000">
+             <input type="number" class="form-control form-control-sm " name="ballast_max" placeholder="ex. 5000">
         </div>
     </div>
         
@@ -103,30 +102,30 @@
     <label for="displacement">Displacement</label>
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="displacement_min" placeholder="ex. 1">
+            <input type="number" class="form-control form-control-sm " name="displacement_min" placeholder="ex. 1">
         </div>
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="displacement_max" placeholder="ex. 5000">
+            <input type="number" class="form-control form-control-sm " name="displacement_max" placeholder="ex. 5000">
         </div>
     </div>
 
     <label for="ballast_displacement">Ballast/Displacement</label>
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="ballast_displacement_min" placeholder="ex. 1">
+            <input type="number" class="form-control form-control-sm " name="ballast_displacement_min" placeholder="ex. 1">
         </div>
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="ballast_displacement_max" placeholder="ex. 5000">
+            <input type="number" class="form-control form-control-sm " name="ballast_displacement_max" placeholder="ex. 5000">
         </div>
     </div>
 
     <label for="draft">Draft</label>
     <div class="row">
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="draft_min" placeholder="ex. 1">
+            <input type="number" class="form-control form-control-sm " name="draft_min" placeholder="ex. 1">
         </div>
         <div class="col">
-            <input type="text" class="form-control form-control-sm " name="draft_max" placeholder="ex. 5000">
+            <input type="number" class="form-control form-control-sm " name="draft_max" placeholder="ex. 5000">
         </div>
     </div>
     

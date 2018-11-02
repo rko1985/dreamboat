@@ -81,7 +81,7 @@
 <div class="container">
     <div class="row">
         <div class="col" align="center">
-            <img width=300 src="images/<?php echo $boat_image?>" alt="">
+            <img width=500 src="images/<?php echo $boat_image?>" alt="">
         </div>
     </div>
 </div>
