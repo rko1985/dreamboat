@@ -9,6 +9,7 @@
    
 
     if(isset($_POST['Add_Boat'])){
+         //BASICS
         $boat_name = $_POST['boat_name'];
         $boat_year = $_POST['boat_year'];
         $boat_type = $_POST['boat_type'];
@@ -24,12 +25,14 @@
         $displacement = $_POST['displacement'];
         $ballast_displacement = $_POST['ballast_displacement'];
         $draft = $_POST['draft'];
-        $spade_aft_fg = $_POST['spade_aft_fg'];
+        //UNDER WATER
+        $spade_aft_fg = $_POST['spade_aft_fg']; 
         $ballast_type = $_POST['ballast_type'];
         $keel_design = $_POST['keel_design'];
         $hull_material = $_POST['hull_material'];
         $rig_design = $_POST['rig_design'];
-        $engine_type = $_POST['engine_type'];
+        //BELOW DECK
+        $engine_type = $_POST['engine_type']; 
         $engine_make = $_POST['engine_make'];
         $engine_horsepower = $_POST['engine_horsepower'];
         $fuel_capacity = $_POST['fuel_capacity'];
@@ -45,16 +48,43 @@
         $quarter = $_POST['quarter'];
         $aft = $_POST['aft'];
         $navigation_comm = $_POST['navigation_comm'];
+        //ON DECK
+        $helm = $_POST['helm'];
+        $cockpit = $_POST['cockpit'];
+        $scuppers = $_POST['scuppers'];
+        $coaming = $_POST['coaming'];
+        $gunwales_bullwarks = $_POST['gunwales_bullwarks'];
+        $companionway = $_POST['companionway'];
+        $cabin = $_POST['cabin'];
+        $hatches = $_POST['hatches'];
+        $ports_openning = $_POST['ports_openning'];
+        $ports_fixed = $_POST['ports_fixed'];
+        $dorades_vents = $_POST['dorades_vents'];
+        $transom = $_POST['transom'];
+        $bow = $_POST['bow'];
+        $stern = $_POST['stern'];
+        $rail = $_POST['rail'];
+        $ladder = $_POST['ladder'];
+        //ABOVE DECK
+        $spars = $_POST['spars'];
+        $standing_rigging = $_POST['standing_rigging'];
+        $chain_plates = $_POST['chain_plates'];
+        $dodger = $_POST['dodger'];
+        $bimini = $_POST['bimini'];
 
 
         move_uploaded_file($boat_image_temp, "images/$boat_image");
 
         $query = "INSERT INTO boats(boat_name, boat_year, boat_type, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft, ";
         $query .= "spade_aft_fg, ballast_type, keel_design, hull_material, rig_design, ";
-        $query .= "engine_type, engine_make, engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths, salon_seating, forepeak, midships, salon, galley, quarter, aft, navigation_comm )";
+        $query .= "engine_type, engine_make, engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths, salon_seating, forepeak, midships, salon, galley, quarter, aft, navigation_comm, ";
+        $query .= "helm, cockpit, scuppers, coaming, gunwales_bullwarks, companionway, cabin, hatches, ports_openning, ports_fixed, dorades_vents, transom, bow, stern, rail, ladder, ";
+        $query .= "spars, standing_rigging, chain_plates, dodger, bimini)";
         $query .= "VALUES ('{$boat_name}' , {$boat_year} , '{$boat_type}', '{$boat_image}', '{$builder}', '{$designer}', '{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}', ";
         $query .= "'{$spade_aft_fg}','{$ballast_type}','{$keel_design}','{$hull_material}','{$rig_design}', ";
-        $query .= "'{$engine_type}','{$engine_make}','{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}','{$forepeak}','{$midships}','{$salon}','{$galley}','{$quarter}','{$aft}','{$navigation_comm}')";
+        $query .= "'{$engine_type}','{$engine_make}','{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}','{$forepeak}','{$midships}','{$salon}','{$galley}','{$quarter}','{$aft}','{$navigation_comm}', ";
+        $query .= "'{$helm}', '{$cockpit}', '{$scuppers}', '{$coaming}', '{$gunwales_bullwarks}', '{$companionway}', '{$cabin}', '{$hatches}', '{$ports_openning}', '{$ports_fixed}', '{$dorades_vents}', '{$transom}', '{$bow}', '{$stern}', '{$rail}', '{$ladder}', ";
+        $query .= "'{$spars}', '{$standing_rigging}', '{$chain_plates}', '{$dodger}', '{$bimini}')";
 
         $create_boat_query = mysqli_query($connection, $query);
 
@@ -337,8 +367,8 @@
             </select>
         </div>
         <div class="col">
-            <label for="scruppers">Scuppers:</label><br>
-            <input type="text" class="form-control" name="scruppers">
+            <label for="scuppers">Scuppers:</label><br>
+            <input type="text" class="form-control" name="scuppers">
         </div>
         <div class="col">
             <label for="coaming">Coaming:</label><br>
@@ -375,8 +405,15 @@
             <input type="text" class="form-control" name="hatches">
         </div>
         <div class="col">
-            <label for="port_openning">Port Openning:</label><br>
-            <select class="form-control" name="port_openning" id="port_openning">
+            <label for="ports_openning">Ports Openning:</label><br>
+            <select class="form-control" name="ports_openning" id="ports_openning">
+                <option value="Small">Small</option>
+                <option value="Large">Large</option>                        
+            </select>
+        </div>
+        <div class="col">
+            <label for="ports_fixed">Ports Fixed:</label><br>
+            <select class="form-control" name="ports_fixed" id="ports_fixed">
                 <option value="Small">Small</option>
                 <option value="Large">Large</option>                        
             </select>

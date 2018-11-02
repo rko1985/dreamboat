@@ -4,10 +4,10 @@
     <thead>
         <tr>
             <th>Boat Id</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Year</th>
             <th>Type</th>
-            <th>Image</th>
             <th>Builder</th>
             <th>Designer</th>
             <th>LOA</th>
@@ -49,7 +49,7 @@
             echo "<tr>";
             echo "<td>$boat_id</td>";
             echo "<td><img width='50' src='images/$boat_image' alt='image'></td>";   
-            echo "<td>$boat_name</td>";
+            echo "<td><a href=boat_profile.php?b_id=$boat_id>$boat_name</a></td>";
             echo "<td>$boat_year</td>";
             echo "<td>$boat_type</td>";            
             echo "<td>$builder</td>";

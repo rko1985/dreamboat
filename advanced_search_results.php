@@ -1,6 +1,5 @@
+<?php include("includes/header.php"); ?> <!-- Remove when finished testing -->
 
-<div class="container">
-    <div class="row pt-4">
 <?php
 
 if(isset($_POST['Search_Boat'])){
@@ -124,5 +123,5 @@ echo "<table class='table table-bordered table-hover'>
         
     </tbody>
 </table>
-    </div>
-</div>
+
+<?php include("includes/footer.php"); ?> <!-- Remove when finished testing -->
