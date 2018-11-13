@@ -31,8 +31,17 @@
         $spade_aft_fg = $_POST['spade_aft_fg']; 
         $ballast_type = $_POST['ballast_type'];
         $keel_design = $_POST['keel_design'];
-        $hull_material = $_POST['hull_material'];
-        $rig_design = $_POST['rig_design'];
+        $hull_material = $_POST['hull_material'];        
+        $bow = $_POST['bow'];
+        print_r($bow); //testing multiple select
+        foreach($bow as $selected){
+            if(empty($selected)){
+                
+            }
+        }        
+        $stern = $_POST['stern'];
+        $transom = $_POST['transom'];
+        
         //BELOW DECK
         $engine_type = $_POST['engine_type']; 
         $engine_make = $_POST['engine_make'];
@@ -62,9 +71,6 @@
         $ports_openning = $_POST['ports_openning'];
         $ports_fixed = $_POST['ports_fixed'];
         $dorades_vents = $_POST['dorades_vents'];
-        $transom = $_POST['transom'];
-        $bow = $_POST['bow'];
-        $stern = $_POST['stern'];
         $rail = $_POST['rail'];
         $ladder = $_POST['ladder'];
         //ABOVE DECK
@@ -78,12 +84,12 @@
         move_uploaded_file($boat_image_temp, "images/$boat_image");
 
         $query = "INSERT INTO boats(boat_name, boat_year, boat_type, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft, ";
-        $query .= "spade_aft_fg, ballast_type, keel_design, hull_material, rig_design, ";
+        $query .= "spade_aft_fg, ballast_type, keel_design, hull_material, ";
         $query .= "engine_type, engine_make, engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths, salon_seating, forepeak, midships, salon, galley, quarter, aft, navigation_comm, ";
         $query .= "helm, cockpit, scuppers, coaming, gunwales_bullwarks, companionway, cabin, hatches, ports_openning, ports_fixed, dorades_vents, transom, bow, stern, rail, ladder, ";
         $query .= "spars, standing_rigging, chain_plates, dodger, bimini)";
         $query .= "VALUES ('{$boat_name}' , {$boat_year} , '{$boat_type}', '{$boat_image}', '{$builder}', '{$designer}', '{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}', ";
-        $query .= "'{$spade_aft_fg}','{$ballast_type}','{$keel_design}','{$hull_material}','{$rig_design}', ";
+        $query .= "'{$spade_aft_fg}','{$ballast_type}','{$keel_design}','{$hull_material}', ";
         $query .= "'{$engine_type}','{$engine_make}','{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}','{$forepeak}','{$midships}','{$salon}','{$galley}','{$quarter}','{$aft}','{$navigation_comm}', ";
         $query .= "'{$helm}', '{$cockpit}', '{$scuppers}', '{$coaming}', '{$gunwales_bullwarks}', '{$companionway}', '{$cabin}', '{$hatches}', '{$ports_openning}', '{$ports_fixed}', '{$dorades_vents}', '{$transom}', '{$bow}', '{$stern}', '{$rail}', '{$ladder}', ";
         $query .= "'{$spars}', '{$standing_rigging}', '{$chain_plates}', '{$dodger}', '{$bimini}')";
@@ -115,8 +121,7 @@
         </div>
         <div class="col">
             <label for="boat_type">Boat Type: </label><br>
-            <select class="form-control" name="boat_type" id="boat_type">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="boat_type" id="boat_type">
                 <option value="Sail">Sail</option>
                 <option value="Power">Power</option> 
                 <option value="Motor Sail">Motor Sail</option>
@@ -131,27 +136,18 @@
     <div class="form-row">        
         <div class="col">
             <label for="builder">Builder</label><br>
-            <select class="form-control" name="builder" id="builder">
-                <option value="">Select</option>
-                <option value="Ranger">Ranger</option>
-                <option value="Coronado">Coronado</option> 
-                <option value="Rhoades">Rhoades</option>                           
-            </select>
+            <input class="form-control" type="text" name="builder" value="">
         </div>
         <div class="col">
             <label for="designer">Designer</label><br>
-            <select class="form-control" name="designer" id="designer">
-                <option value="">Select</option>
-                <option value="Gary Mull">Gary Mull</option>
-                <option value="Ed Edgar">Ed Edgar</option> 
-                <option value="Frank Butler">Frank Butler</option>                           
-            </select>
+            <input class="form-control" type="text" name="designer" value="">
+           
         </div>
     </div> <!-- End of form-row -->
     <div class="form-row">
         <div class="col">
             <label for="loa">LOA: </label>
-            <input type="number" class="form-control" name="LOA">
+            <input type="number" step=".01" class="form-control" name="LOA">
         </div>
         <div class="col">
             <label for="lod">LOD: </label>
@@ -184,24 +180,44 @@
             <input type="number" class="form-control" name="draft">
         </div>
     </div> <!-- End of form-row -->
+    <div class="form-row">
+        <div class="col">
+            <label for="rig_design">Rig Design:</label><br>
+            <div class="form-check form-check-inline">
+                <label class="form-check-input" for="sloop"><input class="form-check-input" type="checkbox" id="sloop" value ="Yes">Sloop</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-input" for="ketch"><input class="form-check-input" type="checkbox" id="ketch" value ="Yes">Ketch</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-input" for="yawl"><input class="form-check-input" type="checkbox" id="yawl" value ="Yes">Yawl</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-input" for="cutter"><input class="form-check-input" type="checkbox" id="cutter" value ="Yes">Cutter</label>
+            </div>
+        </div>
+    </div>
     <hr>
     <h3>Under Water</h3>
 
     <div class="form-row">        
         <div class="col">
-            <label for="spade_aft_fg">Spade, Aft, FG:</label><br>
-            <select class="form-control" name="spade_aft_fg" id="spade_aft_fg">
-                <option value="">Select</option>
+            <label for="spade_aft_fg">Rudder Design:</label><br>
+            <select multiple class="selectpicker form-control" name="spade_aft_fg" id="spade_aft_fg">
                 <option value="FG">FG</option>
                 <option value="Wood">Wood</option> 
                 <option value="Steel">Steel</option>
-                <option value="Aluminum">Aluminum</option>                               
+                <option value="Aluminum">Aluminum</option>
+                <option value="FG">Spade</option>
+                <option value="Wood">Hung</option> 
+                <option value="Steel">Skeg</option>
+                <option value="Aluminum">Transom</option>
+                <option value="Keel">Keel</option>                                    
             </select>
         </div>
         <div class="col">
             <label for="ballast_type">Ballast Type:</label><br>
-            <select class="form-control" name="ballast_type" id="ballast_type">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="ballast_type" id="ballast_type">
                 <option value="Lead">Lead</option>
                 <option value="Internal">Internal</option> 
                 <option value="Fixed">Fixed</option>
@@ -210,8 +226,7 @@
         </div>
         <div class="col">
             <label for="keel_design">Keel Design</label><br>
-            <select class="form-control" name="keel_design" id="keel_design">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="keel_design" id="keel_design">
                 <option value="Fin">Fin</option>
                 <option value="3/4">3/4</option> 
                 <option value="Full">Full</option>
@@ -227,45 +242,75 @@
         </div>
         <div class="col">
             <label for="hull_material">Hull Material:</label><br>
-            <select class="form-control" name="hull_material" id="hull_material">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="hull_material" id="hull_material">
                 <option value="Wood">Wood</option>
                 <option value="Iron">Iron</option> 
                 <option value="Aluminum">Aluminum</option>
-                <option value="Cement">Cement</option>                              
+                <option value="Cement">Cement</option>
+                <option value="FG">FG</option>                              
+            </select>
+        </div>
+        
+    </div> <!-- End of form-row -->
+
+    <div class="form-row">        
+        <div class="col">
+            <label for="bow">Bow:</label><br>
+            <select multiple class="selectpicker form-control" name="bow[]" id="bow" value="">
+                <option value="Spoon">Spoon</option>
+                <option value="Plumb">Plumb</option>
+                <option value="Closed">Closed</option>                          
             </select>
         </div>
         <div class="col">
-            <label for="rig_design">Rig Design:</label><br>
-            <select class="form-control" name="rig_design" id="rig_design">
-                <option value="">Select</option>
-                <option value="Sloop">Sloop</option>
-                <option value="Ketch">Ketch</option> 
-                <option value="Yawl">Yawl</option>
-                <option value="Cutter">Cutter</option>                              
+            <label for="stern">Stern:</label><br>
+            <select multiple class="selectpicker form-control" name="stern" id="stern" value="">
+                <option value="Counter">Counter</option>
+                <option value="Canoe">Canoe</option>
+                <option value="Plumb">Plumb</option>                          
             </select>
         </div>
-    </div> <!-- End of form-row -->
+        <div class="col">
+            <label for="transom">Transom:</label><br>
+            <select  multiple class="selectpicker form-control" name="transom" id="transom" value="">
+                <option value="Reverse">Reverse</option>
+                <option value="Flush">Flush</option>
+                <option value="Closed">Closed</option>                          
+            </select>
+        </div>       
+    </div>
 
     <hr>
     <h3>Below Deck</h3>
     <div class="form-row">
         <div class="col">
             <label for="engine_type">Engine Type:</label><br>
-            <select class="form-control" name="engine_type" id="engine_type">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="engine_type" id="engine_type">
                 <option value="Gasoline">Gasoline</option>
                 <option value="Diesel">Diesel</option> 
-                <option value="Electric">Electric</option>                           
+                <option value="Electric">Electric</option>
+                <option value="Inboard">Inboard</option>
+                <option value="Outboard">Outboard</option> 
+                <option value="Inboard/Outboard">Inboard/Outboard</option>          
+                <option value="Single">Single</option>
+                <option value="Twin">Twin</option>                             
             </select>
         </div>
         <div class="col">
             <label for="engine_make">Engine Make:</label><br>
             <select class="form-control" name="engine_make" id="engine_make">
-                <option value="">Select</option>
-                <option value="Universal">Universal</option>
-                <option value="Yamaha">Yamaha</option> 
-                <option value="Volvo">Volvo</option>                           
+                <option value="Gasoline">Universal</option>
+                <option value="Diesel">Yanmar</option> 
+                <option value="Electric">Volvo</option>
+                <option value="Inboard">Perkins</option>
+                <option value="Outboard">Cummins</option> 
+                <option value="Inboard/Outboard">Westerbeke</option>          
+                <option value="Single">Chrysler</option>
+                <option value="Twin">Nissan</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="Beta">Beta</option>
+                <option value="Honda">Honda</option>
+                <option value="Other">Other</option>                             
             </select>
         </div>
         <div class="col">
@@ -306,30 +351,31 @@
             <input type="number" class="form-control" name="salon_seating">
         </div>
         <div class="col">
-            <label for="c">Forepeak:</label><br>
-            <select class="form-control" name="forepeak" id="forepeak">
-                <option value="">Select</option>
+            <label for="forepeak">Forepeak:</label><br>
+            <select multiple class="selectpicker form-control" name="forepeak" id="forepeak">
                 <option value="Berth-V">Berth-V</option>
                 <option value="Head">Head</option> 
-                <option value="Storage">Storage</option>                           
+                <option value="Storage">Storage</option>
+                <option value="Vanity">Vanity</option>                              
             </select>
         </div>
         <div class="col">
             <label for="midships">Midships:</label><br>
-            <select class="form-control" name="midships" id="midships">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="midships" id="midships">
                 <option value="Locker">Locker</option>
                 <option value="Drawers">Drawers</option> 
-                <option value="Head">Head</option>                           
+                <option value="Head">Head</option>
+                <option value="Cooler">Cooler</option>                               
             </select>
         </div>
         <div class="col">
             <label for="salon">Salon:</label><br>
-            <select class="form-control" name="salon" id="salon">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="salon" id="salon">
                 <option value="Sette - Bench">Sette - Bench</option>
                 <option value="Settle - U">Settle - U</option> 
-                <option value="Berth - 1/4">Berth - 1/4</option>                           
+                <option value="Berth - 1/4">Berth - 1/4</option>
+                <option value="Berth - Pipe">Berth - Pipe</option>
+                <option value="Shelving">Shelving</option>                           
             </select>
         </div>
         
@@ -338,26 +384,30 @@
     <div class="form-row">
         <div class="col">
             <label for="galley">Galley:</label><br>
-            <select class="form-control" name="galley" id="galley">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="galley" id="galley">
                 <option value="Cooler">Cooler</option>
                 <option value="Refrigerator">Refrigerator</option> 
-                <option value="Sink">Sink</option>                           
+                <option value="Sink">Sink</option>
+                <option value="Range">Range</option>
+                <option value="Oven">Oven</option>                           
             </select>
         </div>
         <div class="col">
             <label for="quarter">Quarter:</label><br>
-            <select class="form-control" name="quarter" id="quarter">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="quarter" id="quarter">
                 <option value="Kitchen">Kitchen</option>
                 <option value="Kitchenetter">Kitchenetter</option> 
-                <option value="Navigation">Navigation</option>                           
+                <option value="Navigation">Navigation</option>
+                <option value="Lazarette">Lazarette</option>
+                <option value="Berth - Pipe">Berth - Pipe</option>
+                <option value="Berth - Double">Berth - Double</option>
+                <option value="Cabin">Cabin</option>
+                <option value="Head">Head</option>                           
             </select>
         </div>
         <div class="col">
             <label for="aft">Aft:</label><br>
-            <select class="form-control" name="aft" id="aft">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="aft" id="aft">
                 <option value="Cooler">Cooler</option>
                 <option value="Refrigerator">Refrigerator</option> 
                 <option value="Sink">Sink</option>                           
@@ -365,11 +415,13 @@
         </div>
         <div class="col">
             <label for="navigation_comm">Navigation/Communication:</label><br>
-            <select class="form-control" name="navigation_comm" id="navigation_comm">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="navigation_comm" id="navigation_comm">
                 <option value="GPS">GPS</option>
                 <option value="VHF">VHF</option> 
-                <option value="AM/FM">AM/FM</option>                           
+                <option value="Radar">Radar</option>
+                <option value="SSB">SSB</option>
+                <option value="HAM">HAM</option>
+                <option value="AM/FM">AM/FM</option>           
             </select>
         </div>    
     </div> <!-- End of form-row -->
@@ -378,33 +430,41 @@
     <div class="form-row">
         <div class="col">
             <label for="helm">Helm:</label><br>
-            <select class="form-control" name="helm" id="helm">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="helm" id="helm">
                 <option value="Tiller">Tiller</option>
                 <option value="Wheel">Wheel</option> 
-                <option value="Hydraulic">Hydraulic</option>                           
+                <option value="Hydraulic">Hydraulic</option>
+                <option value="">Mechanical</option>                           
             </select>
         </div>
         <div class="col">
             <label for="cockpit">Cockpit:</label><br>
-            <select class="form-control" name="cockpit" id="cockpit">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="cockpit" id="cockpit">
                 <option value="Symmetrical">Symmetrical</option>
                 <option value="Asymmetrical">Asymmetrical</option> 
-                <option value="Stern">Stern</option>                           
+                <option value="Stern">Stern</option>
+                <option value="">Center</option>                           
             </select>
         </div>
         <div class="col">
-            <label for="scuppers">Scuppers:</label><br>
-            <input type="number" class="form-control" name="scuppers">
+            <label for="scuppers">Scupper Size/Style</label><br>
+            <select multiple class="selectpicker form-control" name="scuppers" id="scuppers">
+                <option value="GPS">1"</option>
+                <option value="VHF">1-2"</option> 
+                <option value="AM/FM">2-3"</option>
+                <option value="AM/FM">3"+</option>
+                <option value="AM/FM">Through Hull</option>  
+                <option value="AM/FM">Direct</option>                                  
+            </select>
         </div>
         <div class="col">
             <label for="coaming">Coaming:</label><br>
-            <select class="form-control" name="coaming" id="coaming">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="coaming" id="coaming">
                 <option value="FG">FG</option>
                 <option value="Teak">Teak</option> 
-                <option value="Wood">Wood</option>                           
+                <option value="Wood">Wood</option>
+                <option value="">Steel</option>
+                <option value="">Aluminum</option>                           
             </select>
         </div>
           
@@ -413,12 +473,16 @@
 
         <div class="col">
             <label for="gunwales_bullwarks">Gunwales/Bullwarks:</label><br>
-            <input type="number" class="form-control" name="gunwales_bullwarks">
+            <select multiple class="selectpicker form-control" name="gunwales_bullwarks" id="gunwales_bullwarks">
+                <option value="GPS">1"</option>
+                <option value="VHF">1-2"</option> 
+                <option value="AM/FM">2-3"</option>
+                <option value="AM/FM">3"+</option>                             
+            </select>
         </div>
         <div class="col">
             <label for="companionway">Companionway:</label><br>
-            <select class="form-control" name="companionway" id="companionway">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="companionway" id="companionway">
                 <option value="Full">Full</option>
                 <option value="1/2">1/2</option> 
                 <option value="V">V</option>                           
@@ -426,11 +490,11 @@
         </div>  
         <div class="col">
             <label for="cabin">Cabin:</label><br>
-            <select class="form-control" name="cabin" id="cabin">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="cabin" id="cabin">
                 <option value="Raised">Raised</option>
                 <option value="Flush">Flush</option> 
-                <option value="Hard">Hard</option>                           
+                <option value="Hard">Hard</option>
+                <option value="">Soft/Hard</option>                           
             </select>
         </div>
         <div class="col">
@@ -461,36 +525,11 @@
             <label for="dorades_vents">Dorades/Vents:</label><br>
             <input type="number" class="form-control" name="dorades_vents">
         </div>
-        <div class="col">
-            <label for="transom">Transom:</label><br>
-            <select class="form-control" name="transom" id="transom">
-                <option value="">Select</option>
-                <option value="Reverse">Reverse</option>
-                <option value="Flush">Flush</option>
-                <option value="Closed">Closed</option>                          
-            </select>
-        </div>        
+         
     </div> <!-- End of form-row -->
 
     <div class="form-row">
-        <div class="col">
-            <label for="bow">Bow:</label><br>
-            <select class="form-control" name="bow" id="bow">
-                <option value="">Select</option>
-                <option value="Spoon">Spoon</option>
-                <option value="Plumb">Plumb</option>
-                <option value="Closed">Closed</option>                          
-            </select>
-        </div>
-        <div class="col">
-            <label for="stern">Stern:</label><br>
-            <select class="form-control" name="stern" id="stern">
-                <option value="">Select</option>
-                <option value="Counter">Counter</option>
-                <option value="Canoe">Canoe</option>
-                <option value="Plumb">Plumb</option>                          
-            </select>
-        </div>
+        
         <div class="col">
             <label for="rail">Rail:</label><br>
             <select class="form-control" name="rail" id="rail">
@@ -515,52 +554,84 @@
     <h3>Above Deck</h3>
     <div class="form-row">
         <div class="col">
-            <label for="spars">Spars:</label><br>
-            <select class="form-control" name="spars" id="spars">
-                <option value="">Select</option>
+            <label for="spars">Mast:</label><br>
+            <select multiple class="selectpicker form-control" name="spars" id="spars">
                 <option value="Aluminum">Aluminum</option>
                 <option value="Wood">Wood</option>
-                <option value="Steel">Steel</option>                          
+                <option value="Steel">Steel</option>
+                <option value="Carbon">Carbon</option>
+                <option value="Internal Furling">Internal Furling</option> 
+                <option value="External Furling">External Furling</option>                           
             </select>
         </div>
         <div class="col">
             <label for="standing_rigging">Standing Rigging:</label><br>
-            <select class="form-control" name="standing_rigging" id="standing_rigging">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="standing_rigging" id="standing_rigging">
                 <option value="Wire">Wire</option>
                 <option value="Rod">Rod</option>
-                <option value="Continuous">Continuous</option>                          
+                <option value="Continuous">Continuous</option>
+                <option value="Discontinuous">Discontinuous</option>
+                <option value="Roller Furling">Furling</option> 
+                <option value="Masthead">Masthead</option>
+                <option value="">Fractional</option>
+                <option value="">Stayless</option>                          
             </select>
         </div>
         <div class="col">
             <label for="chain_plates">Chain Plates:</label><br>
-            <select class="form-control" name="chain_plates" id="chain_plates">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="chain_plates" id="chain_plates">
                 <option value="Stainless">Stainless</option>
                 <option value="Bronze">Bronze</option>
-                <option value="Hull">Hull</option>                          
+                <option value="Hull">Hull</option>
+                <option value="">Bulkhead</option>
+                <option value="">Deck</option>                          
             </select>
         </div>
         <div class="col">
             <label for="dodger">Dodger:</label><br>
-            <select class="form-control" name="dodger" id="dodger">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="dodger" id="dodger">
                 <option value="Full">Full</option>
                 <option value="Partial">Partial</option>
-                <option value="Rigid">Rigid</option>                          
+                <option value="Rigid">Rigid</option>
+                <option value="">Soft</option>                          
             </select>
         </div>
         <div class="col">
             <label for="bimini">Bimini:</label><br>
-            <select class="form-control" name="bimini" id="bimini">
-                <option value="">Select</option>
+            <select multiple class="selectpicker form-control" name="bimini" id="bimini">
                 <option value="Full">Full</option>
                 <option value="Partial">Partial</option>
                 <option value="Fixed">Fixed</option>
-                <option value="Non-Fixed">Non-Fixed</option>     
+                <option value="Non-Fixed">Non-Fixed</option>
+                <option value="">Folding</option>    
             </select>
         </div> 
     </div> <!-- End of form-row -->
+
+    <div class="form-row">
+        <div class="col">
+            <label for="spreaders">Spreaders:</label><br>
+            <select multiple class="selectpicker form-control" name="spreaders" id="spreaders">
+                <option value="Full">Aluminum</option>
+                <option value="Partial">Wood</option>
+                <option value="Fixed">Steel</option>
+                <option value="Non-Fixed">Carbon</option>
+                <option value="">Athwart</option>     
+                <option value="">Swept</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="bimini">Boom:</label><br>
+            <select multiple class="selectpicker form-control" name="bimini" id="bimini">
+                <option value="Full">Aluminum</option>
+                <option value="Partial">Wood</option>
+                <option value="Fixed">Steel</option>
+                <option value="Non-Fixed">Carbon</option>
+                <option value="">Internal Furling</option>
+                <option value="">External Furling</option>       
+            </select>
+        </div>  
+    </div>
         
     <hr>
     <div class="col">
@@ -572,3 +643,13 @@
 
 
 <?php include("includes/footer.php"); ?>
+
+<script>
+
+    $(document).ready(function(){
+
+        $('.selectpicker').selectpicker();
+
+    });
+
+</script>
