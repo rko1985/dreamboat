@@ -39,58 +39,66 @@
         if(isset($_POST['stern'])){$stern = $_POST['stern'];} //multiselect 
         if(isset($_POST['transom'])){$transom = $_POST['transom'];} //multiselect  
         
-        // //BELOW DECK
-        // $engine_type = $_POST['engine_type']; 
-        // $engine_make = $_POST['engine_make'];
-        // $engine_horsepower = $_POST['engine_horsepower'];
-        // $fuel_capacity = $_POST['fuel_capacity'];
-        // $water_capacity = $_POST['water_capacity'];
-        // $cabins = $_POST['cabins'];
-        // $heads = $_POST['heads'];
-        // $berths = $_POST['berths'];
-        // $salon_seating = $_POST['salon_seating'];
-        // $forepeak = $_POST['forepeak'];
-        // $midships = $_POST['midships'];
-        // $salon = $_POST['salon'];
-        // $galley = $_POST['galley'];
-        // $quarter = $_POST['quarter'];
-        // $aft = $_POST['aft'];
-        // $navigation_comm = $_POST['navigation_comm'];
+        //BELOW DECK
+        if(isset($_POST['engine_type'])){$engine_type = $_POST['engine_type'];} //multiselect
+        if(isset($_POST['engine_make'])){$engine_make = $_POST['engine_make'];} //multiselect
+        $engine_horsepower = $_POST['engine_horsepower'];
+        $fuel_capacity = $_POST['fuel_capacity'];
+        $water_capacity = $_POST['water_capacity'];
+        $cabins = $_POST['cabins'];
+        $heads = $_POST['heads'];
+        $berths = $_POST['berths'];
+        $salon_seating = $_POST['salon_seating'];
+        if(isset($_POST['forepeak'])){$forepeak = $_POST['forepeak'];} //multiselect
+        if(isset($_POST['midships'])){$midships = $_POST['midships'];} //multiselect
+        if(isset($_POST['salon'])){$salon = $_POST['salon'];} //multiselect
+        if(isset($_POST['galley'])){$galley = $_POST['galley'];} //multiselect
+        if(isset($_POST['quarter'])){$quarter = $_POST['quarter'];} //multiselect
+        if(isset($_POST['aft'])){$aft = $_POST['aft'];} //multiselect
+        if(isset($_POST['navigation_comm'])){$navigation_comm = $_POST['navigation_comm'];} //multiselect
+      
 
-        
-        // //ON DECK
-        // $helm = $_POST['helm'];
-        // $cockpit = $_POST['cockpit'];
-        // $scuppers = $_POST['scuppers'];
-        // $coaming = $_POST['coaming'];
-        // $gunwales_bullwarks = $_POST['gunwales_bullwarks'];
-        // $companionway = $_POST['companionway'];
-        // $cabin = $_POST['cabin'];
-        // $hatches = $_POST['hatches'];
-        // $ports_openning = $_POST['ports_openning'];
-        // $ports_fixed = $_POST['ports_fixed'];
-        // $dorades_vents = $_POST['dorades_vents'];
-        // $rail = $_POST['rail'];
-        // $ladder = $_POST['ladder'];
-        // //ABOVE DECK
-        // $spars = $_POST['spars'];
-        // $standing_rigging = $_POST['standing_rigging'];
-        // $chain_plates = $_POST['chain_plates'];
-        // $dodger = $_POST['dodger'];
-        // $bimini = $_POST['bimini'];
+        //ON DECK
+        if(isset($_POST['helm'])){$helm = $_POST['helm'];} //multiselect
+        if(isset($_POST['cockpit'])){$cockpit = $_POST['cockpit'];} //multiselect
+        if(isset($_POST['scuppers'])){$scuppers = $_POST['scuppers'];} //multiselect
+        if(isset($_POST['coaming'])){$coaming = $_POST['coaming'];} //multiselect
+        if(isset($_POST['gunwales_bullwarks'])){$gunwales_bullwarks = $_POST['gunwales_bullwarks'];} //multiselect
+        if(isset($_POST['companionway'])){$companionway = $_POST['companionway'];} //multiselect
+        if(isset($_POST['cabin'])){$cabin = $_POST['cabin'];} //multiselect
+        $hatches = $_POST['hatches'];
+        $ports_openning = $_POST['ports_openning'];
+        $ports_fixed = $_POST['ports_fixed'];
+        $dorades_vents = $_POST['dorades_vents'];
+        $rail = $_POST['rail'];
+        $ladder = $_POST['ladder'];
+
+        //ABOVE DECK
+        if(isset($_POST['mast'])){$mast = $_POST['mast'];} //multiselect
+        if(isset($_POST['standing_rigging'])){$standing_rigging = $_POST['standing_rigging'];} //multiselect
+        if(isset($_POST['chain_plates'])){$chain_plates = $_POST['chain_plates'];} //multiselect
+        if(isset($_POST['dodger'])){$dodger = $_POST['dodger'];} //multiselect
+        if(isset($_POST['bimini'])){$bimini = $_POST['bimini'];} //multiselect
+        if(isset($_POST['spreaders'])){$spreaders = $_POST['spreaders'];} //multiselect
+        if(isset($_POST['boom'])){$boom = $_POST['boom'];} //multiselect
+
 
         $boat_image = time() . $boat_image; //adds timestampe to boat name to create unique image name
         move_uploaded_file($boat_image_temp, "images/$boat_image");
 
-        $query = "INSERT INTO boats (boat_name, boat_year, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft) ";
-        $query .= "VALUES('{$boat_name}', '{$boat_year}', '{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}' )";
-
+        $query = "INSERT INTO boats (boat_name, boat_year, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft,";
+        $query .= "engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths,salon_seating,";
+        $query .= "hatches, ports_openning, ports_fixed, dorades_vents, rail, ladder) ";
+        $query .= "VALUES('{$boat_name}', '{$boat_year}', '{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}',";
+        $query .= " '{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}',";
+        $query .= " '{$hatches}','{$ports_openning}','{$ports_fixed}','{$dorades_vents}','{$rail}','{$ladder}')";
         $create_boat_query = mysqli_query($connection, $query);
 
         if(!$create_boat_query){
             echo mysqli_error($connection);
         }
 
+        //BASICS
         if(isset($boat_type)){multiselectInsert($boat_type, 'boat_types', 'type_id');}
         if(isset($rig_design)){multiselectInsert($rig_design, 'boat_rig_design', 'rig_design_id');}
         //UNDERWATER
@@ -101,6 +109,32 @@
         if(isset($bow)){multiselectInsert($bow, 'boat_bow', 'bow_id');}
         if(isset($stern)){multiselectInsert($stern, 'boat_stern', 'stern_id');}
         if(isset($transom)){multiselectInsert($transom, 'boat_transom', 'transom_id');}
+        //BELOW DECK
+        if(isset($engine_type)){multiselectInsert($engine_type, 'boat_engine_type', 'engine_type_id');}
+        if(isset($engine_make)){multiselectInsert($engine_make, 'boat_engine_make', 'engine_make_id');}
+        if(isset($forepeak)){multiselectInsert($forepeak, 'boat_forepeak', 'forepeak_id');}
+        if(isset($midships)){multiselectInsert($midships, 'boat_midships', 'midships_id');}
+        if(isset($salon)){multiselectInsert($salon, 'boat_salon', 'salon_id');}
+        if(isset($galley)){multiselectInsert($galley, 'boat_galley', 'galley_id');}
+        if(isset($quarter)){multiselectInsert($quarter, 'boat_quarter', 'quarter_id');}
+        if(isset($aft)){multiselectInsert($aft, 'boat_aft', 'aft_id');}
+        if(isset($navigation_comm)){multiselectInsert($navigation_comm, 'boat_navigation_comm', 'navigation_comm_id');}
+        //ON DECK
+        if(isset($helm)){multiselectInsert($helm, 'boat_helm', 'helm_id');}
+        if(isset($cockpit)){multiselectInsert($cockpit, 'boat_cockpit', 'cockpit_id');}
+        if(isset($scuppers)){multiselectInsert($scuppers, 'boat_scuppers', 'scuppers_id');}
+        if(isset($coaming)){multiselectInsert($coaming, 'boat_coaming', 'coaming_id');}
+        if(isset($gunwales_bullwarks)){multiselectInsert($gunwales_bullwarks, 'boat_gunwales_bullwarks', 'gunwales_bullwarks_id');}
+        if(isset($companionway)){multiselectInsert($companionway, 'boat_companionway', 'companionway_id');}
+        if(isset($cabin)){multiselectInsert($cabin, 'boat_cabin', 'cabin_id');}
+        //ABOVE DECK
+        if(isset($mast)){multiselectInsert($mast, 'boat_mast', 'mast_id');}
+        if(isset($standing_rigging)){multiselectInsert($standing_rigging, 'boat_standing_rigging', 'standing_rigging_id');}
+        if(isset($chain_plates)){multiselectInsert($chain_plates, 'boat_chain_plates', 'chain_plates_id');}
+        if(isset($dodger)){multiselectInsert($dodger, 'boat_dodger', 'dodger_id');}
+        if(isset($bimini)){multiselectInsert($bimini, 'boat_bimini', 'bimini_id');}
+        if(isset($spreaders)){multiselectInsert($spreaders, 'boat_spreaders', 'spreaders_id');}
+        if(isset($boom)){multiselectInsert($boom, 'boat_boom', 'boom_id');}
 
     }
 
@@ -294,32 +328,32 @@
     <div class="form-row">
         <div class="col">
             <label for="engine_type">Engine Type:</label><br>
-            <select multiple class="selectpicker form-control" name="engine_type" id="engine_type">
-                <option value="Gasoline">Gasoline</option>
-                <option value="Diesel">Diesel</option> 
-                <option value="Electric">Electric</option>
-                <option value="Inboard">Inboard</option>
-                <option value="Outboard">Outboard</option> 
-                <option value="Inboard/Outboard">Inboard/Outboard</option>          
-                <option value="Single">Single</option>
-                <option value="Twin">Twin</option>                             
+            <select multiple class="selectpicker form-control" name="engine_type[]" id="engine_type">
+                <option value="1">Gasoline</option>
+                <option value="2">Diesel</option> 
+                <option value="3">Electric</option>
+                <option value="4">Inboard</option>
+                <option value="5">Outboard</option> 
+                <option value="6">Inboard/Outboard</option>          
+                <option value="7">Single</option>
+                <option value="8">Twin</option>                             
             </select>
         </div>
         <div class="col">
             <label for="engine_make">Engine Make:</label><br>
-            <select class="form-control" name="engine_make" id="engine_make">
-                <option value="Gasoline">Universal</option>
-                <option value="Diesel">Yanmar</option> 
-                <option value="Electric">Volvo</option>
-                <option value="Inboard">Perkins</option>
-                <option value="Outboard">Cummins</option> 
-                <option value="Inboard/Outboard">Westerbeke</option>          
-                <option value="Single">Chrysler</option>
-                <option value="Twin">Nissan</option>
-                <option value="Yamaha">Yamaha</option>
-                <option value="Beta">Beta</option>
-                <option value="Honda">Honda</option>
-                <option value="Other">Other</option>                             
+            <select class="form-control" name="engine_make[]" id="engine_make">
+                <option value="1">Universal</option>
+                <option value="2">Yanmar</option> 
+                <option value="3">Volvo</option>
+                <option value="4">Perkins</option>
+                <option value="5">Cummins</option> 
+                <option value="6">Westerbeke</option>          
+                <option value="7">Chrysler</option>
+                <option value="8">Nissan</option>
+                <option value="9">Yamaha</option>
+                <option value="10">Beta</option>
+                <option value="11">Honda</option>
+                <option value="12">Other</option>                             
             </select>
         </div>
         <div class="col">
@@ -361,30 +395,30 @@
         </div>
         <div class="col">
             <label for="forepeak">Forepeak:</label><br>
-            <select multiple class="selectpicker form-control" name="forepeak" id="forepeak">
-                <option value="Berth-V">Berth-V</option>
-                <option value="Head">Head</option> 
-                <option value="Storage">Storage</option>
-                <option value="Vanity">Vanity</option>                              
+            <select multiple class="selectpicker form-control" name="forepeak[]" id="forepeak">
+                <option value="1">Berth-V</option>
+                <option value="2">Head</option> 
+                <option value="3">Storage</option>
+                <option value="4">Vanity</option>                              
             </select>
         </div>
         <div class="col">
             <label for="midships">Midships:</label><br>
-            <select multiple class="selectpicker form-control" name="midships" id="midships">
-                <option value="Locker">Locker</option>
-                <option value="Drawers">Drawers</option> 
-                <option value="Head">Head</option>
-                <option value="Cooler">Cooler</option>                               
+            <select multiple class="selectpicker form-control" name="midships[]" id="midships">
+                <option value="1">Locker</option>
+                <option value="2">Drawers</option> 
+                <option value="3">Head</option>
+                <option value="4">Cooler</option>                               
             </select>
         </div>
         <div class="col">
             <label for="salon">Salon:</label><br>
-            <select multiple class="selectpicker form-control" name="salon" id="salon">
-                <option value="Sette - Bench">Sette - Bench</option>
-                <option value="Settle - U">Settle - U</option> 
-                <option value="Berth - 1/4">Berth - 1/4</option>
-                <option value="Berth - Pipe">Berth - Pipe</option>
-                <option value="Shelving">Shelving</option>                           
+            <select multiple class="selectpicker form-control" name="salon[]" id="salon">
+                <option value="1">Sette - Bench</option>
+                <option value="2">Settle - U</option> 
+                <option value="3">Berth - 1/4</option>
+                <option value="4">Berth - Pipe</option>
+                <option value="5">Shelving</option>                           
             </select>
         </div>
         
@@ -393,44 +427,44 @@
     <div class="form-row">
         <div class="col">
             <label for="galley">Galley:</label><br>
-            <select multiple class="selectpicker form-control" name="galley" id="galley">
-                <option value="Cooler">Cooler</option>
-                <option value="Refrigerator">Refrigerator</option> 
-                <option value="Sink">Sink</option>
-                <option value="Range">Range</option>
-                <option value="Oven">Oven</option>                           
+            <select multiple class="selectpicker form-control" name="galley[]" id="galley">
+                <option value="1">Cooler</option>
+                <option value="2">Refrigerator</option> 
+                <option value="3">Sink</option>
+                <option value="4">Range</option>
+                <option value="5">Oven</option>                           
             </select>
         </div>
         <div class="col">
             <label for="quarter">Quarter:</label><br>
-            <select multiple class="selectpicker form-control" name="quarter" id="quarter">
-                <option value="Kitchen">Kitchen</option>
-                <option value="Kitchenetter">Kitchenetter</option> 
-                <option value="Navigation">Navigation</option>
-                <option value="Lazaretter">Lazaretter</option>
-                <option value="Berth - Pipe">Berth - Pipe</option>
-                <option value="Berth - Double">Berth - Double</option>
-                <option value="Cabin">Cabin</option>
-                <option value="Head">Head</option>                           
+            <select multiple class="selectpicker form-control" name="quarter[]" id="quarter">
+                <option value="1">Kitchen</option>
+                <option value="2">Kitchenetter</option> 
+                <option value="3">Navigation</option>
+                <option value="4">Lazaretter</option>
+                <option value="5">Berth - Pipe</option>
+                <option value="6">Berth - Double</option>
+                <option value="7">Cabin</option>
+                <option value="8">Head</option>                           
             </select>
         </div>
         <div class="col">
             <label for="aft">Aft:</label><br>
-            <select multiple class="selectpicker form-control" name="aft" id="aft">
-                <option value="Cooler">Cooler</option>
-                <option value="Refrigerator">Refrigerator</option> 
-                <option value="Sink">Sink</option>                           
+            <select multiple class="selectpicker form-control" name="aft[]" id="aft">
+                <option value="1">Cooler</option>
+                <option value="2">Refrigerator</option> 
+                <option value="3">Sink</option>                           
             </select>
         </div>
         <div class="col">
             <label for="navigation_comm">Navigation/Communication:</label><br>
-            <select multiple class="selectpicker form-control" name="navigation_comm" id="navigation_comm">
-                <option value="GPS">GPS</option>
-                <option value="VHF">VHF</option> 
-                <option value="Radar">Radar</option>
-                <option value="SSB">SSB</option>
-                <option value="HAM">HAM</option>
-                <option value="AM/FM">AM/FM</option>           
+            <select multiple class="selectpicker form-control" name="navigation_comm[]" id="navigation_comm">
+                <option value="1">GPS</option>
+                <option value="2">VHF</option> 
+                <option value="3">Radar</option>
+                <option value="4">SSB</option>
+                <option value="5">HAM</option>
+                <option value="6">AM/FM</option>           
             </select>
         </div>    
     </div> <!-- End of form-row -->
@@ -439,41 +473,41 @@
     <div class="form-row">
         <div class="col">
             <label for="helm">Helm:</label><br>
-            <select multiple class="selectpicker form-control" name="helm" id="helm">
-                <option value="Tiller">Tiller</option>
-                <option value="Wheel">Wheel</option> 
-                <option value="Hydraulic">Hydraulic</option>
-                <option value="">Mechanical</option>                           
+            <select multiple class="selectpicker form-control" name="helm[]" id="helm">
+                <option value="1">Tiller</option>
+                <option value="2">Wheel</option> 
+                <option value="3">Hydraulic</option>
+                <option value="4">Mechanical</option>                           
             </select>
         </div>
         <div class="col">
             <label for="cockpit">Cockpit:</label><br>
-            <select multiple class="selectpicker form-control" name="cockpit" id="cockpit">
-                <option value="Symmetrical">Symmetrical</option>
-                <option value="Asymmetrical">Asymmetrical</option> 
-                <option value="Stern">Stern</option>
-                <option value="">Center</option>                           
+            <select multiple class="selectpicker form-control" name="cockpit[]" id="cockpit">
+                <option value="1">Symmetrical</option>
+                <option value="2">Asymmetrical</option> 
+                <option value="3">Stern</option>
+                <option value="4">Center</option>                           
             </select>
         </div>
         <div class="col">
             <label for="scuppers">Scupper Size/Style</label><br>
-            <select multiple class="selectpicker form-control" name="scuppers" id="scuppers">
-                <option value="GPS">1"</option>
-                <option value="VHF">1-2"</option> 
-                <option value="AM/FM">2-3"</option>
-                <option value="AM/FM">3"+</option>
-                <option value="AM/FM">Through Hull</option>  
-                <option value="AM/FM">Direct</option>                                  
+            <select multiple class="selectpicker form-control" name="scuppers[]" id="scuppers">
+                <option value="1">1"</option>
+                <option value="2">1-2"</option> 
+                <option value="3">2-3"</option>
+                <option value="4">3"+</option>
+                <option value="5">Through Hull</option>  
+                <option value="6">Direct</option>                                  
             </select>
         </div>
         <div class="col">
             <label for="coaming">Coaming:</label><br>
-            <select multiple class="selectpicker form-control" name="coaming" id="coaming">
-                <option value="FG">FG</option>
-                <option value="Teak">Teak</option> 
-                <option value="Wood">Wood</option>
-                <option value="">Steel</option>
-                <option value="">Aluminum</option>                           
+            <select multiple class="selectpicker form-control" name="coaming[]" id="coaming">
+                <option value="1">FG</option>
+                <option value="2">Teak</option> 
+                <option value="3">Wood</option>
+                <option value="4">Steel</option>
+                <option value="5">Aluminum</option>                           
             </select>
         </div>
           
@@ -482,28 +516,28 @@
 
         <div class="col">
             <label for="gunwales_bullwarks">Gunwales/Bullwarks:</label><br>
-            <select multiple class="selectpicker form-control" name="gunwales_bullwarks" id="gunwales_bullwarks">
-                <option value="GPS">1"</option>
-                <option value="VHF">1-2"</option> 
-                <option value="AM/FM">2-3"</option>
-                <option value="AM/FM">3"+</option>                             
+            <select multiple class="selectpicker form-control" name="gunwales_bullwarks[]" id="gunwales_bullwarks">
+                <option value="1">1"</option>
+                <option value="2">1-2"</option> 
+                <option value="3">2-3"</option>
+                <option value="4">3"+</option>                             
             </select>
         </div>
         <div class="col">
             <label for="companionway">Companionway:</label><br>
-            <select multiple class="selectpicker form-control" name="companionway" id="companionway">
-                <option value="Full">Full</option>
-                <option value="1/2">1/2</option> 
-                <option value="V">V</option>                           
+            <select multiple class="selectpicker form-control" name="companionway[]" id="companionway">
+                <option value="1">Full</option>
+                <option value="2">1/2</option> 
+                <option value="3">V</option>                           
             </select>
         </div>  
         <div class="col">
             <label for="cabin">Cabin:</label><br>
-            <select multiple class="selectpicker form-control" name="cabin" id="cabin">
-                <option value="Raised">Raised</option>
-                <option value="Flush">Flush</option> 
-                <option value="Hard">Hard</option>
-                <option value="">Soft/Hard</option>                           
+            <select multiple class="selectpicker form-control" name="cabin[]" id="cabin">
+                <option value="1">Raised</option>
+                <option value="2">Flush</option> 
+                <option value="3">Hard</option>
+                <option value="4">Soft/Hard</option>                           
             </select>
         </div>
         <div class="col">
@@ -563,56 +597,56 @@
     <h3>Above Deck</h3>
     <div class="form-row">
         <div class="col">
-            <label for="spars">Mast:</label><br>
-            <select multiple class="selectpicker form-control" name="spars" id="spars">
-                <option value="Aluminum">Aluminum</option>
-                <option value="Wood">Wood</option>
-                <option value="Steel">Steel</option>
-                <option value="Carbon">Carbon</option>
-                <option value="Internal Furling">Internal Furling</option> 
-                <option value="External Furling">External Furling</option>                           
+            <label for="mast">Mast:</label><br>
+            <select multiple class="selectpicker form-control" name="mast[]" id="mast">
+                <option value="1">Aluminum</option>
+                <option value="2">Wood</option>
+                <option value="3">Steel</option>
+                <option value="4">Carbon</option>
+                <option value="5">Internal Furling</option> 
+                <option value="6">External Furling</option>                           
             </select>
         </div>
         <div class="col">
             <label for="standing_rigging">Standing Rigging:</label><br>
-            <select multiple class="selectpicker form-control" name="standing_rigging" id="standing_rigging">
-                <option value="Wire">Wire</option>
-                <option value="Rod">Rod</option>
-                <option value="Continuous">Continuous</option>
-                <option value="Discontinuous">Discontinuous</option>
-                <option value="Roller Furling">Furling</option> 
-                <option value="Masthead">Masthead</option>
-                <option value="">Fractional</option>
-                <option value="">Stayless</option>                          
+            <select multiple class="selectpicker form-control" name="standing_rigging[]" id="standing_rigging">
+                <option value="1">Wire</option>
+                <option value="2">Rod</option>
+                <option value="3">Continuous</option>
+                <option value="4">Discontinuous</option>
+                <option value="5">Furling</option> 
+                <option value="6">Masthead</option>
+                <option value="7">Fractional</option>
+                <option value="8">Stayless</option>                          
             </select>
         </div>
         <div class="col">
             <label for="chain_plates">Chain Plates:</label><br>
-            <select multiple class="selectpicker form-control" name="chain_plates" id="chain_plates">
-                <option value="Stainless">Stainless</option>
-                <option value="Bronze">Bronze</option>
-                <option value="Hull">Hull</option>
-                <option value="">Bulkhead</option>
-                <option value="">Deck</option>                          
+            <select multiple class="selectpicker form-control" name="chain_plates[]" id="chain_plates">
+                <option value="1">Stainless</option>
+                <option value="2">Bronze</option>
+                <option value="3">Hull</option>
+                <option value="4">Bulkhead</option>
+                <option value="5">Deck</option>                          
             </select>
         </div>
         <div class="col">
             <label for="dodger">Dodger:</label><br>
-            <select multiple class="selectpicker form-control" name="dodger" id="dodger">
-                <option value="Full">Full</option>
-                <option value="Partial">Partial</option>
-                <option value="Rigid">Rigid</option>
-                <option value="">Soft</option>                          
+            <select multiple class="selectpicker form-control" name="dodger[]" id="dodger">
+                <option value="1">Full</option>
+                <option value="2">Partial</option>
+                <option value="3">Rigid</option>
+                <option value="4">Soft</option>                          
             </select>
         </div>
         <div class="col">
             <label for="bimini">Bimini:</label><br>
-            <select multiple class="selectpicker form-control" name="bimini" id="bimini">
-                <option value="Full">Full</option>
-                <option value="Partial">Partial</option>
-                <option value="Fixed">Fixed</option>
-                <option value="Non-Fixed">Non-Fixed</option>
-                <option value="">Folding</option>    
+            <select multiple class="selectpicker form-control" name="bimini[]" id="bimini">
+                <option value="1">Full</option>
+                <option value="2">Partial</option>
+                <option value="3">Fixed</option>
+                <option value="4">Non-Fixed</option>
+                <option value="5">Folding</option>    
             </select>
         </div> 
     </div> <!-- End of form-row -->
@@ -620,24 +654,24 @@
     <div class="form-row">
         <div class="col">
             <label for="spreaders">Spreaders:</label><br>
-            <select multiple class="selectpicker form-control" name="spreaders" id="spreaders">
-                <option value="Full">Aluminum</option>
-                <option value="Partial">Wood</option>
-                <option value="Fixed">Steel</option>
-                <option value="Non-Fixed">Carbon</option>
-                <option value="">Athwart</option>     
-                <option value="">Swept</option>
+            <select multiple class="selectpicker form-control" name="spreaders[]" id="spreaders">
+                <option value="1">Aluminum</option>
+                <option value="2">Wood</option>
+                <option value="3">Steel</option>
+                <option value="4">Carbon</option>
+                <option value="5">Athwart</option>     
+                <option value="6">Swept</option>
             </select>
         </div>
         <div class="col">
-            <label for="bimini">Boom:</label><br>
-            <select multiple class="selectpicker form-control" name="bimini" id="bimini">
-                <option value="Full">Aluminum</option>
-                <option value="Partial">Wood</option>
-                <option value="Fixed">Steel</option>
-                <option value="Non-Fixed">Carbon</option>
-                <option value="">Internal Furling</option>
-                <option value="">External Furling</option>       
+            <label for="boom">Boom:</label><br>
+            <select multiple class="selectpicker form-control" name="boom[]" id="boom">
+                <option value="1">Aluminum</option>
+                <option value="2">Wood</option>
+                <option value="3">Steel</option>
+                <option value="4">Carbon</option>
+                <option value="5">Internal Furling</option>
+                <option value="6">External Furling</option>       
             </select>
         </div>  
     </div>
