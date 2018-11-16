@@ -1,5 +1,6 @@
 <?php include("includes/header.php"); ?>
 <?php include("includes/navbar.php"); ?>
+<?php include("includes/functions.php"); ?>
 
     <!-- Start Here -->
 
@@ -14,7 +15,7 @@
         $boat_name = $_POST['boat_name'];
         $boat_year = $_POST['boat_year'];
         $boat_year = !empty($boat_year) ? $boat_year : "NULL"; //checks if empty and if empty sends null (for optional data)
-        $boat_type = $_POST['boat_type'];
+        if(isset($_POST['boat_type'])){$boat_type = $_POST['boat_type'];} //multiselect       
         $boat_image = $_FILES['boat_image']['name'];
         $boat_image_temp = $_FILES['boat_image']['tmp_name'];
         $builder = $_POST['builder'];
@@ -27,79 +28,80 @@
         $displacement = $_POST['displacement'];
         $ballast_displacement = $_POST['ballast_displacement'];
         $draft = $_POST['draft'];
+        if(isset($_POST['rig_design'])){$rig_design = $_POST['rig_design'];} //multiselect 
+
         //UNDER WATER
-        $spade_aft_fg = $_POST['spade_aft_fg']; 
-        $ballast_type = $_POST['ballast_type'];
-        $keel_design = $_POST['keel_design'];
-        $hull_material = $_POST['hull_material'];        
-        $bow = $_POST['bow'];
-        print_r($bow); //testing multiple select
-        foreach($bow as $selected){
-            if(empty($selected)){
-                
-            }
-        }        
-        $stern = $_POST['stern'];
-        $transom = $_POST['transom'];
+        if(isset($_POST['rudder_design'])){$rudder_design = $_POST['rudder_design'];} //multiselect
+        if(isset($_POST['ballast_type'])){$ballast_type = $_POST['ballast_type'];} //multiselect
+        if(isset($_POST['keel_design'])){$keel_design = $_POST['keel_design'];} //multiselect  
+        if(isset($_POST['hull_material'])){$hull_material = $_POST['hull_material'];} //multiselect 
+        if(isset($_POST['bow'])){$bow = $_POST['bow'];} //multiselect 
+        if(isset($_POST['stern'])){$stern = $_POST['stern'];} //multiselect 
+        if(isset($_POST['transom'])){$transom = $_POST['transom'];} //multiselect  
         
-        //BELOW DECK
-        $engine_type = $_POST['engine_type']; 
-        $engine_make = $_POST['engine_make'];
-        $engine_horsepower = $_POST['engine_horsepower'];
-        $fuel_capacity = $_POST['fuel_capacity'];
-        $water_capacity = $_POST['water_capacity'];
-        $cabins = $_POST['cabins'];
-        $heads = $_POST['heads'];
-        $berths = $_POST['berths'];
-        $salon_seating = $_POST['salon_seating'];
-        $forepeak = $_POST['forepeak'];
-        $midships = $_POST['midships'];
-        $salon = $_POST['salon'];
-        $galley = $_POST['galley'];
-        $quarter = $_POST['quarter'];
-        $aft = $_POST['aft'];
-        $navigation_comm = $_POST['navigation_comm'];
-        //ON DECK
-        $helm = $_POST['helm'];
-        $cockpit = $_POST['cockpit'];
-        $scuppers = $_POST['scuppers'];
-        $coaming = $_POST['coaming'];
-        $gunwales_bullwarks = $_POST['gunwales_bullwarks'];
-        $companionway = $_POST['companionway'];
-        $cabin = $_POST['cabin'];
-        $hatches = $_POST['hatches'];
-        $ports_openning = $_POST['ports_openning'];
-        $ports_fixed = $_POST['ports_fixed'];
-        $dorades_vents = $_POST['dorades_vents'];
-        $rail = $_POST['rail'];
-        $ladder = $_POST['ladder'];
-        //ABOVE DECK
-        $spars = $_POST['spars'];
-        $standing_rigging = $_POST['standing_rigging'];
-        $chain_plates = $_POST['chain_plates'];
-        $dodger = $_POST['dodger'];
-        $bimini = $_POST['bimini'];
+        // //BELOW DECK
+        // $engine_type = $_POST['engine_type']; 
+        // $engine_make = $_POST['engine_make'];
+        // $engine_horsepower = $_POST['engine_horsepower'];
+        // $fuel_capacity = $_POST['fuel_capacity'];
+        // $water_capacity = $_POST['water_capacity'];
+        // $cabins = $_POST['cabins'];
+        // $heads = $_POST['heads'];
+        // $berths = $_POST['berths'];
+        // $salon_seating = $_POST['salon_seating'];
+        // $forepeak = $_POST['forepeak'];
+        // $midships = $_POST['midships'];
+        // $salon = $_POST['salon'];
+        // $galley = $_POST['galley'];
+        // $quarter = $_POST['quarter'];
+        // $aft = $_POST['aft'];
+        // $navigation_comm = $_POST['navigation_comm'];
+
+        
+        // //ON DECK
+        // $helm = $_POST['helm'];
+        // $cockpit = $_POST['cockpit'];
+        // $scuppers = $_POST['scuppers'];
+        // $coaming = $_POST['coaming'];
+        // $gunwales_bullwarks = $_POST['gunwales_bullwarks'];
+        // $companionway = $_POST['companionway'];
+        // $cabin = $_POST['cabin'];
+        // $hatches = $_POST['hatches'];
+        // $ports_openning = $_POST['ports_openning'];
+        // $ports_fixed = $_POST['ports_fixed'];
+        // $dorades_vents = $_POST['dorades_vents'];
+        // $rail = $_POST['rail'];
+        // $ladder = $_POST['ladder'];
+        // //ABOVE DECK
+        // $spars = $_POST['spars'];
+        // $standing_rigging = $_POST['standing_rigging'];
+        // $chain_plates = $_POST['chain_plates'];
+        // $dodger = $_POST['dodger'];
+        // $bimini = $_POST['bimini'];
 
         $boat_image = time() . $boat_image; //adds timestampe to boat name to create unique image name
         move_uploaded_file($boat_image_temp, "images/$boat_image");
 
-        $query = "INSERT INTO boats(boat_name, boat_year, boat_type, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft, ";
-        $query .= "spade_aft_fg, ballast_type, keel_design, hull_material, ";
-        $query .= "engine_type, engine_make, engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths, salon_seating, forepeak, midships, salon, galley, quarter, aft, navigation_comm, ";
-        $query .= "helm, cockpit, scuppers, coaming, gunwales_bullwarks, companionway, cabin, hatches, ports_openning, ports_fixed, dorades_vents, transom, bow, stern, rail, ladder, ";
-        $query .= "spars, standing_rigging, chain_plates, dodger, bimini)";
-        $query .= "VALUES ('{$boat_name}' , {$boat_year} , '{$boat_type}', '{$boat_image}', '{$builder}', '{$designer}', '{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}', ";
-        $query .= "'{$spade_aft_fg}','{$ballast_type}','{$keel_design}','{$hull_material}', ";
-        $query .= "'{$engine_type}','{$engine_make}','{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}','{$forepeak}','{$midships}','{$salon}','{$galley}','{$quarter}','{$aft}','{$navigation_comm}', ";
-        $query .= "'{$helm}', '{$cockpit}', '{$scuppers}', '{$coaming}', '{$gunwales_bullwarks}', '{$companionway}', '{$cabin}', '{$hatches}', '{$ports_openning}', '{$ports_fixed}', '{$dorades_vents}', '{$transom}', '{$bow}', '{$stern}', '{$rail}', '{$ladder}', ";
-        $query .= "'{$spars}', '{$standing_rigging}', '{$chain_plates}', '{$dodger}', '{$bimini}')";
+        $query = "INSERT INTO boats (boat_name, boat_year, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft) ";
+        $query .= "VALUES('{$boat_name}', '{$boat_year}', '{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}' )";
 
         $create_boat_query = mysqli_query($connection, $query);
 
         if(!$create_boat_query){
             echo mysqli_error($connection);
         }
-        
+
+        if(isset($boat_type)){multiselectInsert($boat_type, 'boat_types', 'type_id');}
+        if(isset($rig_design)){multiselectInsert($rig_design, 'boat_rig_design', 'rig_design_id');}
+        //UNDERWATER
+        if(isset($rudder_design)){multiselectInsert($rudder_design, 'boat_rudder_design', 'rudder_design_id');}
+        if(isset($ballast_type)){multiselectInsert($ballast_type, 'boat_ballast_type', 'ballast_type_id');}
+        if(isset($keel_design)){multiselectInsert($keel_design, 'boat_keel_design', 'keel_design_id');}
+        if(isset($hull_material)){multiselectInsert($hull_material, 'boat_hull_material', 'hull_material_id');}
+        if(isset($bow)){multiselectInsert($bow, 'boat_bow', 'bow_id');}
+        if(isset($stern)){multiselectInsert($stern, 'boat_stern', 'stern_id');}
+        if(isset($transom)){multiselectInsert($transom, 'boat_transom', 'transom_id');}
+
     }
 
 ?>
@@ -117,15 +119,22 @@
         </div>
         <div class="col">
             <label for="boat_year">Year: </label>
-            <input type="number" class="form-control" name="boat_year">
+            <input type="number" class="form-control" name="boat_year" value="">
         </div>
         <div class="col">
             <label for="boat_type">Boat Type: </label><br>
-            <select multiple class="selectpicker form-control" name="boat_type" id="boat_type">
-                <option value="Sail">Sail</option>
-                <option value="Power">Power</option> 
-                <option value="Motor Sail">Motor Sail</option>
-                <option value="Fishing">Fishing</option>
+            <select multiple class="selectpicker form-control" name="boat_type[]" id="boat_type">
+                <option value="1">Sail</option>
+                <option value="2">Power</option> 
+                <option value="3">Motor Sail</option>
+                <option value="4">Fishing</option>
+                <option value="5">Trawler</option>
+                <option value="6">Cabin Cruiser</option>
+                <option value="7">Sunseeker</option>
+                <option value="8">Monohull</option>
+                <option value="9">Catamaran</option>
+                <option value="10">Trimaran</option>
+                <option value="11">Twin Hull</option>
             </select>
         </div>
     </div> <!-- End of form-row -->
@@ -147,53 +156,53 @@
     <div class="form-row">
         <div class="col">
             <label for="loa">LOA: </label>
-            <input type="number" step=".01" class="form-control" name="LOA">
+            <input type="number" step=".01" class="form-control" name="LOA"  value="">
         </div>
         <div class="col">
             <label for="lod">LOD: </label>
-            <input type="number" class="form-control" name="LOD">
+            <input type="number" class="form-control" name="LOD" value="">
         </div>
         <div class="col">
             <label for="lwl">LWL: </label>
-            <input type="number" class="form-control" name="LWL">
+            <input type="number" class="form-control" name="LWL" value="">
         </div>
         <div class="col">
             <label for="beam">Beam: </label>
-            <input type="number" class="form-control" name="beam">
+            <input type="number" class="form-control" name="beam" value="">
         </div>
     </div> <!-- End of form-row -->
     <div class="form-row">
         <div class="col">
             <label for="ballast">Ballast (lbs): </label>
-            <input type="number" class="form-control" name="ballast">
+            <input type="number" class="form-control" name="ballast" value="">
         </div>
         <div class="col">
             <label for="displacement">Displacement (lbs): </label>
-            <input type="number" class="form-control" name="displacement">
+            <input type="number" class="form-control" name="displacement" value="">
         </div>
         <div class="col">
             <label for="ballast_displacement">Ballast/Displacement: </label>
-            <input type="number" class="form-control" name="ballast_displacement">
+            <input type="number" class="form-control" name="ballast_displacement" value="">
         </div>
         <div class="col">
             <label for="draft">Draft: </label>
-            <input type="number" class="form-control" name="draft">
+            <input type="number" class="form-control" name="draft" value="">
         </div>
     </div> <!-- End of form-row -->
     <div class="form-row">
         <div class="col">
             <label for="rig_design">Rig Design:</label><br>
             <div class="form-check form-check-inline">
-                <label class="form-check-input" for="sloop"><input class="form-check-input" type="checkbox" id="sloop" value ="Yes">Sloop</label>
+                <label class="form-check-input" for="sloop"><input class="form-check-input" type="checkbox" id="sloop" name="rig_design[]" value ="1">Sloop</label>
             </div>
             <div class="form-check form-check-inline">
-                <label class="form-check-input" for="ketch"><input class="form-check-input" type="checkbox" id="ketch" value ="Yes">Ketch</label>
+                <label class="form-check-input" for="ketch"><input class="form-check-input" type="checkbox" id="ketch" name="rig_design[]" value ="2">Ketch</label>
             </div>
             <div class="form-check form-check-inline">
-                <label class="form-check-input" for="yawl"><input class="form-check-input" type="checkbox" id="yawl" value ="Yes">Yawl</label>
+                <label class="form-check-input" for="yawl"><input class="form-check-input" type="checkbox" id="yawl" name="rig_design[]" value ="3">Yawl</label>
             </div>
             <div class="form-check form-check-inline">
-                <label class="form-check-input" for="cutter"><input class="form-check-input" type="checkbox" id="cutter" value ="Yes">Cutter</label>
+                <label class="form-check-input" for="cutter"><input class="form-check-input" type="checkbox" id="cutter" name="rig_design[]" value ="4">Cutter</label>
             </div>
         </div>
     </div>
@@ -202,52 +211,52 @@
 
     <div class="form-row">        
         <div class="col">
-            <label for="spade_aft_fg">Rudder Design:</label><br>
-            <select multiple class="selectpicker form-control" name="spade_aft_fg" id="spade_aft_fg">
-                <option value="FG">FG</option>
-                <option value="Wood">Wood</option> 
-                <option value="Steel">Steel</option>
-                <option value="Aluminum">Aluminum</option>
-                <option value="FG">Spade</option>
-                <option value="Wood">Hung</option> 
-                <option value="Steel">Skeg</option>
-                <option value="Aluminum">Transom</option>
-                <option value="Keel">Keel</option>                                    
+            <label for="rudder_design">Rudder Design:</label><br>
+            <select multiple class="selectpicker form-control" name="rudder_design[]" id="rudder_design">
+                <option value="1">FG</option>
+                <option value="2">Wood</option> 
+                <option value="3">Steel</option>
+                <option value="4">Aluminum</option>
+                <option value="5">Spade</option>
+                <option value="6">Hung</option> 
+                <option value="7">Skeg</option>
+                <option value="8">Transom</option>
+                <option value="9">Keel</option>                                    
             </select>
         </div>
         <div class="col">
             <label for="ballast_type">Ballast Type:</label><br>
-            <select multiple class="selectpicker form-control" name="ballast_type" id="ballast_type">
-                <option value="Lead">Lead</option>
-                <option value="Internal">Internal</option> 
-                <option value="Fixed">Fixed</option>
-                <option value="Iron">Iron</option>                              
+            <select multiple class="selectpicker form-control" name="ballast_type[]" id="ballast_type">
+                <option value="1">Lead</option>
+                <option value="2">Internal</option> 
+                <option value="3">Fixed</option>
+                <option value="4">Iron</option>                              
             </select>
         </div>
         <div class="col">
             <label for="keel_design">Keel Design</label><br>
-            <select multiple class="selectpicker form-control" name="keel_design" id="keel_design">
-                <option value="Fin">Fin</option>
-                <option value="3/4">3/4</option> 
-                <option value="Full">Full</option>
-                <option value="FG">FG</option>
-                <option value="Lead">Lead</option>
-                <option value="Iron">Iron</option> 
-                <option value="Wing">Wing</option>
-                <option value="Bulb">Bulb</option>                
-                <option value="Swing">Swing</option>
-                <option value="Twin">Twin</option>
-                <option value="Shoal">Shoal</option>                                         
+            <select multiple class="selectpicker form-control" name="keel_design[]" id="keel_design">
+                <option value="1">Fin</option>
+                <option value="2">3/4</option> 
+                <option value="3">Full</option>
+                <option value="4">FG</option>
+                <option value="5">Lead</option>
+                <option value="6">Iron</option> 
+                <option value="7">Wing</option>
+                <option value="8">Bulb</option>                
+                <option value="9">Swing</option>
+                <option value="10">Twin</option>
+                <option value="11">Shoal</option>                                         
             </select>
         </div>
         <div class="col">
             <label for="hull_material">Hull Material:</label><br>
-            <select multiple class="selectpicker form-control" name="hull_material" id="hull_material">
-                <option value="Wood">Wood</option>
-                <option value="Iron">Iron</option> 
-                <option value="Aluminum">Aluminum</option>
-                <option value="Cement">Cement</option>
-                <option value="FG">FG</option>                              
+            <select multiple class="selectpicker form-control" name="hull_material[]" id="hull_material">
+                <option value="1">Wood</option>
+                <option value="2">Iron</option> 
+                <option value="3">Aluminum</option>
+                <option value="4">Cement</option>
+                <option value="5">FG</option>                              
             </select>
         </div>
         
@@ -257,25 +266,25 @@
         <div class="col">
             <label for="bow">Bow:</label><br>
             <select multiple class="selectpicker form-control" name="bow[]" id="bow" value="">
-                <option value="Spoon">Spoon</option>
-                <option value="Plumb">Plumb</option>
-                <option value="Closed">Closed</option>                          
+                <option value="1">Spoon</option>
+                <option value="2">Plumb</option>
+                <option value="3">Closed</option>                          
             </select>
         </div>
         <div class="col">
             <label for="stern">Stern:</label><br>
-            <select multiple class="selectpicker form-control" name="stern" id="stern" value="">
-                <option value="Counter">Counter</option>
-                <option value="Canoe">Canoe</option>
-                <option value="Plumb">Plumb</option>                          
+            <select multiple class="selectpicker form-control" name="stern[]" id="stern" value="">
+                <option value="1">Counter</option>
+                <option value="2">Canoe</option>
+                <option value="3">Plumb</option>                          
             </select>
         </div>
         <div class="col">
             <label for="transom">Transom:</label><br>
-            <select  multiple class="selectpicker form-control" name="transom" id="transom" value="">
-                <option value="Reverse">Reverse</option>
-                <option value="Flush">Flush</option>
-                <option value="Closed">Closed</option>                          
+            <select  multiple class="selectpicker form-control" name="transom[]" id="transom" value="">
+                <option value="1">Reverse</option>
+                <option value="2">Flush</option>
+                <option value="3">Closed</option>                          
             </select>
         </div>       
     </div>
@@ -398,7 +407,7 @@
                 <option value="Kitchen">Kitchen</option>
                 <option value="Kitchenetter">Kitchenetter</option> 
                 <option value="Navigation">Navigation</option>
-                <option value="Lazarette">Lazarette</option>
+                <option value="Lazaretter">Lazaretter</option>
                 <option value="Berth - Pipe">Berth - Pipe</option>
                 <option value="Berth - Double">Berth - Double</option>
                 <option value="Cabin">Cabin</option>
