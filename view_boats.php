@@ -1,5 +1,7 @@
 <?php include("includes/header.php"); ?>
+<div class="container">
 <?php include("includes/navbar.php"); ?>
+<?php include("includes/functions.php"); ?>
 
 <h1 class="text-center mt-4">All Boats</h1>
 
@@ -35,7 +37,6 @@
             $boat_image = $row['boat_image'];
             $boat_name = $row['boat_name'];
             $boat_year = $row['boat_year'];
-            $boat_type = $row['boat_type'];            
             $builder = $row['builder']; 
             $designer = $row['designer'];
             $LOA = $row['LOA'];
@@ -54,7 +55,11 @@
             echo "<td><img width='50' src='images/$boat_image' alt='image'></td>";   
             echo "<td><a href=boat_profile.php?b_id=$boat_id>$boat_name</a></td>";
             echo "<td>$boat_year</td>";
-            echo "<td>$boat_type</td>";            
+            echo "<td>";
+
+            readMultiSelect('boat_types', 'types', 'type_id', 'type_name');
+
+            echo "</td>";            
             echo "<td>$builder</td>";
             echo "<td>$designer</td>";
             echo "<td>$LOA</td>";
@@ -90,5 +95,7 @@ if(isset($_GET['delete'])){
 }
 
 ?>
+
+</div>
 
 <?php include("includes/footer.php"); ?>

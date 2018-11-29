@@ -6,45 +6,47 @@
 
 <form action="index.php" method="post">
     
-    <label for="boat_year">Year Range</label>        
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="year_beg" placeholder="ex. 1965">
-        </div>
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="year_end" placeholder="ex. 2015">
-        </div>
+
+    <div class="form-group">
+        <label for="boat_type">Boat Type: </label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="boat_type[]" id="boat_type">
+            <option value="1">Sail</option>
+            <option value="2">Power</option> 
+            <option value="3">Motor Sail</option>
+            <option value="4">Fishing</option>
+            <option value="5">Trawler</option>
+            <option value="6">Cabin Cruiser</option>
+            <option value="7">Sunseeker</option>
+            <option value="8">Monohull</option>
+            <option value="9">Catamaran</option>
+            <option value="10">Trimaran</option>
+            <option value="11">Twin Hull</option>
+        </select>
     </div>
 
     <div class="form-group">
-        <label for="boat_type">Boat Type</label>
-        <select name="boat_type" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Sail">Sail</option>
-            <option value="Power">Power</option> 
-            <option value="Motor Sail">Motor Sail</option> 
-            <option value="Fishing">Fishing</option>          
+        <label for="mast">Mast:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="mast[]" id="mast">
+            <option value="1">Aluminum</option>
+            <option value="2">Wood</option>
+            <option value="3">Steel</option>
+            <option value="4">Carbon</option>
+            <option value="5">Internal Furling</option> 
+            <option value="6">External Furling</option>
+            <option value="7">1</option>
+            <option value="8">2</option> 
+            <option value="9">3+</option>                           
         </select>
     </div>
 
     <div class="form-group">
         <label for="builder">Builder</label>
-        <select name="builder" id="builder" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Ranger">Ranger</option>
-            <option value="Coronado">Coronado</option> 
-            <option value="Rhoades">Rhoades</option>                           
-        </select>
+        <input class="form-control form-control-sm" type="text" name="builder" id="builder">        
     </div>
 
     <div class="form-group">
         <label for="designer">Designer</label>
-        <select name="designer" id="designer" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="gary_mull">Gary Mull</option>
-            <option value="ed_edgar">Ed Edgar</option> 
-            <option value="frank_butler">Frank Butler</option>                           
-        </select>
+        <input class="form-control form-control-sm" type="text" name="designer" id="designer"> 
     </div>
 
     <label for="loa">LOA</label>
@@ -57,57 +59,7 @@
         </div>
     </div>
         
-    <label for="lod">LOD</label>   
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="lod_min" placeholder="ex. 1">
-        </div>
-        <div class="col">
-        <input type="number" class="form-control form-control-sm " name="lod_max" placeholder="ex. 5000">
-        </div>
-    </div>
-
     
-    <label for="LWL">LWL</label>
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="lwl_min" placeholder="ex. 1">
-        </div>
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="lwl_max" placeholder="ex. 5000">
-        </div>
-    </div>
-
-    <label for="beam">BEAM</label>
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="beam_min" placeholder="ex. 1">
-        </div>
-        <div class="col">
-          <input type="number" class="form-control form-control-sm " name="beam_max" placeholder="ex. 5000">
-        </div>
-    </div>
-
-    <label for="ballast">Ballast</label>
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="ballast_min" placeholder="ex. 1">
-        </div>
-        <div class="col">
-             <input type="number" class="form-control form-control-sm " name="ballast_max" placeholder="ex. 5000">
-        </div>
-    </div>
-        
-    
-    <label for="displacement">Displacement</label>
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="displacement_min" placeholder="ex. 1">
-        </div>
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="displacement_max" placeholder="ex. 5000">
-        </div>
-    </div>
 
     <label for="ballast_displacement">Ballast/Displacement</label>
     <div class="row">
@@ -116,16 +68,6 @@
         </div>
         <div class="col">
             <input type="number" class="form-control form-control-sm " name="ballast_displacement_max" placeholder="ex. 5000">
-        </div>
-    </div>
-
-    <label for="draft">Draft</label>
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="draft_min" placeholder="ex. 1">
-        </div>
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="draft_max" placeholder="ex. 5000">
         </div>
     </div>
     

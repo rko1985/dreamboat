@@ -16,6 +16,8 @@
         $boat_year = $_POST['boat_year'];
         $boat_year = !empty($boat_year) ? $boat_year : "NULL"; //checks if empty and if empty sends null (for optional data)
         if(isset($_POST['boat_type'])){$boat_type = $_POST['boat_type'];} //multiselect       
+        $boat_model = $_POST['boat_model'];
+        $boat_submodel = $_POST['boat_submodel'];
         $boat_image = $_FILES['boat_image']['name'];
         $boat_image_temp = $_FILES['boat_image']['tmp_name'];
         $builder = $_POST['builder'];
@@ -26,7 +28,7 @@
         $beam = $_POST['beam'];
         $ballast = $_POST['ballast'];
         $displacement = $_POST['displacement'];
-        $ballast_displacement = $_POST['ballast_displacement'];
+        $ballast_displacement = round($ballast/$displacement,2);
         $draft = $_POST['draft'];
         if(isset($_POST['rig_design'])){$rig_design = $_POST['rig_design'];} //multiselect 
 
@@ -86,10 +88,10 @@
         $boat_image = time() . $boat_image; //adds timestampe to boat name to create unique image name
         move_uploaded_file($boat_image_temp, "images/$boat_image");
 
-        $query = "INSERT INTO boats (boat_name, boat_year, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft,";
+        $query = "INSERT INTO boats (boat_name, boat_year, boat_model, boat_submodel, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft,";
         $query .= "engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths,salon_seating,";
         $query .= "hatches, ports_openning, ports_fixed, dorades_vents, rail, ladder) ";
-        $query .= "VALUES('{$boat_name}', '{$boat_year}', '{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}',";
+        $query .= "VALUES('{$boat_name}', '{$boat_year}', '{$boat_model}','{$boat_submodel}','{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}',";
         $query .= " '{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}',";
         $query .= " '{$hatches}','{$ports_openning}','{$ports_fixed}','{$dorades_vents}','{$rail}','{$ladder}')";
         $create_boat_query = mysqli_query($connection, $query);
@@ -172,6 +174,16 @@
             </select>
         </div>
     </div> <!-- End of form-row -->
+    <div class="form-row">
+        <div class="col">
+            <label for="boat_model">Model: </label>
+            <input type="text" class="form-control" name="boat_model">
+        </div>
+        <div class="col">
+            <label for="boat_submodel">Sub-Model: </label>
+            <input type="text" class="form-control" name="boat_submodel">
+        </div>    
+    </div> <!-- End of form-row -->
     <div class="form-control-file">
         <label for="boat_image">Upload Image: </label><br>
         <input type="file" name="boat_image"> 
@@ -194,33 +206,30 @@
         </div>
         <div class="col">
             <label for="lod">LOD: </label>
-            <input type="number" class="form-control" name="LOD" value="">
+            <input type="number" step=".01" class="form-control" name="LOD" value="">
         </div>
         <div class="col">
             <label for="lwl">LWL: </label>
-            <input type="number" class="form-control" name="LWL" value="">
+            <input type="number" step=".01" class="form-control" name="LWL" value="">
         </div>
         <div class="col">
             <label for="beam">Beam: </label>
-            <input type="number" class="form-control" name="beam" value="">
+            <input type="number" step=".01" class="form-control" name="beam" value="">
         </div>
     </div> <!-- End of form-row -->
     <div class="form-row">
         <div class="col">
             <label for="ballast">Ballast (lbs): </label>
-            <input type="number" class="form-control" name="ballast" value="">
+            <input type="number" step=".01" class="form-control" name="ballast" value="">
         </div>
         <div class="col">
             <label for="displacement">Displacement (lbs): </label>
-            <input type="number" class="form-control" name="displacement" value="">
+            <input type="number" step=".01" class="form-control" name="displacement" value="">
         </div>
-        <div class="col">
-            <label for="ballast_displacement">Ballast/Displacement: </label>
-            <input type="number" class="form-control" name="ballast_displacement" value="">
-        </div>
+        
         <div class="col">
             <label for="draft">Draft: </label>
-            <input type="number" class="form-control" name="draft" value="">
+            <input type="number" step=".01" class="form-control" name="draft" value="">
         </div>
     </div> <!-- End of form-row -->
     <div class="form-row">
@@ -264,7 +273,8 @@
                 <option value="1">Lead</option>
                 <option value="2">Internal</option> 
                 <option value="3">Fixed</option>
-                <option value="4">Iron</option>                              
+                <option value="4">Iron</option>
+                <option value="5">Concrete</option>                              
             </select>
         </div>
         <div class="col">
@@ -290,7 +300,9 @@
                 <option value="2">Iron</option> 
                 <option value="3">Aluminum</option>
                 <option value="4">Cement</option>
-                <option value="5">FG</option>                              
+                <option value="5">FG</option>
+                <option value="6">Cored</option>
+                <option value="7">Solid</option>                                
             </select>
         </div>
         
@@ -310,7 +322,8 @@
             <select multiple class="selectpicker form-control" name="stern[]" id="stern" value="">
                 <option value="1">Counter</option>
                 <option value="2">Canoe</option>
-                <option value="3">Plumb</option>                          
+                <option value="3">Plumb</option>
+                <option value="4">Lazarette</option>                           
             </select>
         </div>
         <div class="col">
@@ -318,7 +331,10 @@
             <select  multiple class="selectpicker form-control" name="transom[]" id="transom" value="">
                 <option value="1">Reverse</option>
                 <option value="2">Flush</option>
-                <option value="3">Closed</option>                          
+                <option value="3">Closed</option>
+                <option value="4">Open</option>
+                <option value="5">Scoop</option>
+                <option value="6">Step</option>                           
             </select>
         </div>       
     </div>
@@ -341,7 +357,7 @@
         </div>
         <div class="col">
             <label for="engine_make">Engine Make:</label><br>
-            <select class="form-control" name="engine_make[]" id="engine_make">
+            <select multiple class="selectpicker form-control" name="engine_make[]" id="engine_make">
                 <option value="1">Universal</option>
                 <option value="2">Yanmar</option> 
                 <option value="3">Volvo</option>
@@ -486,7 +502,11 @@
                 <option value="1">Symmetrical</option>
                 <option value="2">Asymmetrical</option> 
                 <option value="3">Stern</option>
-                <option value="4">Center</option>                           
+                <option value="4">Center</option>
+                <option value="5">3-5'</option>
+                <option value="6">5-7'</option> 
+                <option value="7">7-9'</option>
+                <option value="8">9'+</option>                           
             </select>
         </div>
         <div class="col">
@@ -604,7 +624,10 @@
                 <option value="3">Steel</option>
                 <option value="4">Carbon</option>
                 <option value="5">Internal Furling</option> 
-                <option value="6">External Furling</option>                           
+                <option value="6">External Furling</option>
+                <option value="7">1</option>
+                <option value="8">2</option> 
+                <option value="9">3+</option>                           
             </select>
         </div>
         <div class="col">
