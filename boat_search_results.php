@@ -65,26 +65,36 @@ echo "<table class='table table-bordered table-hover'>
                         }                    
                     }                
                 }
-
+                
                 if(!empty($boat_type)){
-                    $query.="AND ";
+                    if(!empty($mast)){
+                        if(count($mast) < 1){
+                            $query .= "AND mast.mast_id = $mast[0] ";
+                        } else {
+                            $query .= "AND mast.mast_id = $mast[0] ";
+                            foreach($mast as $key => $value){
+                                if($key >= 1) {
+                                    $query .= "OR mast.mast_id = $mast[$key] ";
+                                }            
+                            }                    
+                        }                
+                    }
+                } else {
+                    if(!empty($mast)){
+                        if(count($mast) < 1){
+                            $query .= "mast.mast_id = $mast[0] ";
+                        } else {
+                            $query .= "mast.mast_id = $mast[0] ";
+                            foreach($mast as $key => $value){
+                                if($key >= 1) {
+                                    $query .= "OR mast.mast_id = $mast[$key] ";
+                                }            
+                            }                    
+                        }                
+                    }
                 }
-                
-                
 
-                if(!empty($mast)){
-                    if(count($mast) < 1){
-                        $query .= "mast.mast_id = $mast[0] ";
-                    } else {
-                        $query .= "mast.mast_id = $mast[0] ";
-                        foreach($mast as $key => $value){
-                            if($key >= 1) {
-                                $query .= "OR mast.mast_id = $mast[$key] ";
-                            }            
-                        }                    
-                    }                
-                }
-
+                
 
                 if(isset($boat_type) || isset($mast)){
                     if(!empty($builder)) {
@@ -96,16 +106,19 @@ echo "<table class='table table-bordered table-hover'>
                     }
                 }
 
-
-                if(isset($boat_type) || isset($mast) || isset($builder)){
-                    if(!empty($designer)) {
-                        $query .= "AND designer LIKE '%{$designer}%' ";
-                    }
-                } else {
+                if(!isset($boat_type) && !isset($mast) && empty($builder)){
                     if(!empty($designer)) {
                         $query .= "designer LIKE '%{$designer}%' ";
                     }
-                }
+                }elseif(isset($boat_type) || isset($mast) || isset($builder)){
+                        if(!empty($designer)) {
+                            $query .= "AND designer LIKE '%{$designer}%' ";
+                        }
+                    } else {
+                        if(!empty($designer)) {
+                            $query .= "designer LIKE '%{$designer}%' ";
+                        }
+                    }
 
                 if(!empty($boat_type) || !empty($mast) || !empty($builder) ||!empty($designer)){
                     if($loa_min && $loa_max !== null) {
@@ -133,10 +146,10 @@ echo "<table class='table table-bordered table-hover'>
                 if(isset($boat_type) || isset($mast)){
                     $query .= "GROUP BY boats.boat_name ";
                     $query .= "HAVING COUNT(*) = ";
-                    if($boat_type){
+                    if(isset($boat_type)){
                         $arrayCount += count($boat_type);
                     }
-                    if($mast){
+                    if(isset($mast)){
                         $arrayCount += count($mast);
                     }
                     $query .= $arrayCount;
@@ -146,8 +159,8 @@ echo "<table class='table table-bordered table-hover'>
             
      
 
-            // echo $query;
-            // echo "array count is:". $arrayCount;
+            echo $query;
+            echo "array count is:". $arrayCount;
             
             $boat_search_query = mysqli_query($connection, $query);
 
