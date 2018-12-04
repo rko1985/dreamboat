@@ -1,11 +1,11 @@
 body{
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover !important;
 }
 
 html {
-    height: 100%
+    height: cover !important;
 }
 
 form {

@@ -698,11 +698,14 @@
             </select>
         </div>  
     </div>
+    
+     <div class="form-row pt-3">
+        <div class="col">
+            <input class="btn btn-primary btn-lg float-right" type="submit" name="Add_Boat" value="Add Boat">
+        </div>
+     </div>   
         
-    <hr>
-    <div class="col">
-        <input class="btn btn-primary btn-lg float-right" type="submit" name="Add_Boat" value="Add Boat">
-    </div>
+    
 </form>
 </div> <!-- End of container -->
 

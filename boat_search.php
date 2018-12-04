@@ -1,9 +1,6 @@
 
 
 
-    
-<h3 class="mt-3">Boat Search</h3>
-
 <form action="index.php" method="post">
     
 
@@ -40,6 +37,23 @@
     </div>
 
     <div class="form-group">
+        <label for="keel_design">Keel Design</label><br>
+        <select multiple class="selectpicker form-control" name="keel_design[]" id="keel_design">
+            <option value="1">Fin</option>
+            <option value="2">3/4</option> 
+            <option value="3">Full</option>
+            <option value="4">FG</option>
+            <option value="5">Lead</option>
+            <option value="6">Iron</option> 
+            <option value="7">Wing</option>
+            <option value="8">Bulb</option>                
+            <option value="9">Swing</option>
+            <option value="10">Twin</option>
+            <option value="11">Shoal</option>                                         
+        </select>
+    </div>
+
+    <div class="form-group">
         <label for="builder">Builder</label>
         <input class="form-control form-control-sm" type="text" name="builder" id="builder">        
     </div>
@@ -52,10 +66,10 @@
     <label for="loa">LOA</label>
     <div class="row">
         <div class="col">
-            <input type="number" class="form-control form-control-sm " name="loa_min" placeholder="ex. 1">
+            <input type="number" step=".01" class="form-control form-control-sm " name="loa_min" placeholder="ex. 1">
         </div>
         <div class="col">
-            <input type="number" class="form-control form-control-sm " name="loa_max" placeholder="ex. 5000">
+            <input type="number" step=".01" class="form-control form-control-sm " name="loa_max" placeholder="ex. 5000">
         </div>
     </div>
         
@@ -64,10 +78,10 @@
     <label for="ballast_displacement">Ballast/Displacement</label>
     <div class="row">
         <div class="col">
-            <input type="number" class="form-control form-control-sm " name="ballast_displacement_min" placeholder="ex. 1">
+            <input type="number" step=".01" class="form-control form-control-sm " name="ballast_displacement_min" placeholder="ex. 1">
         </div>
         <div class="col">
-            <input type="number" class="form-control form-control-sm " name="ballast_displacement_max" placeholder="ex. 5000">
+            <input type="number" step=".01" class="form-control form-control-sm " name="ballast_displacement_max" placeholder="ex. 5000">
         </div>
     </div>
     
