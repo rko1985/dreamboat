@@ -176,40 +176,59 @@ echo "<table class='table table-bordered table-hover'>
                     }
 
                 //LOA
-                if(!empty($boat_type) || !empty($mast) || !empty($builder) ||!empty($designer)){
-                    if($loa_min && $loa_max !== null) {
+                
+                if(!empty($boat_type) || !empty($mast) || !empty($keel_design) || !empty($builder) ||!empty($designer)){
+                    if($loa_min !== null && $loa_max !== null) {
                         $query .= "AND (boats.LOA BETWEEN $loa_min AND $loa_max) ";
                     } 
                 } else {
-                    if($loa_min && $loa_max !== null) {
+                    if($loa_min !== null && $loa_max !== null) {
                         $query .= "(LOA BETWEEN $loa_min AND $loa_max) ";
                     }
                 }
 
                 
                 //BALLAST/DISPLACEMENT
-                if(!empty($boat_type) || !empty($mast) || !empty($builder) || !empty($designer) || (!empty($loa_min) && !empty($loa_max))){
-                    if($ballast_displacement_min && $ballast_displacement_max !== null) {
+                if(!empty($boat_type) || !empty($mast) || !empty($keel_design) || !empty($builder) || !empty($designer) || (!empty($loa_min) || !empty($loa_max))){
+                    if($ballast_displacement_min !== null && $ballast_displacement_max !== null) {
                         $query .= "AND (boats.ballast_displacement BETWEEN $ballast_displacement_min AND $ballast_displacement_max) ";
                     } 
                 } else {
-                    if($ballast_displacement_min && $ballast_displacement_max !== null) {
+                    if($ballast_displacement_min !== null && $ballast_displacement_max !== null) {
                         $query .= "(ballast_displacement BETWEEN $ballast_displacement_min AND $ballast_displacement_max) ";
                     }
                 }
                             
                 
+
                 if(isset($boat_type) || isset($mast) || isset($keel_design)){
+
+                    if(isset($boat_type)){$boat_type_count = count($boat_type);} else {$boat_type_count = 0;}
+                    if(isset($mast)){$mast_count = count($mast);} else {$mast_count = 0;}
+                    if(isset($keel_design)){$keel_design_count = count($keel_design);} else {$keel_design_count = 0;}
+                    
                     $query .= "GROUP BY boats.boat_name ";
                     $query .= "HAVING COUNT(*) = ";
-                    if(isset($boat_type)){
-                        $arrayCount += count($boat_type);
-                    }
-                    if(isset($mast)){
-                        $arrayCount += count($mast);
-                    }
-                    if(isset($keel_design)){
-                        $arrayCount += count($keel_design);
+                    
+                    //If any combination of type/mast/keel = 1 then arrayCount = 1
+                    if($boat_type_count == 1 && $mast_count == 1 && $keel_design_count == 0){
+                        $arrayCount = 1;
+                    }elseif ($boat_type_count == 1 && $mast_count == 0 && $keel_design_count == 1){
+                        $arrayCount = 1;
+                    }elseif ($mast_count == 1 && $boat_type_count == 0 && $keel_design_count == 1){
+                        $arrayCount = 1;
+                    }elseif ($keel_design_count == 1 && $mast_count == 1 && $boat_type_count == 1){
+                        $arrayCount = 1;
+                    }else {
+                        if(isset($boat_type)){
+                            $arrayCount += count($boat_type);
+                        }
+                        if(isset($mast)){
+                            $arrayCount += count($mast);
+                        }
+                        if(isset($keel_design)){
+                            $arrayCount += count($keel_design);
+                        }
                     }
                     $query .= $arrayCount;
                 }
@@ -218,8 +237,8 @@ echo "<table class='table table-bordered table-hover'>
             
      
 
-            echo $query;
-            echo "array count is:". $arrayCount;
+            // echo $query;
+            // echo "array count is:". $arrayCount;
             
             $boat_search_query = mysqli_query($connection, $query);
 

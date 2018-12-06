@@ -14,6 +14,9 @@
       <li class="nav-item">
         <a class="nav-link" href="advanced_search.php">Advanced Search</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.php">Contact</a>
+      </li>
      
     </ul>
   </div>

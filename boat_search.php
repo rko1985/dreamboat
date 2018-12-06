@@ -4,7 +4,7 @@
 <form action="index.php" method="post">
     
 
-    <div class="form-group">
+    <div class="form-group  my-2">
         <label for="boat_type">Boat Type: </label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="boat_type[]" id="boat_type">
             <option value="1">Sail</option>
@@ -21,7 +21,7 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group my-2">
         <label for="mast">Mast:</label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="mast[]" id="mast">
             <option value="1">Aluminum</option>
@@ -36,9 +36,9 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group my-2">
         <label for="keel_design">Keel Design</label><br>
-        <select multiple class="selectpicker form-control" name="keel_design[]" id="keel_design">
+        <select multiple class="selectpicker form-control form-control-sm" name="keel_design[]" id="keel_design">
             <option value="1">Fin</option>
             <option value="2">3/4</option> 
             <option value="3">Full</option>
@@ -53,7 +53,7 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group  my-2">
         <label for="builder">Builder</label>
         <input class="form-control form-control-sm" type="text" name="builder" id="builder">        
     </div>
