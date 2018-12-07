@@ -3,12 +3,20 @@
 <?php include("includes/functions.php"); ?>
 
     <!-- Start Here -->
+<?php 
+ob_start();
+session_start();
+
+
+if(!isset($_SESSION['user_role'])){
+    header("Location: ../index.php");
+}
+
+?>
 
 
 <?php 
 
-    
-   
 
     if(isset($_POST['Add_Boat'])){
          //BASICS
@@ -86,15 +94,17 @@
 
 
         $boat_image = time() . $boat_image; //adds timestampe to boat name to create unique image name
-        move_uploaded_file($boat_image_temp, "images/$boat_image");
+        move_uploaded_file($boat_image_temp, "../images/$boat_image");
 
-        $query = "INSERT INTO boats (boat_name, boat_year, boat_model, boat_submodel, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft,";
+        $query = "INSERT INTO boats (user_id, boat_name, boat_year, boat_model, boat_submodel, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft,";
         $query .= "engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths,salon_seating,";
         $query .= "hatches, ports_openning, ports_fixed, dorades_vents, rail, ladder) ";
-        $query .= "VALUES('{$boat_name}', '{$boat_year}', '{$boat_model}','{$boat_submodel}','{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}',";
+        $query .= "VALUES('{$_SESSION['user_id']}','{$boat_name}', '{$boat_year}', '{$boat_model}','{$boat_submodel}','{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}',";
         $query .= " '{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}',";
         $query .= " '{$hatches}','{$ports_openning}','{$ports_fixed}','{$dorades_vents}','{$rail}','{$ladder}')";
         $create_boat_query = mysqli_query($connection, $query);
+
+        echo $query;
 
         if(!$create_boat_query){
             echo mysqli_error($connection);
@@ -137,6 +147,8 @@
         if(isset($bimini)){multiselectInsert($bimini, 'boat_bimini', 'bimini_id');}
         if(isset($spreaders)){multiselectInsert($spreaders, 'boat_spreaders', 'spreaders_id');}
         if(isset($boom)){multiselectInsert($boom, 'boat_boom', 'boom_id');}
+
+        header("Location: index.php");
 
     }
 
