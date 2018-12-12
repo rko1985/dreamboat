@@ -9,6 +9,16 @@
 
 <h4>Basic Parameters</h4>
 <div class="form-row">
+
+    <div class="col">
+        <label for="boat_name">Name</label>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control form-control-sm" name="boat_name">
+            </div>
+        </div>
+    </div>
+
     <div class="col">
         <label for="boat_year">Year Range</label>        
         <div class="row">
@@ -18,20 +28,45 @@
             <div class="col">
                 <input type="number" class="form-control form-control-sm " name="year_end" placeholder="ex. 2015">
             </div>
-    </div>
-
+        </div>
     </div>
 
     <div class="col">
-        <div class="form-group">
-            <label for="boat_type">Boat Type</label>
-            <select name="boat_type" class="form-control form-control-sm ">
-                <option value=''>Any</option>
-                <option value="Sail">Sail</option>
-                <option value="Power">Power</option> 
-                <option value="Motor Sail">Motor Sail</option> 
-                <option value="Fishing">Fishing</option>          
-            </select>
+        <label for="boat_type">Boat Type: </label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="boat_type[]" id="boat_type">
+            <option value="1">Sail</option>
+            <option value="2">Power</option> 
+            <option value="3">Motor Sail</option>
+            <option value="4">Fishing</option>
+            <option value="5">Trawler</option>
+            <option value="6">Cabin Cruiser</option>
+            <option value="7">Sunseeker</option>
+            <option value="8">Monohull</option>
+            <option value="9">Catamaran</option>
+            <option value="10">Trimaran</option>
+            <option value="11">Twin Hull</option>
+        </select>
+    </div>
+
+    <div class="col">
+        <label for="boat_model">Model</label>        
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control form-control-sm " name="boat_model">
+            </div>
+        </div>
+    </div>
+
+</div> <!-- End of form-row -->
+
+<div class="form-row">
+
+    <div class="col">
+        <label for="boat_submodel">Sub-model</label>        
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control form-control-sm " name="boat_submodel">
+            </div>
         </div>
     </div>
 
@@ -58,9 +93,9 @@
             </select>
         </div>
     </div>
-</div> <!-- End of form-row -->
 
-<div class="form-row">
+
+
     <div class="col">
         <label for="loa">LOA</label>
         <div class="row">
@@ -72,6 +107,10 @@
             </div>
         </div>
     </div>
+
+    </div><!-- End of form-row -->
+
+    <div class="form-row">
 
     <div class="col">
         <label for="lod">LOD</label>   
@@ -109,9 +148,9 @@
         </div>
     </div>
 
-</div><!-- End of form-row -->
 
-<div class="form-row">
+
+
     <div class="col">
         <label for="ballast">Ballast</label>
         <div class="row">
@@ -124,6 +163,10 @@
         </div>
     </div>
 
+    </div><!-- End of form-row -->
+
+    <div class="form-row">
+
     <div class="col">
         <label for="displacement">Displacement</label>
         <div class="row">
@@ -135,6 +178,8 @@
             </div>
         </div>
     </div>
+
+    
 
     <div class="col">
         <label for="ballast_displacement">Ballast/Displacement</label>
@@ -160,80 +205,129 @@
         </div>
     </div>
 
-</div><!-- End of form-row -->
+    <div class="col">
+        
+    </div>
+    
+    </div> <!-- End of form-row -->
+
+    <div class="form-row">
+        <div class="col">
+            <label for="rig_design">Rig Design:</label><br>
+            <div class="form-check form-check-inline">
+                <label class="form-check-input" for="sloop"><input class="form-check-input" type="checkbox" id="sloop" name="rig_design[]" value ="1">Sloop</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-input" for="ketch"><input class="form-check-input" type="checkbox" id="ketch" name="rig_design[]" value ="2">Ketch</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-input" for="yawl"><input class="form-check-input" type="checkbox" id="yawl" name="rig_design[]" value ="3">Yawl</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-input" for="cutter"><input class="form-check-input" type="checkbox" id="cutter" name="rig_design[]" value ="4">Cutter</label>
+            </div>
+        </div>
+    </div>
+
+
 
 <!-- UNDERWATER SECTION -->
 <h4>Under Water</h4>
 <div class="form-row">
     <div class="col">
-    <div class="form-group">
-        <label for="spade_aft_fg">Spade, Aft, FG</label>
-        <select name="spade_aft_fg" id="spade_aft_fg" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="FG">FG</option>
-            <option value="Wood">Wood</option> 
-            <option value="Steel">Steel</option>
-            <option value="Aluminum">Aluminum</option>                          
+        <label for="rudder_design">Rudder Design:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="rudder_design[]" id="rudder_design">
+            <option value="1">FG</option>
+            <option value="2">Wood</option> 
+            <option value="3">Steel</option>
+            <option value="4">Aluminum</option>
+            <option value="5">Spade</option>
+            <option value="6">Hung</option> 
+            <option value="7">Skeg</option>
+            <option value="8">Transom</option>
+            <option value="9">Keel</option>                                    
         </select>
-    </div>
-    </div>
-    <div class="col">
-    <div class="form-group">
-        <label for="ballast_type">Ballast Type</label>
-        <select name="ballast_type" id="ballast_type" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Lead">Lead</option>
-            <option value="Internal">Internal</option> 
-            <option value="Fixed">Fixed</option>
-            <option value="Iron">Iron</option>                          
-        </select>
-    </div>
-    </div>
-    <div class="col">
-    <div class="form-group">
-        <label for="keel_design">Keel Design</label>
-        <select name="keel_design" id="keel_design" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Fin">Fin</option>
-            <option value="3/4">3/4</option> 
-            <option value="Full">Full</option>
-            <option value="FG">FG</option>
-            <option value="Lead">Lead</option>
-            <option value="Iron">Iron</option> 
-            <option value="Wing">Wing</option>
-            <option value="Bulb">Bulb</option>                
-            <option value="Swing">Swing</option>
-            <option value="Twin">Twin</option>
-            <option value="Shoal">Shoal</option>                              
-        </select>
-    </div>
-    </div>
-    <div class="col">
-    <div class="form-group">
-        <label for="hull_material">Hull Material</label>
-        <select name="hull_material" id="hull_material" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Wood">Wood</option>
-            <option value="Iron">Iron</option> 
-            <option value="Aluminum">Aluminum</option>
-            <option value="Cement">Cement</option>                              
-        </select>
-    </div>
     </div>
 
-    <div class="col">
-    <div class="form-group">
-        <label for="rig_design">Rig Design</label>
-        <select name="rig_design" id="rig_design" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Sloop">Sloop</option>
-            <option value="Ketch">Ketch</option> 
-            <option value="Yawl">Yawl</option>
-            <option value="Cutter">Cutter</option>                            
+     <div class="col">
+        <label for="ballast_type">Ballast Type:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="ballast_type[]" id="ballast_type">
+            <option value="1">Lead</option>
+            <option value="2">Internal</option> 
+            <option value="3">Fixed</option>
+            <option value="4">Iron</option>
+            <option value="5">Concrete</option>                              
         </select>
     </div>
+
+
+    <div class="col">
+        <label for="keel_design">Keel Design</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="keel_design[]" id="keel_design">
+            <option value="1">Fin</option>
+            <option value="2">3/4</option> 
+            <option value="3">Full</option>
+            <option value="4">FG</option>
+            <option value="5">Lead</option>
+            <option value="6">Iron</option> 
+            <option value="7">Wing</option>
+            <option value="8">Bulb</option>                
+            <option value="9">Swing</option>
+            <option value="10">Twin</option>
+            <option value="11">Shoal</option>                                         
+        </select>
     </div>
-</div> <!-- End of form-row -->
+
+
+    <div class="col">
+        <label for="hull_material">Hull Material:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="hull_material[]" id="hull_material">
+            <option value="1">Wood</option>
+            <option value="2">Iron</option> 
+            <option value="3">Aluminum</option>
+            <option value="4">Cement</option>
+            <option value="5">FG</option>
+            <option value="6">Cored</option>
+            <option value="7">Solid</option>                                
+        </select>
+    </div>
+
+    </div> <!-- End of form-row -->
+
+    <div class="form-row">        
+        <div class="col">
+            <label for="bow">Bow:</label><br>
+            <select multiple class="selectpicker form-control form-control-sm" name="bow[]" id="bow" value="">
+                <option value="1">Spoon</option>
+                <option value="2">Plumb</option>
+                <option value="3">Closed</option>                          
+            </select>
+        </div>
+        <div class="col">
+            <label for="stern">Stern:</label><br>
+            <select multiple class="selectpicker form-control form-control-sm" name="stern[]" id="stern" value="">
+                <option value="1">Counter</option>
+                <option value="2">Canoe</option>
+                <option value="3">Plumb</option>
+                <option value="4">Lazarette</option>                           
+            </select>
+        </div>
+        <div class="col">
+            <label for="transom">Transom:</label><br>
+            <select  multiple class="selectpicker form-control form-control-sm" name="transom[]" id="transom" value="">
+                <option value="1">Reverse</option>
+                <option value="2">Flush</option>
+                <option value="3">Closed</option>
+                <option value="4">Open</option>
+                <option value="5">Scoop</option>
+                <option value="6">Step</option>                           
+            </select>
+        </div>
+        <div class="col">
+        </div>       
+    </div> <!-- End of form-row -->
+
+
 
 
 
@@ -241,27 +335,37 @@
 
 <div class="form-row">
     <div class="col">
-    <div class="form-group">
-        <label for="engine_type">Engine Type</label>
-        <select name="engine_type" id="engine_type" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Gasoline">Gasoline</option>
-            <option value="Diesel">Diesel</option> 
-            <option value="Electric">Electric</option>                           
+        <label for="engine_type">Engine Type:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="engine_type[]" id="engine_type">
+            <option value="1">Gasoline</option>
+            <option value="2">Diesel</option> 
+            <option value="3">Electric</option>
+            <option value="4">Inboard</option>
+            <option value="5">Outboard</option> 
+            <option value="6">Inboard/Outboard</option>          
+            <option value="7">Single</option>
+            <option value="8">Twin</option>                             
         </select>
     </div>
-    </div>
+
     <div class="col">
-    <div class="form-group">
-        <label for="engine_make">Engine Make</label>
-        <select name="engine_make" id="engine_make" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Universal">Universal</option>
-            <option value="Yamaha">Yamaha</option> 
-            <option value="Volvo">Volvo</option>                           
+        <label for="engine_make">Engine Make:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="engine_make[]" id="engine_make">
+            <option value="1">Universal</option>
+            <option value="2">Yanmar</option> 
+            <option value="3">Volvo</option>
+            <option value="4">Perkins</option>
+            <option value="5">Cummins</option> 
+            <option value="6">Westerbeke</option>          
+            <option value="7">Chrysler</option>
+            <option value="8">Nissan</option>
+            <option value="9">Yamaha</option>
+            <option value="10">Beta</option>
+            <option value="11">Honda</option>
+            <option value="12">Other</option>                             
         </select>
     </div>
-    </div>
+
     <div class="col">
     <label for="loa">Engine Horsepower</label>
     <div class="row">
@@ -345,171 +449,159 @@
         </div>
     </div>
     </div>
+
     <div class="col">
-    <div class="form-group">
-        <label for="forepeak">Forepeak</label>
-        <select name="forepeak" id="forepeak" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Berth-V">Berth-V</option>
-            <option value="Head">Head</option> 
-            <option value="Storage">Storage</option>                              
+        <label for="forepeak">Forepeak:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="forepeak[]" id="forepeak">
+            <option value="1">Berth-V</option>
+            <option value="2">Head</option> 
+            <option value="3">Storage</option>
+            <option value="4">Vanity</option>                              
         </select>
     </div>
-    </div>
+
     <div class="col">
-    <div class="form-group">
-        <label for="midships">Midships</label>
-        <select name="midships" id="midships" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Locker">Locker</option>
-            <option value="Drawers">Drawers</option> 
-            <option value="Head">Head</option>                           
+        <label for="midships">Midships:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="midships[]" id="midships">
+            <option value="1">Locker</option>
+            <option value="2">Drawers</option> 
+            <option value="3">Head</option>
+            <option value="4">Cooler</option>                               
         </select>
     </div>
-    </div>
+
     <div class="col">
-    <div class="form-group">
-        <label for="salon">Salon</label>
-        <select name="salon" id="salon" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Sette - Bench">Sette - Bench</option>
-            <option value="Settle - U">Settle - U</option> 
-            <option value="Berth - 1/4">Berth - 1/4</option>                         
+        <label for="salon">Salon:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="salon[]" id="salon">
+            <option value="1">Sette - Bench</option>
+            <option value="2">Settle - U</option> 
+            <option value="3">Berth - 1/4</option>
+            <option value="4">Berth - Pipe</option>
+            <option value="5">Shelving</option>                           
         </select>
     </div>
-    </div>
+    
 </div> <!-- End of form-row -->
 
 <div class="form-row">
     <div class="col">
-    <div class="form-group">
-        <label for="galley">Galley</label>
-        <select name="galley" id="galley" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Cooler">Cooler</option>
-            <option value="Refrigerator">Refrigerator</option> 
-            <option value="Sink">Sink</option>                                
+        <label for="galley">Galley:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="galley[]" id="galley">
+            <option value="1">Cooler</option>
+            <option value="2">Refrigerator</option> 
+            <option value="3">Sink</option>
+            <option value="4">Range</option>
+            <option value="5">Oven</option>                           
         </select>
-    </div>
     </div>
     <div class="col">
-    <div class="form-group">
-        <label for="quarter">Quarter</label>
-        <select name="quarter" id="quarter" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Kitchen">Kitchen</option>
-            <option value="Kitchenetter">Kitchenetter</option> 
-            <option value="Navigation">Navigation</option>                            
+        <label for="quarter">Quarter:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="quarter[]" id="quarter">
+            <option value="1">Kitchen</option>
+            <option value="2">Kitchenetter</option> 
+            <option value="3">Navigation</option>
+            <option value="4">Lazaretter</option>
+            <option value="5">Berth - Pipe</option>
+            <option value="6">Berth - Double</option>
+            <option value="7">Cabin</option>
+            <option value="8">Head</option>                           
         </select>
-    </div>
     </div>
     <div class="col">
-    <div class="form-group">
-        <label for="aft">Aft</label>
-        <select name="aft" id="aft" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Cooler">Cooler</option>
-            <option value="Refrigerator">Refrigerator</option> 
-            <option value="Sink">Sink</option>                              
+        <label for="aft">Aft:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="aft[]" id="aft">
+            <option value="1">Cooler</option>
+            <option value="2">Refrigerator</option> 
+            <option value="3">Sink</option>                           
         </select>
-    </div>
     </div>
     <div class="col">
-    <div class="form-group">
-        <label for="navigation_comm">Navigation/Communication</label>
-        <select name="navigation_comm" id="navigation_comm" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="GPS">GPS</option>
-            <option value="VHF">VHF</option> 
-            <option value="AM/FM">AM/FM</option>                         
+        <label for="navigation_comm">Navigation/Communication:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="navigation_comm[]" id="navigation_comm">
+            <option value="1">GPS</option>
+            <option value="2">VHF</option> 
+            <option value="3">Radar</option>
+            <option value="4">SSB</option>
+            <option value="5">HAM</option>
+            <option value="6">AM/FM</option>           
         </select>
-    </div>
-    </div>
+    </div>    
 </div> <!-- End of form-row -->
 <h4>On Deck</h4>
 
 <div class="form-row">
     <div class="col">
-    <div class="form-group">
-        <label for="helm">Helm</label>
-        <select name="helm" id="helm" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Tiller">Tiller</option>
-            <option value="Wheel">Wheel</option> 
-            <option value="Hydraulic">Hydraulic</option>                                 
+        <label for="helm">Helm:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="helm[]" id="helm">
+            <option value="1">Tiller</option>
+            <option value="2">Wheel</option> 
+            <option value="3">Hydraulic</option>
+            <option value="4">Mechanical</option>                           
         </select>
     </div>
-    </div>
     <div class="col">
-    <div class="form-group">
-        <label for="cockpit">Cockpit</label>
-        <select name="cockpit" id="cockpit" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Symmetrical">Symmetrical</option>
-            <option value="Asymmetrical">Asymmetrical</option> 
-            <option value="Stern">Stern</option>                           
+        <label for="cockpit">Cockpit:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="cockpit[]" id="cockpit">
+            <option value="1">Symmetrical</option>
+            <option value="2">Asymmetrical</option> 
+            <option value="3">Stern</option>
+            <option value="4">Center</option>
+            <option value="5">3-5'</option>
+            <option value="6">5-7'</option> 
+            <option value="7">7-9'</option>
+            <option value="8">9'+</option>                           
         </select>
     </div>
-    </div>
     <div class="col">
-    <div class="form-group">
-    <label for="loa">Scuppers</label>
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="scuppers_min" placeholder="ex. 1">
-        </div>
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="scuppers_max" placeholder="ex. 5000">
-        </div>
-    </div>
-    </div>
-    </div>
-    <div class="col">
-    <div class="form-group">
-        <label for="coaming">Coaming</label>
-        <select name="coaming" id="coaming" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="FG">FG</option>
-            <option value="Teak">Teak</option> 
-            <option value="Wood">Wood</option>                              
+        <label for="scuppers">Scupper Size/Style</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="scuppers[]" id="scuppers">
+            <option value="1">1"</option>
+            <option value="2">1-2"</option> 
+            <option value="3">2-3"</option>
+            <option value="4">3"+</option>
+            <option value="5">Through Hull</option>  
+            <option value="6">Direct</option>                                  
         </select>
     </div>
+    <div class="col">
+        <label for="coaming">Coaming:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="coaming[]" id="coaming">
+            <option value="1">FG</option>
+            <option value="2">Teak</option> 
+            <option value="3">Wood</option>
+            <option value="4">Steel</option>
+            <option value="5">Aluminum</option>                           
+        </select>
     </div>
+        
 </div> <!-- End of form-row -->
 
 <div class="form-row">
     <div class="col">
-    <label for="loa">Gunwales/Bullwarks</label>
-    <div class="row">
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="gunwales_bullwarks_min" placeholder="ex. 1">
-        </div>
-        <div class="col">
-            <input type="number" class="form-control form-control-sm " name="gunwales_bullwarks_max" placeholder="ex. 5000">
-        </div>
-    </div>
-    </div>
-    <div class="col">
-    <div class="form-group">
-        <label for="companionway">Companionway</label>
-        <select name="companionway" id="companionway" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Full">Full</option>
-            <option value="1/2">1/2</option> 
-            <option value="V">V</option>                                
+        <label for="gunwales_bullwarks">Gunwales/Bullwarks:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="gunwales_bullwarks[]" id="gunwales_bullwarks">
+            <option value="1">1"</option>
+            <option value="2">1-2"</option> 
+            <option value="3">2-3"</option>
+            <option value="4">3"+</option>                             
         </select>
     </div>
-    </div>
     <div class="col">
-    <div class="form-group">
-        <label for="cabin">Cabin</label>
-        <select name="cabin" id="cabin" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Raised">Raised</option>
-            <option value="Flush">Flush</option> 
-            <option value="Hard">Hard</option>                           
+        <label for="companionway">Companionway:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="companionway[]" id="companionway">
+            <option value="1">Full</option>
+            <option value="2">1/2</option> 
+            <option value="3">V</option>                           
         </select>
-    </div>
+    </div>  
+    <div class="col">
+        <label for="cabin">Cabin:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="cabin[]" id="cabin">
+            <option value="1">Raised</option>
+            <option value="2">Flush</option> 
+            <option value="3">Hard</option>
+            <option value="4">Soft/Hard</option>                           
+        </select>
     </div>
     <div class="col">
     <label for="loa">Hatches</label>
@@ -557,44 +649,8 @@
         </div>
     </div>
     </div>
-    <div class="col">
-    <div class="form-group">
-        <label for="transom">Transom</label>
-        <select name="transom" id="transom" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Reverse">Reverse</option>
-            <option value="Flush">Flush</option>
-            <option value="Closed">Closed</option>                            
-        </select>
-    </div>
-    </div>
-</div> <!-- End of form-row -->
 
-
-<div class="form-row">
-    <div class="col">
-    <div class="form-group">
-        <label for="bow">Bow</label>
-        <select name="bow" id="bow" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Spoon">Spoon</option>
-            <option value="Plumb">Plumb</option>
-            <option value="Closed">Closed</option>                             
-        </select>
-    </div>
-    </div>
-    <div class="col">
-    <div class="form-group">
-        <label for="stern">Stern</label>
-        <select name="stern" id="stern" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Counter">Counter</option>
-            <option value="Canoe">Canoe</option>
-            <option value="Plumb">Plumb</option>                          
-        </select>
-    </div>
-    </div>
-    <div class="col">
+     <div class="col">
     <div class="form-group">
         <label for="rail">Rail</label>
         <select name="rail" id="rail" class="form-control form-control-sm ">
@@ -605,6 +661,12 @@
         </select>
     </div>
     </div>
+    
+</div> <!-- End of form-row -->
+
+
+<div class="form-row">
+  
     <div class="col">
     <div class="form-group">
         <label for="ladder">Ladder</label>
@@ -615,6 +677,13 @@
         </select>
     </div>
     </div>
+
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
 </div> <!-- End of form-row -->
 
 
@@ -623,62 +692,93 @@
 
 <div class="form-row">
     <div class="col">
-    <div class="form-group">
-        <label for="spars">Spars</label>
-        <select name="spars" id="spars" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Aluminum">Aluminum</option>
-            <option value="Wood">Wood</option>
-            <option value="Steel">Steel</option>                                      
+        <label for="mast">Mast:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="mast[]" id="mast">
+            <option value="1">Aluminum</option>
+            <option value="2">Wood</option>
+            <option value="3">Steel</option>
+            <option value="4">Carbon</option>
+            <option value="5">Internal Furling</option> 
+            <option value="6">External Furling</option>
+            <option value="7">1</option>
+            <option value="8">2</option> 
+            <option value="9">3+</option>                           
         </select>
-    </div>
     </div>
     <div class="col">
-    <div class="form-group">
-        <label for="standing_rigging">Standing Rigging</label>
-        <select name="standing_rigging" id="standing_rigging" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Wire">Wire</option>
-            <option value="Rod">Rod</option>
-            <option value="Continuous">Continuous</option>                           
+        <label for="standing_rigging">Standing Rigging:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="standing_rigging[]" id="standing_rigging">
+            <option value="1">Wire</option>
+            <option value="2">Rod</option>
+            <option value="3">Continuous</option>
+            <option value="4">Discontinuous</option>
+            <option value="5">Furling</option> 
+            <option value="6">Masthead</option>
+            <option value="7">Fractional</option>
+            <option value="8">Stayless</option>                          
         </select>
-    </div>
     </div>
     <div class="col">
-    <div class="form-group">
-        <label for="chain_plates">Chain Plates</label>
-        <select name="chain_plates" id="chain_plates" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Stainless">Stainless</option>
-            <option value="Bronze">Bronze</option>
-            <option value="Hull">Hull</option>                                 
+        <label for="chain_plates">Chain Plates:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="chain_plates[]" id="chain_plates">
+            <option value="1">Stainless</option>
+            <option value="2">Bronze</option>
+            <option value="3">Hull</option>
+            <option value="4">Bulkhead</option>
+            <option value="5">Deck</option>                          
         </select>
-    </div>
     </div>
     <div class="col">
-    <div class="form-group">
-        <label for="dodger">Dodger</label>
-        <select name="dodger" id="dodger" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Full">Full</option>
-            <option value="Partial">Partial</option>
-            <option value="Rigid">Rigid</option>                            
+        <label for="dodger">Dodger:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="dodger[]" id="dodger">
+            <option value="1">Full</option>
+            <option value="2">Partial</option>
+            <option value="3">Rigid</option>
+            <option value="4">Soft</option>                          
         </select>
     </div>
-    </div>
-    <div class="col">
-    <div class="form-group">
-        <label for="bimini">Bimini</label>
-        <select name="bimini" id="bimini" class="form-control form-control-sm ">
-            <option value=''>Any</option>
-            <option value="Full">Full</option>
-            <option value="Partial">Partial</option>
-            <option value="Fixed">Fixed</option>
-            <option value="Non-Fixed">Non-Fixed</option>                          
-        </select>
-    </div>
-    </div>
+    
 </div> <!-- End of form-row -->
+
+<div class="form-row">
+    <div class="col">
+        <label for="bimini">Bimini:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="bimini[]" id="bimini">
+            <option value="1">Full</option>
+            <option value="2">Partial</option>
+            <option value="3">Fixed</option>
+            <option value="4">Non-Fixed</option>
+            <option value="5">Folding</option>    
+        </select>
+    </div>
+
+    <div class="col">
+        <label for="spreaders">Spreaders:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="spreaders[]" id="spreaders">
+            <option value="1">Aluminum</option>
+            <option value="2">Wood</option>
+            <option value="3">Steel</option>
+            <option value="4">Carbon</option>
+            <option value="5">Athwart</option>     
+            <option value="6">Swept</option>
+        </select>
+    </div>
+    <div class="col">
+        <label for="boom">Boom:</label><br>
+        <select multiple class="selectpicker form-control form-control-sm" name="boom[]" id="boom">
+            <option value="1">Aluminum</option>
+            <option value="2">Wood</option>
+            <option value="3">Steel</option>
+            <option value="4">Carbon</option>
+            <option value="5">Internal Furling</option>
+            <option value="6">External Furling</option>       
+        </select>
+    </div>
+
+    <div class="col">
+    </div>
+
+</div>
     
 
 
@@ -692,3 +792,14 @@
 </div> <!-- End of container -->
 
 <?php include("includes/footer.php"); ?> <!-- Remove when finished testing -->
+
+
+<script>
+
+$(document).ready(function(){
+
+    $('.selectpicker').selectpicker();
+
+});
+
+</script>

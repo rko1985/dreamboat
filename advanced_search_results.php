@@ -23,11 +23,14 @@ echo "<table class='table table-bordered table-hover'>
 
         if(isset($_POST['Search_Boat'])){
 
+            $boat_name = $_POST['boat_name'];
             $year_beg = $_POST['year_beg'];
             $year_end = $_POST['year_end'];
             $loa_min = $_POST['loa_min'];
             $loa_max = $_POST['loa_max'];
             $boat_type = $_POST['boat_type'];
+            $boat_model = $_POST['boat_model'];
+            $boat_submodel = $_POST['boat_submodel'];
             $builder = $_POST['builder'];
             $designer = $_POST['designer'];
             $lod_min = $_POST['lod_min'];

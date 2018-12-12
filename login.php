@@ -22,13 +22,22 @@ if(isset($_POST['submit'])){
         echo mysqli_error($connection);
     }
 
-    if(mysqli_num_rows($user_auth_query) == 1){
+    if((mysqli_num_rows($user_auth_query) == 1) && $row['user_role'] == 'admin'){
         $_SESSION['username'] = $row['username'];
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['user_role'] = $row['user_role'];
-        header("Location: user/index.php");
+        header("Location: admin/index.php");
     } else {
-        echo "Username or Password Incorrect";
+
+        if(mysqli_num_rows($user_auth_query) == 1){
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['user_role'] = $row['user_role'];
+            header("Location: user/index.php");
+        } else {
+            echo "Username or Password Incorrect";
+        }
+
     }
 
 }
