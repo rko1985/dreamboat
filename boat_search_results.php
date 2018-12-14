@@ -231,13 +231,14 @@ echo "<table class='table table-bordered table-hover'>
                         }
                     }
                     $query .= $arrayCount;
+                    
                 }
 
             }
             
      
 
-            // echo $query;
+            echo $query;
             // echo "array count is:". $arrayCount;
             
             $boat_search_query = mysqli_query($connection, $query);

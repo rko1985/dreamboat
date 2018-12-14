@@ -32,5 +32,52 @@ function readMultiSelect($joinedTable, $singleTable, $joinId, $name){
     }
 }
 
+//ADVANCED SEARCH FUNCTIONS
+
+//Joining tables
+
+function joinTables($variableName, $joinedTable, $singleTable, $joinId){
+    global $query;
+    if(!empty($variableName)){
+        $query .= "INNER JOIN $joinedTable ON boats.boat_id = $joinedTable.boat_id INNER JOIN $singleTable ON $joinedTable.$joinId = $singleTable.$joinId ";
+    }
+
+}
+
+function joinWhereAnd($variableName, $singleTable, $joinId){
+    global $query;
+
+    if(!empty($variableName)){
+        if(count($variableName) < 1){
+            $query .= "AND $singleTable.$joinId = $variableName[0] ";
+        } else {
+            $query .= "AND $singleTable.$joinId = $variableName[0] ";
+            foreach($variableName as $key => $value){
+                if($key >= 1) {
+                    $query .= "OR $singleTable.$joinId = $variableName[$key] ";
+                }            
+            }                    
+        }                
+    }
+
+}
+
+function joinWhereOr($variableName, $singleTable, $joinId){
+    global $query;
+
+    if(!empty($variableName)){
+        if(count($variableName) < 1){
+            $query .= "$singleTable.$joinId = $variableName[0] ";
+        } else {
+            $query .= "$singleTable.$joinId = $variableName[0] ";
+            foreach($variableName as $key => $value){
+                if($key >= 1) {
+                    $query .= "OR $singleTable.$joinId = $variableName[$key] ";
+                }            
+            }                    
+        }                
+    }
+
+}
 
 ?>
