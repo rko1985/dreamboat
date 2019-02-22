@@ -1,15 +1,14 @@
-    
-<div class="container">
-    <footer id="main-footer" class=" pr-3 bg-dark text-white">
-        <div class="container">
-            <div class="row text-center">
-                <p class="ml-auto">
-                    Copyright &copy; <span id="year"></span>
-                </p>
-            </div>
-        </div>  
-    </footer>
-</div>
+
+<footer id="main-footer" class=" pr-3 bg-dark text-white">
+    <div class="container">
+        <div class="row text-center">
+            <p class="ml-auto">
+                Copyright &copy; <span id="year"></span>
+            </p>
+        </div>
+    </div>  
+</footer>
+
     
     
     

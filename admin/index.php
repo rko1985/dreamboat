@@ -1,6 +1,7 @@
 <?php include("includes/header.php"); ?>
-<div class="container">
 <?php include("includes/navbar.php"); ?>
+<div class="container">
+
 
 
 
@@ -8,8 +9,7 @@
 ob_start();
 session_start();
 
-
-if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
+if(!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'admin'){
     header("Location: ../index.php");
 }
 

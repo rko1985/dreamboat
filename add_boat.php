@@ -85,58 +85,61 @@
         if(isset($_POST['boom'])){$boom = $_POST['boom'];} //multiselect
 
 
-        $boat_image = time() . $boat_image; //adds timestampe to boat name to create unique image name
+        $boat_image = time() . $boat_image; //adds timestamp to boat name to create unique image name
         move_uploaded_file($boat_image_temp, "images/$boat_image");
 
-        $query = "INSERT INTO boats (boat_name, boat_year, boat_model, boat_submodel, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft,";
-        $query .= "engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths,salon_seating,";
-        $query .= "hatches, ports_openning, ports_fixed, dorades_vents, rail, ladder) ";
-        $query .= "VALUES('{$boat_name}', '{$boat_year}', '{$boat_model}','{$boat_submodel}','{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}',";
-        $query .= " '{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}',";
-        $query .= " '{$hatches}','{$ports_openning}','{$ports_fixed}','{$dorades_vents}','{$rail}','{$ladder}')";
-        $create_boat_query = mysqli_query($connection, $query);
+        print_r($boat_type);
+        
 
-        if(!$create_boat_query){
-            echo mysqli_error($connection);
-        }
+        // $query = "INSERT INTO boats (boat_name, boat_year, boat_model, boat_submodel, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft,";
+        // $query .= "engine_horsepower, fuel_capacity, water_capacity, cabins, heads, berths,salon_seating,";
+        // $query .= "hatches, ports_openning, ports_fixed, dorades_vents, rail, ladder) ";
+        // $query .= "VALUES('{$boat_name}', '{$boat_year}', '{$boat_model}','{$boat_submodel}','{$boat_image}','{$builder}','{$designer}','{$LOA}','{$LOD}','{$LWL}','{$beam}','{$ballast}','{$displacement}','{$ballast_displacement}','{$draft}',";
+        // $query .= " '{$engine_horsepower}','{$fuel_capacity}','{$water_capacity}','{$cabins}','{$heads}','{$berths}','{$salon_seating}',";
+        // $query .= " '{$hatches}','{$ports_openning}','{$ports_fixed}','{$dorades_vents}','{$rail}','{$ladder}')";
+        // $create_boat_query = mysqli_query($connection, $query);
 
-        //BASICS
-        if(isset($boat_type)){multiselectInsert($boat_type, 'boat_types', 'type_id');}
-        if(isset($rig_design)){multiselectInsert($rig_design, 'boat_rig_design', 'rig_design_id');}
-        //UNDERWATER
-        if(isset($rudder_design)){multiselectInsert($rudder_design, 'boat_rudder_design', 'rudder_design_id');}
-        if(isset($ballast_type)){multiselectInsert($ballast_type, 'boat_ballast_type', 'ballast_type_id');}
-        if(isset($keel_design)){multiselectInsert($keel_design, 'boat_keel_design', 'keel_design_id');}
-        if(isset($hull_material)){multiselectInsert($hull_material, 'boat_hull_material', 'hull_material_id');}
-        if(isset($bow)){multiselectInsert($bow, 'boat_bow', 'bow_id');}
-        if(isset($stern)){multiselectInsert($stern, 'boat_stern', 'stern_id');}
-        if(isset($transom)){multiselectInsert($transom, 'boat_transom', 'transom_id');}
-        //BELOW DECK
-        if(isset($engine_type)){multiselectInsert($engine_type, 'boat_engine_type', 'engine_type_id');}
-        if(isset($engine_make)){multiselectInsert($engine_make, 'boat_engine_make', 'engine_make_id');}
-        if(isset($forepeak)){multiselectInsert($forepeak, 'boat_forepeak', 'forepeak_id');}
-        if(isset($midships)){multiselectInsert($midships, 'boat_midships', 'midships_id');}
-        if(isset($salon)){multiselectInsert($salon, 'boat_salon', 'salon_id');}
-        if(isset($galley)){multiselectInsert($galley, 'boat_galley', 'galley_id');}
-        if(isset($quarter)){multiselectInsert($quarter, 'boat_quarter', 'quarter_id');}
-        if(isset($aft)){multiselectInsert($aft, 'boat_aft', 'aft_id');}
-        if(isset($navigation_comm)){multiselectInsert($navigation_comm, 'boat_navigation_comm', 'navigation_comm_id');}
-        //ON DECK
-        if(isset($helm)){multiselectInsert($helm, 'boat_helm', 'helm_id');}
-        if(isset($cockpit)){multiselectInsert($cockpit, 'boat_cockpit', 'cockpit_id');}
-        if(isset($scuppers)){multiselectInsert($scuppers, 'boat_scuppers', 'scuppers_id');}
-        if(isset($coaming)){multiselectInsert($coaming, 'boat_coaming', 'coaming_id');}
-        if(isset($gunwales_bullwarks)){multiselectInsert($gunwales_bullwarks, 'boat_gunwales_bullwarks', 'gunwales_bullwarks_id');}
-        if(isset($companionway)){multiselectInsert($companionway, 'boat_companionway', 'companionway_id');}
-        if(isset($cabin)){multiselectInsert($cabin, 'boat_cabin', 'cabin_id');}
-        //ABOVE DECK
-        if(isset($mast)){multiselectInsert($mast, 'boat_mast', 'mast_id');}
-        if(isset($standing_rigging)){multiselectInsert($standing_rigging, 'boat_standing_rigging', 'standing_rigging_id');}
-        if(isset($chain_plates)){multiselectInsert($chain_plates, 'boat_chain_plates', 'chain_plates_id');}
-        if(isset($dodger)){multiselectInsert($dodger, 'boat_dodger', 'dodger_id');}
-        if(isset($bimini)){multiselectInsert($bimini, 'boat_bimini', 'bimini_id');}
-        if(isset($spreaders)){multiselectInsert($spreaders, 'boat_spreaders', 'spreaders_id');}
-        if(isset($boom)){multiselectInsert($boom, 'boat_boom', 'boom_id');}
+        // if(!$create_boat_query){
+        //     echo mysqli_error($connection);
+        // }
+
+        // //BASICS
+        // if(isset($boat_type)){multiselectInsert($boat_type, 'boat_types', 'type_id');}
+        // if(isset($rig_design)){multiselectInsert($rig_design, 'boat_rig_design', 'rig_design_id');}
+        // //UNDERWATER
+        // if(isset($rudder_design)){multiselectInsert($rudder_design, 'boat_rudder_design', 'rudder_design_id');}
+        // if(isset($ballast_type)){multiselectInsert($ballast_type, 'boat_ballast_type', 'ballast_type_id');}
+        // if(isset($keel_design)){multiselectInsert($keel_design, 'boat_keel_design', 'keel_design_id');}
+        // if(isset($hull_material)){multiselectInsert($hull_material, 'boat_hull_material', 'hull_material_id');}
+        // if(isset($bow)){multiselectInsert($bow, 'boat_bow', 'bow_id');}
+        // if(isset($stern)){multiselectInsert($stern, 'boat_stern', 'stern_id');}
+        // if(isset($transom)){multiselectInsert($transom, 'boat_transom', 'transom_id');}
+        // //BELOW DECK
+        // if(isset($engine_type)){multiselectInsert($engine_type, 'boat_engine_type', 'engine_type_id');}
+        // if(isset($engine_make)){multiselectInsert($engine_make, 'boat_engine_make', 'engine_make_id');}
+        // if(isset($forepeak)){multiselectInsert($forepeak, 'boat_forepeak', 'forepeak_id');}
+        // if(isset($midships)){multiselectInsert($midships, 'boat_midships', 'midships_id');}
+        // if(isset($salon)){multiselectInsert($salon, 'boat_salon', 'salon_id');}
+        // if(isset($galley)){multiselectInsert($galley, 'boat_galley', 'galley_id');}
+        // if(isset($quarter)){multiselectInsert($quarter, 'boat_quarter', 'quarter_id');}
+        // if(isset($aft)){multiselectInsert($aft, 'boat_aft', 'aft_id');}
+        // if(isset($navigation_comm)){multiselectInsert($navigation_comm, 'boat_navigation_comm', 'navigation_comm_id');}
+        // //ON DECK
+        // if(isset($helm)){multiselectInsert($helm, 'boat_helm', 'helm_id');}
+        // if(isset($cockpit)){multiselectInsert($cockpit, 'boat_cockpit', 'cockpit_id');}
+        // if(isset($scuppers)){multiselectInsert($scuppers, 'boat_scuppers', 'scuppers_id');}
+        // if(isset($coaming)){multiselectInsert($coaming, 'boat_coaming', 'coaming_id');}
+        // if(isset($gunwales_bullwarks)){multiselectInsert($gunwales_bullwarks, 'boat_gunwales_bullwarks', 'gunwales_bullwarks_id');}
+        // if(isset($companionway)){multiselectInsert($companionway, 'boat_companionway', 'companionway_id');}
+        // if(isset($cabin)){multiselectInsert($cabin, 'boat_cabin', 'cabin_id');}
+        // //ABOVE DECK
+        // if(isset($mast)){multiselectInsert($mast, 'boat_mast', 'mast_id');}
+        // if(isset($standing_rigging)){multiselectInsert($standing_rigging, 'boat_standing_rigging', 'standing_rigging_id');}
+        // if(isset($chain_plates)){multiselectInsert($chain_plates, 'boat_chain_plates', 'chain_plates_id');}
+        // if(isset($dodger)){multiselectInsert($dodger, 'boat_dodger', 'dodger_id');}
+        // if(isset($bimini)){multiselectInsert($bimini, 'boat_bimini', 'bimini_id');}
+        // if(isset($spreaders)){multiselectInsert($spreaders, 'boat_spreaders', 'spreaders_id');}
+        // if(isset($boom)){multiselectInsert($boom, 'boat_boom', 'boom_id');}
 
     }
 

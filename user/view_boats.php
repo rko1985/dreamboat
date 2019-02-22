@@ -18,9 +18,10 @@ if(!isset($_SESSION['user_role'])){
         <tr>
             <th>Boat Id</th>
             <th>Image</th>
-            <th>Name</th>
-            <th>Year</th>
-            <th>Type</th>
+            <th>Boat Name</th>
+            <th>Boat Type</th>
+            <th>Mast</th>
+            <th>Keel Design</th>
             <th>Builder</th>
             <th>Designer</th>
             <th>LOA</th>
@@ -38,37 +39,27 @@ if(!isset($_SESSION['user_role'])){
             $boat_id = $row['boat_id'];
             $boat_image = $row['boat_image'];
             $boat_name = $row['boat_name'];
-            $boat_year = $row['boat_year'];
-            $builder = $row['builder']; 
+            $boat_type = $row['boat_type'];
+            $mast = $row['mast'];
+            $keel_design = $row['keel_design']; 
+            $builder = $row['builder'];
             $designer = $row['designer'];
             $LOA = $row['LOA'];
-            $LOD = $row['LOD'];
-            $LWL = $row['LWL'];
-            $beam = $row['beam'];
-            $ballast = $row['ballast'];
-            $displacement = $row['displacement'];
             $ballast_displacement = $row['ballast_displacement'];
-            $draft = $row['draft'];
-        
-
             
             echo "<tr>";
-            echo "<td>$boat_id</td>";
-            echo "<td><img width='50' src='../images/$boat_image' alt='image'></td>";   
-            echo "<td><a href=../boat_profile.php?b_id=$boat_id>$boat_name</a></td>";
-            echo "<td>$boat_year</td>";
-            echo "<td>";
-
-            readMultiSelect('boat_types', 'types', 'type_id', 'type_name');
-
-            echo "</td>";            
+            echo "<td><a href=../boat_profile.php?b_id=$boat_id>$boat_id</a></td>";
+            echo "<td><img width='50' src='../images/$boat_image' alt='image'></td>";
+            echo "<td>$boat_name</td>";
+            echo "<td>$boat_type</td>";
+            echo "<td>$mast</td>";
+            echo "<td>$keel_design</td>";
             echo "<td>$builder</td>";
             echo "<td>$designer</td>";
-            echo "<td>$LOA</td>";
-            echo "<td>$ballast_displacement</td>";  
+            echo "<td>$LOA</td>";  
+            echo "<td>$ballast_displacement</td>";    
             echo "<td><a href='index.php?delete={$boat_id}'>Delete</a></td>";                                            
             
-                                        
         }
         
         

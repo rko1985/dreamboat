@@ -17,25 +17,24 @@
         $boat_model = $row['boat_model'];
         $boat_submodel = $row['boat_submodel'];
         $boat_image = $row['boat_image'];
+        $boat_type = $row['boat_type'];
         $builder = $row['builder'];
         $designer = $row['designer'];
         $LOA = $row['LOA'];
         $LOD = $row['LOD'];
         $LWL = $row['LWL'];
         $beam = $row['beam'];
-        $ballast = $row['ballast'];
-        $displacement = $row['displacement'];
         $ballast_displacement = $row['ballast_displacement'];
         $draft = $row['draft'];
-        // //UNDER WATER
-        // $spade_aft_fg = $row['spade_aft_fg']; 
-        // $ballast_type = $row['ballast_type'];
-        // $keel_design = $row['keel_design'];
-        // $hull_material = $row['hull_material'];
-        // $rig_design = $row['rig_design'];
-        //BELOW DECK
-        // $engine_type = $row['engine_type']; 
-        // $engine_make = $row['engine_make'];
+        //UNDER WATER
+        $rudder_design = $row['rudder_design'];
+        $ballast_type = $row['ballast_type'];
+        $keel_design = $row['keel_design'];
+        $hull_material = $row['hull_material'];
+        $rig_design = $row['rig_design'];
+        // BELOW DECK
+        $engine_type = $row['engine_type']; 
+        $engine_make = $row['engine_make'];
         $engine_horsepower = $row['engine_horsepower'];
         $fuel_capacity = $row['fuel_capacity'];
         $water_capacity = $row['water_capacity'];
@@ -43,36 +42,39 @@
         $heads = $row['heads'];
         $berths = $row['berths'];
         $salon_seating = $row['salon_seating'];
-        // $forepeak = $row['forepeak'];
-        // $midships = $row['midships'];
-        // $salon = $row['salon'];
-        // $galley = $row['galley'];
-        // $quarter = $row['quarter'];
-        // $aft = $row['aft'];
-        // $navigation_comm = $row['navigation_comm'];
+        $forepeak = $row['forepeak'];
+        $midships = $row['midships'];
+        $salon = $row['salon'];
+        $galley = $row['galley'];
+        $quarter = $row['quarter'];
+        $aft = $row['aft'];
+        $navigation_comm = $row['navigation_comm'];
         //ON DECK
-        // $helm = $row['helm'];
-        // $cockpit = $row['cockpit'];
-        // // $scuppers = $row['scuppers'];
-        // $coaming = $row['coaming'];
-        // $gunwales_bullwarks = $row['gunwales_bullwarks'];
-        // $companionway = $row['companionway'];
-        // $cabin = $row['cabin'];
+        $scuppers = $row['scuppers'];
+        $helm = $row['helm'];
+        $cockpit = $row['cockpit'];
+        // $scuppers = $row['scuppers'];
+        $coaming = $row['coaming'];
+        $gunwales_bullwarks = $row['gunwales_bullwarks'];
+        $companionway = $row['companionway'];
+        $cabin = $row['cabin'];
         $hatches = $row['hatches'];
         $ports_openning = $row['ports_openning'];
         $ports_fixed = $row['ports_fixed'];
         $dorades_vents = $row['dorades_vents'];
-        // $transom = $row['transom'];
-        // $bow = $row['bow'];
-        // $stern = $row['stern'];
+        $transom = $row['transom'];
+        $bow = $row['bow'];
+        $stern = $row['stern'];
         $rail = $row['rail'];
         $ladder = $row['ladder'];
         // //ABOVE DECK
-        // $spars = $row['spars'];
-        // $standing_rigging = $row['standing_rigging'];
-        // $chain_plates = $row['chain_plates'];
-        // $dodger = $row['dodger'];
-        // $bimini = $row['bimini'];
+        $standing_rigging = $row['standing_rigging'];
+        $chain_plates = $row['chain_plates'];
+        $dodger = $row['dodger'];
+        $bimini = $row['bimini'];
+        $mast = $row['mast'];
+        $spreaders = $row['spreaders'];
+        $boom = $row['boom'];
     }
 
 
@@ -88,7 +90,7 @@
         <div class="col border">
             <p><b>Name:</b>  <?php echo $boat_name;?><br>
             <b>Year:</b>  <?php echo $boat_year;?><br>
-            <b>Type:</b>  <?php readMultiSelect('boat_types', 'types', 'type_id', 'type_name');?><br>
+            <b>Type:</b>  <?php echo $boat_type;?><br>
             <b>Model:</b>  <?php echo $boat_model;?><br>
             <b>Sub-Model:</b>  <?php echo $boat_submodel;?><br>
             <b>Builder:</b>  <?php echo $builder;?><br>
@@ -97,10 +99,8 @@
             <b>LOD:</b> <?php echo $LOD;?><br>
             <b>LWL:</b>  <?php echo $LWL;?><br>
             <b>Beam:</b>  <?php echo $beam;?><br>
-            <b>Ballast:</b>  <?php echo $ballast;?><br>
-            <b>Displacement:</b>  <?php echo $displacement;?><br>
             <b>Ballast/Displacement:</b>  <?php echo $ballast_displacement;?><br>
-            <b>Rig Design:</b>  <?php readMultiSelect('boat_rig_design', 'rig_design', 'rig_design_id', 'rig_design_name');?><br>
+            <b>Rig Design:</b>  <?php echo $rig_design;?><br>
 
             </p>
         </div>
@@ -127,13 +127,13 @@
         </thead>
         <tbody>
             <tr>
-                <td><?php readMultiSelect('boat_rudder_design', 'rudder_design', 'rudder_design_id', 'rudder_design_name');?></td>
-                <td><?php readMultiSelect('boat_ballast_type', 'ballast_type', 'ballast_type_id', 'ballast_type_name');?></td>
-                <td><?php readMultiSelect('boat_keel_design', 'keel_design', 'keel_design_id', 'keel_design_name');?></td>
-                <td><?php readMultiSelect('boat_hull_material', 'hull_material', 'hull_material_id', 'hull_material_name');?></td>
-                <td><?php readMultiSelect('boat_bow', 'bow', 'bow_id', 'bow_name');?></td>
-                <td><?php readMultiSelect('boat_stern', 'stern', 'stern_id', 'stern_name');?></td>
-                <td><?php readMultiSelect('boat_transom', 'transom', 'transom_id', 'transom_name');?></td>
+                <td><?php echo $rudder_design;?></td>
+                <td><?php echo $ballast_type;?></td>
+                <td><?php echo $keel_design;?></td>
+                <td><?php echo $hull_material;?></td>
+                <td><?php echo $bow;?></td>
+                <td><?php echo $stern;?></td>
+                <td><?php echo $transom;?></td>
             </tr>
         </tbody>
     </table>
@@ -157,8 +157,8 @@
         </thead>
         <tbody>
             <tr>
-                <td><?php readMultiSelect('boat_engine_type', 'engine_type', 'engine_type_id', 'engine_type_name');?></td>
-                <td><?php readMultiSelect('boat_engine_make', 'engine_make', 'engine_make_id', 'engine_make_name');?></td>
+                <td><?php echo $engine_type;?></td>
+                <td><?php echo $engine_make;?></td>
                 <td><?php echo $engine_horsepower;?></td>
                 <td><?php echo $fuel_capacity;?></td>
                 <td><?php echo $water_capacity;?></td>
@@ -184,13 +184,13 @@
         <tbody>
             <tr>
                 <td><?php echo $salon_seating;?></td>
-                <td><?php readMultiSelect('boat_forepeak', 'forepeak', 'forepeak_id', 'forepeak_name');?></td>
-                <td><?php readMultiSelect('boat_midships', 'midships', 'midships_id', 'midships_name');?></td>
-                <td><?php readMultiSelect('boat_salon', 'salon', 'salon_id', 'salon_name');?></td>
-                <td><?php readMultiSelect('boat_galley', 'galley', 'galley_id', 'galley_name');?></td>
-                <td><?php readMultiSelect('boat_quarter', 'quarter', 'quarter_id', 'quarter_name');?></td>
-                <td><?php readMultiSelect('boat_aft', 'aft', 'aft_id', 'aft_name');?></td>
-                <td><?php readMultiSelect('boat_navigation_comm', 'navigation_comm', 'navigation_comm_id', 'navigation_comm_name');?></td>
+                <td><?php echo $forepeak;?></td>
+                <td><?php echo $midships;?></td>
+                <td><?php echo $salon;?></td>
+                <td><?php echo $galley;?></td>
+                <td><?php echo $quarter;?></td>
+                <td><?php echo $aft;?></td>
+                <td><?php echo $navigation_comm;?></td>
             </tr>
         </tbody>
     </table>
@@ -213,14 +213,13 @@
         </thead>
         <tbody>
             <tr>
-            <td><?php readMultiSelect('boat_helm', 'helm', 'helm_id', 'helm_name');?></td>
-            <td><?php readMultiSelect('boat_cockpit', 'cockpit', 'cockpit_id', 'cockpit_name');?></td>
-            <td><?php readMultiSelect('boat_scuppers', 'scuppers', 'scuppers_id', 'scuppers_name');?></td>
-            <td><?php readMultiSelect('boat_coaming', 'coaming', 'coaming_id', 'coaming_name');?></td>
-            <td><?php readMultiSelect('boat_gunwales_bullwarks', 'gunwales_bullwarks', 'gunwales_bullwarks_id', 'gunwales_bullwarks_name');?></td>
-            <td><?php readMultiSelect('boat_companionway', 'companionway', 'companionway_id', 'companionway_name');?></td>
-            <td><?php readMultiSelect('boat_cabin', 'cabin', 'cabin_id', 'cabin_name');?></td>
-            </tr>
+            <td><?php echo $helm;?></td>
+            <td><?php echo $cockpit;?></td>
+            <td><?php echo $scuppers;?></td>
+            <td><?php echo $coaming;?></td>
+            <td><?php echo $gunwales_bullwarks;?></td>
+            <td><?php echo $companionway;?></td>
+            <td><?php echo $cabin;?></td>
         </tbody>
     </table>
     <table class="table table-bordered table-hover">
@@ -264,13 +263,13 @@
         </thead>
         <tbody>
             <tr>
-            <td><?php readMultiSelect('boat_mast', 'mast', 'mast_id', 'mast_name')?></td>
-            <td><?php readMultiSelect('boat_standing_rigging', 'standing_rigging', 'standing_rigging_id', 'standing_rigging_name');?></td>
-            <td><?php readMultiSelect('boat_chain_plates', 'chain_plates', 'chain_plates_id', 'chain_plates_name');?></td>
-            <td><?php readMultiSelect('boat_dodger', 'dodger', 'dodger_id', 'dodger_name');?></td>
-            <td><?php readMultiSelect('boat_bimini', 'bimini', 'bimini_id', 'bimini_name')?></td>
-            <td><?php readMultiSelect('boat_spreaders', 'spreaders', 'spreaders_id', 'spreaders_name')?></td>
-            <td><?php readMultiSelect('boat_boom', 'boom', 'boom_id', 'boom_name')?></td>
+            <td><?php echo $mast;?></td>
+            <td><?php echo $standing_rigging;?></td>
+            <td><?php echo $chain_plates;?></td>
+            <td><?php echo $dodger;?></td>
+            <td><?php echo $bimini;?></td>
+            <td><?php echo $spreaders;?></td>
+            <td><?php echo $boom;?></td>
             </tr>
         </tbody>
     </table>

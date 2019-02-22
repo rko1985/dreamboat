@@ -1,0 +1,47 @@
+
+
+"select all nav/comm devices for with boat id = 1"
+
+SELECT *
+FROM nav_comm
+   INNER JOIN boat_navcomm
+       ON nav_comm.navcomm_id = boat_navcomm.navcomm_id
+WHERE boat_navcomm.boat_id = 1
+
+"select all boats with GPS (navcomm_id = 1)"
+
+SELECT *
+FROM boats
+   INNER JOIN boat_navcomm
+       ON boats.boat_id = boat_navcomm.boat_id
+   INNER JOIN nav_comm
+       ON boat_navcomm.navcomm_id = nav_comm.navcomm_id
+WHERE nav_comm.navcomm_id = 1
+
+"select all boats that are type sail and trawler"
+SELECT * FROM boats
+    inner join boat_types
+    	on boats.boat_id = boat_types.boat_id
+    inner join types
+    	on boat_types.type_id = types.type_id
+where types.type_id = 1 or types.type_id = 5
+    group by boats.boat_name
+	HAVING COUNT(*) = 2 //number of conditions present
+
+"select all boats that are type 1/2 and mast_type 3"
+
+SELECT * FROM boats
+INNER JOIN boat_types ON boats.boat_id = boat_types.boat_id INNER JOIN types ON boat_types.type_id = types.type_id
+INNER JOIN boat_mast ON boats.boat_id = boat_mast.boat_id INNER JOIN mast ON boat_mast.mast_id = mast.mast_id
+WHERE types.type_id = 1 OR types.type_id = 2 AND mast.mast_id = 3
+GROUP BY boats.boat_name
+HAVING COUNT(*) = 3
+
+
+"insert new boat"
+BEGIN;
+INSERT INTO users (username, password)
+  VALUES('test', 'test');
+INSERT INTO profiles (userid, bio, homepage) 
+  VALUES(LAST_INSERT_ID(),'Hello world!', 'http://www.stackoverflow.com');
+COMMIT;

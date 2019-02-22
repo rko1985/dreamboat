@@ -1,8 +1,8 @@
 <?php include("includes/frontheader.php"); ?>
-
+<?php include("includes/navbar.php"); ?>
 
 <div class="container">
-    <?php include("includes/navbar.php"); ?>
+    
     <div class="row">
         <div class="col-lg-3 py-4">
             <?php include("boat_search.php") ?>

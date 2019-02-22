@@ -7,49 +7,49 @@
     <div class="form-group  my-2">
         <label for="boat_type">Boat Type: </label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="boat_type[]" id="boat_type">
-            <option value="1">Sail</option>
-            <option value="2">Power</option> 
-            <option value="3">Motor Sail</option>
-            <option value="4">Fishing</option>
-            <option value="5">Trawler</option>
-            <option value="6">Cabin Cruiser</option>
-            <option value="7">Sunseeker</option>
-            <option value="8">Monohull</option>
-            <option value="9">Catamaran</option>
-            <option value="10">Trimaran</option>
-            <option value="11">Twin Hull</option>
+            <option value="Sail">Sail</option>
+            <option value="Power">Power</option> 
+            <option value="Motor Sail">Motor Sail</option>
+            <option value="Fishing">Fishing</option>
+            <option value="Trawler">Trawler</option>
+            <option value="Cabin Cruiser">Cabin Cruiser</option>
+            <option value="Sunseeker">Sunseeker</option>
+            <option value="Monohull">Monohull</option>
+            <option value="Catamaran">Catamaran</option>
+            <option value="Trimaran">Trimaran</option>
+            <option value="Twin Hull">Twin Hull</option>
         </select>
     </div>
 
     <div class="form-group my-2">
         <label for="mast">Mast:</label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="mast[]" id="mast">
-            <option value="1">Aluminum</option>
-            <option value="2">Wood</option>
-            <option value="3">Steel</option>
-            <option value="4">Carbon</option>
-            <option value="5">Internal Furling</option> 
-            <option value="6">External Furling</option>
-            <option value="7">1</option>
-            <option value="8">2</option> 
-            <option value="9">3+</option>                           
+            <option value="Aluminum">Aluminum</option>
+            <option value="Wood">Wood</option>
+            <option value="Steel">Steel</option>
+            <option value="Carbon">Carbon</option>
+            <option value="Internal Furling">Internal Furling</option> 
+            <option value="External Furling">External Furling</option>
+            <option value="1">1</option>
+            <option value="2">2</option> 
+            <option value="3+">3+</option>                           
         </select>
     </div>
 
     <div class="form-group my-2">
         <label for="keel_design">Keel Design</label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="keel_design[]" id="keel_design">
-            <option value="1">Fin</option>
-            <option value="2">3/4</option> 
-            <option value="3">Full</option>
-            <option value="4">FG</option>
-            <option value="5">Lead</option>
-            <option value="6">Iron</option> 
-            <option value="7">Wing</option>
-            <option value="8">Bulb</option>                
-            <option value="9">Swing</option>
-            <option value="10">Twin</option>
-            <option value="11">Shoal</option>                                         
+            <option value="Fin">Fin</option>
+            <option value="3/4">3/4</option> 
+            <option value="Full">Full</option>
+            <option value="FG">FG</option>
+            <option value="Lead">Lead</option>
+            <option value="Iron">Iron</option> 
+            <option value="Wing">Wing</option>
+            <option value="Bulb">Bulb</option>                
+            <option value="Swing">Swing</option>
+            <option value="Twin">Twin</option>
+            <option value="Shoal">Shoal</option>                                         
         </select>
     </div>
 
