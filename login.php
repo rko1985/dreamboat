@@ -1,6 +1,5 @@
 <?php include("includes/header.php"); ?>
 <?php include("includes/navbar.php"); ?>
-<div class="container">
 <?php include("includes/functions.php"); ?>
 
 <?php
@@ -45,21 +44,21 @@ if(isset($_POST['submit'])){
 ?>
 
 
-<h1 class="text-center">Login</h1>
-
-    <div class="col-lg-6 offset-lg-3 mb-4">
-        <form action="" method="post">
-            <div class="form-group">
-                <input class="form-control" type="text"  name="username" placeholder="Username" required>
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password" required>
-            </div>
-            <input class="form-control btn btn-primary" type="submit" name="submit" value="Submit">
-        </form>  
+<div class="container-fluid h-100">
+    <div class="row h-75">
+        <div class="col-lg-6 offset-lg-3 my-auto">            
+            <h2 class="text-center mb-3">Login</h2>
+            <form action="" method="post">
+                <div class="form-group">
+                    <input class="form-control" type="text"  name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                </div>
+                <input class="form-control btn btn-primary" type="submit" name="submit" value="Submit">
+            </form>  
+        </div>
     </div>
-    
-
 </div>
 
 <?php include("includes/footer.php"); ?>

@@ -10,7 +10,7 @@ ob_start();
 session_start();
 
 if(!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'admin'){
-    header("Location: ../index.php");
+    header("Location: ../login.php");
 }
 
 ?>

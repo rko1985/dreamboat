@@ -3,10 +3,14 @@ body{
     background-color: white !important;
 }
 
+html,body{
+    height:100%;
+    width:100%;
+}
+
 form {
     background-color: rgba(0,0,0,.5);
     padding: 10px;
     border-radius: 5px;
     color: white;
 }
-

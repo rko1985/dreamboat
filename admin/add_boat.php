@@ -145,10 +145,13 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
         $create_boat_query = mysqli_query($connection, $query);
 
         if(!$create_boat_query){
-            echo mysqli_error($connection);
+            echo mysqli_error($connection) . "<br>";
+            echo $query;
+        } else {
+            header("Location: index.php");
         }
 
-        header("Location: index.php");
+        
         
 
         // $query = "INSERT INTO boats (user_id, boat_name, boat_year, boat_model, boat_submodel, boat_image, builder, designer, LOA, LOD, LWL, beam, ballast, displacement, ballast_displacement, draft,";
@@ -570,10 +573,10 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
                 <option value="Asymmetrical">Asymmetrical</option> 
                 <option value="Stern">Stern</option>
                 <option value="Center">Center</option>
-                <option value="3-5'">3-5'</option>
-                <option value="5-7'">5-7'</option> 
-                <option value="7-9'">7-9'</option>
-                <option value="9'+">9'+</option>                           
+                <option value="3-5">3-5'</option>
+                <option value="5-7">5-7'</option> 
+                <option value="7-9">7-9'</option>
+                <option value="9+">9'+</option>                           
             </select>
         </div>
         <div class="col">

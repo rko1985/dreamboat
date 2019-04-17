@@ -53,6 +53,7 @@ echo "<table class='table table-bordered table-hover'>
                 $ballast_displacement_min = 0;
             }
             
+            //Generating query
             $query = "SELECT * FROM boats WHERE ";
             $query .= "LOA BETWEEN $loa_min AND $loa_max ";
             $query .= "AND ballast_displacement BETWEEN $ballast_displacement_min AND $ballast_displacement_max ";

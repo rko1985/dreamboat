@@ -6,12 +6,15 @@
 
 
 if(!isset($_SESSION['user_role'])){
-    header("Location: ../index.php");
+    header("Location: ../login.php");
 }
 
 ?>
 
-<div class="text-center"><h3 class="d-inline">My Listings </h3><a class="btn btn-primary" href="add_boat.php">Create a Listing</a></div>
+<div class="text-center my-3">
+    <h3 class="">My Listings </h3>
+    <a class="btn btn-primary" href="add_boat.php">Create a Listing</a>
+</div>
 
 <table class="table table-bordered table-hover">
     <thead>
