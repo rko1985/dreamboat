@@ -260,7 +260,7 @@ echo "<table class='table table-bordered table-hover'>
             $query .= "AND ports_openning LIKE '%{$ports_openning}%' ";
             $query .= "AND ports_fixed LIKE '%{$ports_fixed}%' ";
             $query .= "AND rail LIKE '%{$rail}%' ";
-            $query .= "AND ladder LIKE '%{$ladder}%' ";
+            if(!empty($ladder))($query .= "AND ladder = '{$ladder}' ");
             //above deck
             if(isset($mast)) $query .= "AND mast LIKE '%" . implode("%' AND mast LIKE '%", $mast) . "%' ";
             if(isset($standing_rigging)) $query .= "AND standing_rigging LIKE '%" . implode("%' AND standing_rigging LIKE '%", $standing_rigging) . "%' ";
@@ -269,7 +269,6 @@ echo "<table class='table table-bordered table-hover'>
             if(isset($bimini)) $query .= "AND bimini LIKE '%" . implode("%' AND bimini LIKE '%", $bimini) . "%' ";
             if(isset($spreaders)) $query .= "AND spreaders LIKE '%" . implode("%' AND spreaders LIKE '%", $spreaders) . "%' ";
             if(isset($boom)) $query .= "AND boom LIKE '%" . implode("%' AND boom LIKE '%", $boom) . "%' ";
-
 
             $boat_search_query = mysqli_query($connection, $query);
 

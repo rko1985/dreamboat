@@ -212,7 +212,7 @@ if(!isset($_SESSION['user_role'])){
 <h1 class="text-center">Add Boat</h1>
 
 
-<div class="container">
+<div class="container mb-5">
 <form action="" method="post" enctype="multipart/form-data">
     <h3>The Basics</h3>
     <div class="form-row">
@@ -253,7 +253,7 @@ if(!isset($_SESSION['user_role'])){
     </div> <!-- End of form-row -->
     <div class="form-control-file">
         <label for="boat_image">Upload Image: </label><br>
-        <input type="file" name="boat_image"> 
+        <input type="file" class="form-control-file" name="boat_image"> 
     </div>    
     <div class="form-row">        
         <div class="col">
@@ -522,7 +522,7 @@ if(!isset($_SESSION['user_role'])){
             <label for="quarter">Quarter:</label><br>
             <select multiple class="selectpicker form-control" name="quarter[]" id="quarter">
                 <option value="Kitchen">Kitchen</option>
-                <option value="Kitchenetter">Kitchenetter</option> 
+                <option value="Kitchenette">Kitchenette</option> 
                 <option value="Navigation">Navigation</option>
                 <option value="Lazaretter">Lazaretter</option>
                 <option value="Berth - Pipe">Berth - Pipe</option>
@@ -670,7 +670,7 @@ if(!isset($_SESSION['user_role'])){
             </select>
         </div>
         <div class="col">
-            <label for="c">Ladder:</label><br>
+            <label for="ladder">Ladder:</label><br>
             <select class="form-control" name="ladder" id="ladder">
                 <option value="">Select</option>
                 <option value="Fixed">Fixed</option>

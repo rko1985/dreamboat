@@ -8,10 +8,12 @@
 ob_start();
 session_start();
 
-
-if(!isset($_SESSION['user_role'])){
+if($_SESSION['user_role'] == 'admin'){
+    header("Location: ../admin/");
+} elseif ($_SESSION['user_role'] !== 'subscriber' || !isset($_SESSION['user_role'])){
     header("Location: ../login.php");
-}
+} 
+
 
 ?>
 

@@ -461,7 +461,7 @@
         <label for="quarter">Quarter:</label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="quarter[]" id="quarter">
             <option value="Kitchen">Kitchen</option>
-            <option value="Kitchenetter">Kitchenetter</option> 
+            <option value="Kitchenette">Kitchenette</option> 
             <option value="Navigation">Navigation</option>
             <option value="Lazaretter">Lazaretter</option>
             <option value="Berth - Pipe">Berth - Pipe</option>

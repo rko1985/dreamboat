@@ -12,6 +12,16 @@
     $select_boat_query = mysqli_query($connection, $query);
 
     while($row = mysqli_fetch_assoc($select_boat_query)){
+        //Selling info
+        $for_sale = $row['for_sale'];
+        $price = $row['price'];
+        $contact_info = $row['contact_info'];
+        $city = $row['city'];
+        $state = $row['state'];
+        $region = $row['region'];
+        $country = $row['country'];
+        $description = $row['description'];        
+        //Basics
         $boat_name = $row['boat_name'];
         $boat_year = $row['boat_year'];
         $boat_model = $row['boat_model'];
@@ -79,15 +89,15 @@
 
 
 ?>
-<div class="container ">
+<div class="container" >
        <p class="display-3 text-lg-center"><?php echo $boat_name;?></p>
 </div>
 <div class="container py-2">
-    <div class="row">
+    <div class="row row-eq-height">
         <div class="col-lg-8">
-            <img class="img-responsive" width=500 style="width: 100%; height: 100%" src="images/<?php echo $boat_image?>" alt="">
+            <img class="img-responsive w-100"  src="images/<?php echo $boat_image?>" alt="">
         </div>
-        <div class="col border">
+        <div class="col-lg-4 border p-4 d-flex align-items-center">
             <p><b>Name:</b>  <?php echo $boat_name;?><br>
             <b>Year:</b>  <?php echo $boat_year;?><br>
             <b>Type:</b>  <?php echo $boat_type;?><br>
@@ -107,7 +117,34 @@
     </div>
 </div>
 
-
+<!-- Sales Info -->
+<div class="container">
+    <h3>Sales Info</h3>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>For Sale?</th>
+                <th>Contact Info</th>
+                <th>Price</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Region</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?php echo $for_sale;?></td>
+                <td><?php echo $contact_info;?></td>
+                <td><?php echo "$" . number_format($price);?></td>
+                <td><?php echo $city;?></td>
+                <td><?php echo $state;?></td>
+                <td><?php echo $region;?></td>
+                <td><?php echo $country;?></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 
 <!-- Under Water -->
@@ -247,7 +284,7 @@
 </div>
 
 <!-- Above Deck -->
-<div class="container">
+<div class="container pb-5">
     <h3>Above Deck</h3>
     <table class="table table-bordered table-hover">
         <thead>

@@ -25,13 +25,15 @@ if(isset($_POST['submit'])){
         $_SESSION['username'] = $row['username'];
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['user_role'] = $row['user_role'];
+        $_SESSION['email'] = $row['email'];
         header("Location: admin/index.php");
     } else {
 
         if(mysqli_num_rows($user_auth_query) == 1){
             $_SESSION['username'] = $row['username'];
             $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['user_role'] = $row['user_role'];
+            $_SESSION['user_role'] = $row['user_role'];            
+            $_SESSION['email'] = $row['email'];
             header("Location: user/index.php");
         } else {
             echo "Username or Password Incorrect";

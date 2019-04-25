@@ -1,7 +1,7 @@
 <?php include("includes/functions.php"); ?>
 
 <div class="container">
-    <div class="row pt-4">
+    <div class="row ">
 <?php
 
 if(isset($_POST['Search_Boat'])){

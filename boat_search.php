@@ -1,7 +1,7 @@
 
 
 
-<form action="index.php" method="post">
+<form class="p-3" action="index.php" method="post">
     
 
     <div class="form-group  my-2">
