@@ -4,7 +4,7 @@
 
 <h1 class="text-center">Advanced Search</h1>
 
-<div class="container pb-5">
+<div class="container pb-5 p-3 border">
 <form action="advanced_search_results.php" method="post">
 
     <h3>Selling Info</h3>
@@ -444,14 +444,14 @@
     <div class="col">
         <div class="form-group">
             <label for="builder">Builder</label>
-            <input class="form-control" type="text" name="builder" value="">
+            <input class="form-control form-control-sm" type="text" name="builder" value="">
         </div>
     </div>
 
     <div class="col">
         <div class="form-group">
             <label for="designer">Designer</label>
-            <input class="form-control" type="text" name="designer" value="">
+            <input class="form-control form-control-sm" type="text" name="designer" value="">
         </div>
     </div>
 

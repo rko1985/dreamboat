@@ -111,7 +111,6 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
 
             while($row = mysqli_fetch_array($get_boat_image)){
                 $boat_image = $row['boat_image'];
-                echo $boat_image;
             }
 
             move_uploaded_file($boat_image_temp, "../images/$boat_image");
@@ -237,7 +236,7 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
             echo mysqli_error($connection) . "<br>";
             echo $query;
         } else {
-            // header("Location: index.php");
+            header("Location: index.php");
         }
        
 
@@ -366,7 +365,7 @@ $boom = explode(", ", $boom);
 <h1 class="text-center">Edit Boat</h1>
 
 
-<div class="container mb-5">
+<div class="container mb-5 py-2 bg-light border">
 <form action="" method="post" enctype="multipart/form-data">
     <h3>Selling Info</h3>
     <div class="form-row">

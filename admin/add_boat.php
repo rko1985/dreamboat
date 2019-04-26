@@ -171,7 +171,7 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
 <h1 class="text-center">Add Boat</h1>
 
 
-<div class="container mb-5">
+<div class="container mb-5 py-2 bg-light border">
 <form action="" method="post" enctype="multipart/form-data">
     <h3>Selling Info</h3>
     <div class="form-row">
@@ -556,7 +556,7 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
         </div>
         <div class="col">
             <label for="boat_type">Boat Type: </label><br>
-            <select multiple class="selectpicker form-control" name="boat_type[]" id="boat_type">
+            <select multiple class="selectpicker form-control"  name="boat_type[]" id="boat_type">
                 <option value="Sail">Sail</option>
                 <option value="Power">Power</option> 
                 <option value="Motor Sail">Motor Sail</option>

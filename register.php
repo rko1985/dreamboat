@@ -52,27 +52,40 @@ if(isset($_POST['submit'])){
 ?>
 
 
-<h1 class="text-center">Register</h1>
 
-    <div class="col-lg-6 offset-lg-3 mb-4">
-        <form action="" method="post">
-            <div class="form-group">
-                <input class="form-control" type="text"  name="username" placeholder="Username" required>
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" name="password1" placeholder="Password" required>
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="password" name="password2" placeholder="Confirm Password" required>
-            </div>
-            <?php if(in_array("Your passwords do not match<br>", $error_array)){echo "Your passwords do not match";} ?>
-            <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="Email" required>
-            </div>
 
-            <input class="form-control btn btn-primary" type="submit" name="submit" value="Submit">
-        </form>  
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-lg-6 mx-auto mb-4">
+                <div class="card card-body bg-light">
+                    <form action="" method="post">
+                        <h1 class="text-center">Register</h1>
+                        <div class="form-group">
+                            <label for="username">Choose a Username:</label>
+                            <input class="form-control" type="text"  name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Choose a Password:</label>
+                            <input class="form-control" type="password" name="password1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Confirm Password:</label>
+                            <input class="form-control" type="password" name="password2" required>
+                        </div>
+                        <?php if(in_array("Your passwords do not match<br>", $error_array)){echo "Your passwords do not match";} ?>
+                        <div class="form-group">
+                            <label for="username">Enter your Email:</label>
+                            <input class="form-control" type="email" name="email"  required>
+                        </div>
+
+                        <input class="form-control btn btn-primary" type="submit" name="submit" value="Register">
+                    </form>
+                </div>  
+            </div>
+        </div>
     </div>
+
+    
 
 
 </div>

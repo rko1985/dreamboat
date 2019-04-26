@@ -46,19 +46,31 @@ if(isset($_POST['submit'])){
 ?>
 
 
-<div class="container-fluid h-100">
-    <div class="row h-75">
-        <div class="col-lg-6 offset-lg-3 my-auto">            
-            <h2 class="text-center mb-3">Login</h2>
-            <form action="" method="post">
-                <div class="form-group">
-                    <input class="form-control" type="text"  name="username" placeholder="Username" required>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password" required>
-                </div>
-                <input class="form-control btn btn-primary" type="submit" name="submit" value="Submit">
-            </form>  
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-lg-6 mx-auto my-auto">
+            <div class="card card-body bg-light">
+                <form action="" method="post">
+                    <h2 class="text-center mb-3">Login</h2>
+                    <p class="text-center">Please enter your credentials to login.</p>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input class="form-control" type="text"  name="username"required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input class="form-control" type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="register.php">No Account? Register Here!</a>
+                        </div>
+                        <div class="col">
+                            <input class="form-control btn btn-primary" type="submit" name="submit" value="Login">
+                        </div>
+                    </div>                
+                </form>
+            </div>
         </div>
     </div>
 </div>

@@ -1,12 +1,11 @@
-body{
-    background-image: none !important;
-    background-color: white !important;
-}
 
-form {
-    background-color: rgba(0,0,0,.5);
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-}
 
+ .dropdown{
+    border: 1px solid #ced4da !important;
+    border-radius: .25rem !important;
+ }
+
+ .dropdown-toggle{
+     background-color: white;
+     padding: .3rem;
+ }
