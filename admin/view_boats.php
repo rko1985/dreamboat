@@ -32,6 +32,7 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
             <th>Designer</th>
             <th>LOA</th>
             <th>Ballast Displacement</th>
+            <th>Edit</th>
             <th>Delete</th>
         </tr>
     </thead>                        
@@ -63,7 +64,8 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
             echo "<td>$builder</td>";
             echo "<td>$designer</td>";
             echo "<td>$LOA</td>";  
-            echo "<td>$ballast_displacement</td>";    
+            echo "<td>$ballast_displacement</td>";
+            echo "<td><a href='edit_boat.php?boat_id={$boat_id}'>Edit</a></td>";            
             echo "<td><a href='index.php?delete={$boat_id}'>Delete</a></td>";                                            
             
         }

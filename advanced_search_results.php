@@ -24,6 +24,14 @@ echo "<table class='table table-bordered table-hover'>
         if(isset($_POST['Search_Boat'])){
 
             //Capturing Form Values
+            //selling info
+            $for_sale = $_POST['for_sale'];
+            $price_min = $_POST['price_min'];
+            $price_max = $_POST['price_max'];
+            $city = $_POST['city'];
+            $state = $_POST['state'];
+            $region = $_POST['region'];
+            $country = $_POST['country'];
             //basic
             $boat_name = $_POST['boat_name'];
             $year_beg = $_POST['year_beg'];
@@ -106,6 +114,12 @@ echo "<table class='table table-bordered table-hover'>
 
             //Form Validating if min/max numbers/empty
             //basic
+            if(isset($price_min) && empty($price_max)){
+                $price_max = 9999999;
+            }
+            if(isset($price_max) && empty($price_min)){
+                $price_min = 0;
+            }
             if(isset($year_beg) && empty($year_end)){
                 $year_end = 9999999;
             }
@@ -222,6 +236,13 @@ echo "<table class='table table-bordered table-hover'>
             $query .= "AND LWL BETWEEN $lwl_min AND $lwl_max ";
             $query .= "AND beam BETWEEN $beam_min AND $beam_max ";
             $query .= "AND draft BETWEEN $draft_min AND $draft_max ";
+            //selling info
+            $query .= "AND for_sale LIKE '%{$for_sale}%' ";
+            $query .= "AND price BETWEEN $price_min AND $price_max ";
+            $query .= "AND state LIKE '%{$state}%' ";
+            $query .= "AND city LIKE '%{$city}%' ";
+            $query .= "AND region LIKE '%{$region}%' ";
+            $query .= "AND country LIKE '%{$country}%' ";
             //underwater
             if(isset($rudder_design)) $query .= "AND rudder_design LIKE '%" . implode("%' AND rudder_design LIKE '%", $rudder_design) . "%' ";
             if(isset($ballast_type)) $query .= "AND ballast_type LIKE '%" . implode("%' AND ballast_type LIKE '%", $ballast_type) . "%' ";

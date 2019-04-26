@@ -135,7 +135,7 @@
         <tbody>
             <tr>
                 <td><?php echo $for_sale;?></td>
-                <td><?php echo $contact_info;?></td>
+                <td><a href="<?php echo $contact_info;?>"><?php echo $contact_info;?></a></td>
                 <td><?php echo "$" . number_format($price);?></td>
                 <td><?php echo $city;?></td>
                 <td><?php echo $state;?></td>
@@ -144,6 +144,7 @@
             </tr>
         </tbody>
     </table>
+    <p class="border p-2"><strong>Description:</strong> <?php echo $description; ?></p>
 </div>
 
 
