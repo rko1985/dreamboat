@@ -5,9 +5,11 @@
 <?php 
 
 
-if(!isset($_SESSION['user_role'])){
+if($_SESSION['user_role'] == 'admin'){
+    header("Location: ../admin/");
+} elseif ($_SESSION['user_role'] !== 'subscriber' || !isset($_SESSION['user_role'])){
     header("Location: ../login.php");
-}
+} 
 
 ?>
 
@@ -29,13 +31,14 @@ if(!isset($_SESSION['user_role'])){
             <th>Designer</th>
             <th>LOA</th>
             <th>Ballast Displacement</th>
+            <th>Edit</th>
             <th>Delete</th>
         </tr>
     </thead>                        
     <tbody>
         <?php 
         
-        $query = "SELECT * FROM boats WHERE user_id = '{$_SESSION['user_id']}'";
+        $query = "SELECT * FROM boats";
         $select_boats= mysqli_query($connection, $query);
 
         while($row = mysqli_fetch_assoc($select_boats)) {
@@ -60,7 +63,8 @@ if(!isset($_SESSION['user_role'])){
             echo "<td>$builder</td>";
             echo "<td>$designer</td>";
             echo "<td>$LOA</td>";  
-            echo "<td>$ballast_displacement</td>";    
+            echo "<td>$ballast_displacement</td>";
+            echo "<td><a href='edit_boat.php?boat_id={$boat_id}'>Edit</a></td>";            
             echo "<td><a href='index.php?delete={$boat_id}'>Delete</a></td>";                                            
             
         }

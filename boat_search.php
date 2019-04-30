@@ -3,7 +3,7 @@
 
 <form class="p-3" action="index.php" method="post">
 
-    <label for="price">Price:</label>
+    <label for="price">Price: ($USD)</label>
     <div class="row">
         <div class="col">
             <input type="number" class="form-control form-control-sm " name="price_min" placeholder="ex. 1">
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="form-group my-2">
+    <div class="form-group my-0">
         <label for="State">State:</label><br>
         <select class="form-control form-control-sm" name="state" id="state" value="">
             <option value="">Select</option>
@@ -83,7 +83,7 @@
         </select>
     </div>    
 
-    <div class="form-group  my-2">
+    <div class="form-group  my-0">
         <label for="boat_type">Boat Type: </label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="boat_type[]" id="boat_type">
             <option value="Sail">Sail</option>
@@ -100,7 +100,7 @@
         </select>
     </div>
 
-    <div class="form-group my-2">
+    <div class="form-group my-0">
         <label for="mast">Mast:</label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="mast[]" id="mast">
             <option value="Aluminum">Aluminum</option>
@@ -115,8 +115,8 @@
         </select>
     </div>
 
-    <div class="form-group my-2">
-        <label for="keel_design">Keel Design</label><br>
+    <div class="form-group my-0">
+        <label for="keel_design">Keel Design:</label><br>
         <select multiple class="selectpicker form-control form-control-sm" name="keel_design[]" id="keel_design">
             <option value="Fin">Fin</option>
             <option value="3/4">3/4</option> 
@@ -132,17 +132,17 @@
         </select>
     </div>
 
-    <div class="form-group  my-2">
-        <label for="builder">Builder</label>
+    <div class="form-group  my-0">
+        <label for="builder">Builder:</label>
         <input class="form-control form-control-sm" type="text" name="builder" id="builder">        
     </div>
 
-    <div class="form-group">
-        <label for="designer">Designer</label>
+    <div class="form-group my-0">
+        <label for="designer">Designer:</label>
         <input class="form-control form-control-sm" type="text" name="designer" id="designer"> 
     </div>
 
-    <label for="loa">LOA</label>
+    <label for="loa">LOA:</label>
     <div class="row">
         <div class="col">
             <input type="number" step=".01" class="form-control form-control-sm " name="loa_min" placeholder="ex. 1">
@@ -154,7 +154,7 @@
         
     
 
-    <label for="ballast_displacement">Ballast/Displacement</label>
+    <label for="ballast_displacement">Ballast/Displacement:</label>
     <div class="row">
         <div class="col">
             <input type="number" step=".01" class="form-control form-control-sm " name="ballast_displacement_min" placeholder="ex. 1">

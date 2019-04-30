@@ -185,7 +185,7 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
         </div>
         <div class="col">
             <label for="contact_info">Contact Email: </label>
-            <input type="text" class="form-control" name="contact_info" value="<?php echo $_SESSION['email']?>">
+            <input type="text" class="form-control" name="contact_info" value="<?php echo $_SESSION['email']; ?>">
         </div>
         <div class="col">
             <label for="price">Price (USD)</label>
@@ -556,7 +556,7 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
         </div>
         <div class="col">
             <label for="boat_type">Boat Type: </label><br>
-            <select multiple class="selectpicker form-control"  name="boat_type[]" id="boat_type">
+            <select multiple class="selectpicker form-control" name="boat_type[]" id="boat_type">
                 <option value="Sail">Sail</option>
                 <option value="Power">Power</option> 
                 <option value="Motor Sail">Motor Sail</option>

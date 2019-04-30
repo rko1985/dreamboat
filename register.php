@@ -1,6 +1,6 @@
 <?php include("includes/header.php"); ?>
-<div class="container">
 <?php include("includes/navbar.php"); ?>
+<div class="container">
 <?php include("includes/functions.php"); ?>
 
 <?php 
@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
     $email_exists_query = mysqli_query($connection, $query);
     if(mysqli_num_rows($email_exists_query) > 0){
         echo "Email already exists, please choose another username<br>";
-        array_push($error_array, "Email already exists, please choose another username<br>");
+        array_push($error_array, "Email already exists, please choose another email<br>");
     }
 
 

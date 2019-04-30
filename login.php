@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
 
 <div class="container-fluid">
     <div class="row mt-5">
-        <div class="col-lg-6 mx-auto my-auto">
+        <div class="col-lg-4 mx-auto my-auto">
             <div class="card card-body bg-light">
                 <form action="" method="post">
                     <h2 class="text-center mb-3">Login</h2>
