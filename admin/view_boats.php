@@ -1,5 +1,3 @@
-
-<div class="container">
 <?php include("includes/functions.php"); ?>
 
 <?php 
@@ -15,7 +13,7 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
 
 <div class="text-center my-3">
     <h3 class="">All Boats</h3>
-    <a class="btn btn-primary" href="add_boat.php">Create a Listing</a>
+    <a class="btn btn-primary float-left my-3" href="add_boat.php">Create a Listing</a>
 </div>
 
 
@@ -90,5 +88,3 @@ if(isset($_GET['delete'])){
 }
 
 ?>
-
-</div>

@@ -14,12 +14,6 @@ if($_SESSION['user_role'] == 'admin'){
     header("Location: ../login.php");
 }
 
-//Check if user is authorized to edit boat
-    $query = "SELECT * FROM boats WHERE user_id = '{$_SESSION['user_id']} AND boat_id = '{$_GET['boat_id']}'";
-    $find_user_query = mysqli_query($connection, $query);
-    if(mysqli_num_rows($find_user_query) < 1){
-        header("Location: ../index.php");
-    } 
 
 ?>
 

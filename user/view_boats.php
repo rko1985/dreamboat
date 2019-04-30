@@ -1,5 +1,4 @@
 
-<div class="container">
 <?php include("includes/functions.php"); ?>
 
 <?php 
@@ -15,7 +14,7 @@ if($_SESSION['user_role'] == 'admin'){
 
 <div class="text-center my-3">
     <h3 class="">My Listings </h3>
-    <a class="btn btn-primary" href="add_boat.php">Create a Listing</a>
+    <a class="btn btn-primary float-left my-3" href="add_boat.php">Create a Listing</a>
 </div>
 
 <table class="table table-bordered table-hover">
@@ -38,7 +37,7 @@ if($_SESSION['user_role'] == 'admin'){
     <tbody>
         <?php 
         
-        $query = "SELECT * FROM boats";
+        $query = "SELECT * FROM boats WHERE user_id = '{$_SESSION['user_id']} '";
         $select_boats= mysqli_query($connection, $query);
 
         while($row = mysqli_fetch_assoc($select_boats)) {
@@ -77,17 +76,30 @@ if($_SESSION['user_role'] == 'admin'){
 </table>
 
 <?php 
+if(mysqli_num_rows($select_boats) == 0){
+    echo "<div class='lead text-center'>You currently have no listings.</div>";
+}
+?>
+
+<?php 
 
 if(isset($_GET['delete'])){
 
     $the_boat_id = $_GET['delete'];
 
-    $query = "DELETE FROM boats WHERE boat_id = $the_boat_id";
-    $delete_query = mysqli_query($connection, $query);
-    header("Location: index.php");
+    //find if boat is authorized to be deleted
+    $query = "SELECT * FROM boats WHERE user_id = '{$_SESSION['user_id']} AND boat_id = '{$the_boat_id}'";
+    $find_user_query = mysqli_query($connection, $query);
+    if(mysqli_num_rows($find_user_query) < 1){
+        header("Location: ../index.php");
+    } else {
+        $query = "DELETE FROM boats WHERE boat_id = $the_boat_id";
+        $delete_query = mysqli_query($connection, $query);
+        header("Location: index.php");        
+    }
+        
+   
 
 }
 
 ?>
-
-</div>

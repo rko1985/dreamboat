@@ -135,7 +135,7 @@
         <tbody>
             <tr>
                 <td><?php echo $for_sale;?></td>
-                <td><a href="<?php echo $contact_info;?>"><?php echo $contact_info;?></a></td>
+                <td><a href="mailto:<?php echo $contact_info;?>"><?php echo $contact_info;?></a></td>
                 <td><?php echo "$" . number_format($price);?></td>
                 <td><?php echo $city;?></td>
                 <td><?php echo $state;?></td>
