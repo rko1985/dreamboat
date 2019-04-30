@@ -15,23 +15,21 @@ if(isset($_POST['submit'])){
 
     //check if passwords match
     if($password1 != $password2) {
-        array_push($error_array, "Your passwords do not match<br>");
+        array_push($error_array, "Your passwords do not match.");
     }
 
     //check if username exists already
     $query = "SELECT * FROM users WHERE username = '$username'";
     $user_exists_query = mysqli_query($connection, $query);
     if(mysqli_num_rows($user_exists_query) > 0){
-        echo "Username already exists, please choose another username<br>";
-        array_push($error_array, "Username already exists, please choose another username<br>");
+        array_push($error_array, "Username already exists, please choose another username.");
     }
 
     //check if email exists already
     $query = "SELECT * FROM users WHERE email = '$email'";
     $email_exists_query = mysqli_query($connection, $query);
     if(mysqli_num_rows($email_exists_query) > 0){
-        echo "Email already exists, please choose another username<br>";
-        array_push($error_array, "Email already exists, please choose another email<br>");
+        array_push($error_array, "Email already exists, please choose another email.");
     }
 
 
@@ -64,6 +62,7 @@ if(isset($_POST['submit'])){
                             <label for="username">Choose a Username:</label>
                             <input class="form-control" type="text"  name="username" required>
                         </div>
+                        <?php if(in_array("Username already exists, please choose another username.", $error_array)){echo "<div class='alert alert-danger'>Username already exists, please choose another username.</div>";} ?>
                         <div class="form-group">
                             <label for="username">Choose a Password:</label>
                             <input class="form-control" type="password" name="password1" required>
@@ -72,11 +71,12 @@ if(isset($_POST['submit'])){
                             <label for="username">Confirm Password:</label>
                             <input class="form-control" type="password" name="password2" required>
                         </div>
-                        <?php if(in_array("Your passwords do not match<br>", $error_array)){echo "Your passwords do not match";} ?>
+                        <?php if(in_array("Your passwords do not match.", $error_array)){echo "<div class='alert alert-danger'>Your passwords do not match.</div>";} ?>
                         <div class="form-group">
                             <label for="username">Enter your Email:</label>
                             <input class="form-control" type="email" name="email"  required>
                         </div>
+                        <?php if(in_array("Email already exists, please choose another email.", $error_array)){echo "<div class='alert alert-danger'>Email already exists, please choose another email.</div>";} ?>
 
                         <input class="form-control btn btn-primary" type="submit" name="submit" value="Register">
                     </form>

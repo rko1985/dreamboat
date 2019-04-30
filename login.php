@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
             $_SESSION['email'] = $row['email'];
             header("Location: user/index.php");
         } else {
-            echo "Username or Password Incorrect";
+            echo "<div class='alert alert-danger text-center'>Username or Password Incorrect</div>";
         }
 
     }
