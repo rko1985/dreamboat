@@ -14,6 +14,20 @@
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contact</a>
       </li>
+
+      <?php if(isset($_SESSION['user_role'])) : ?>
+        <li class="nav-item">
+          <a class="nav-link" href="includes/logout.php">Logout</a>
+        </li>
+        
+      <?php else: ?>
+        <li class="nav-item">
+          <a class="nav-link" href="login.php">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="register.php">Register</a>
+        </li>
+      <?php endif ?>
      
     </ul>
   </div>
