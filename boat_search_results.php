@@ -7,6 +7,9 @@
 
             if(isset($_POST['Search_Boat'])){ //Pagination check for post
                 //Capturing Form Values
+                //Sanitize post array
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
                 $loa_min = $_POST['loa_min'];
                 $loa_max = $_POST['loa_max'];
                 $price_min = $_POST['price_min'];
@@ -143,10 +146,11 @@
                     $price = $row['price'];
                     $boat_model = $row['boat_model'];
                     $LOA = $row['LOA'];
+                    $for_sale = $row['for_sale'];
                     
                     echo "<tr>";
-                    echo "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id><img width='50' src='images/$boat_image' alt='image'></a></td>";
-                    echo "<td class='align-middle'>$".number_format($price)."</a></td>";
+                    echo empty($boat_image) ? "<td class='align-middle'>No Image Available</td>" : "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id><img width='50' src='images/$boat_image' alt='image'></a></td>";                    
+                    echo (empty($price) || $price == 0 || $for_sale == 'No') ? "<td class='align-middle'>Not for sale</a></td>" : "<td class='align-middle'>$".number_format($price)."</a></td>";                
                     echo "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id>$boat_model</a></td>";
                     echo "<td class='align-middle'>$LOA</td>";
                     

@@ -22,8 +22,11 @@ echo "<table class='table table-bordered table-hover'>
         <?php 
 
         if(isset($_POST['Search_Boat'])){
-
             //Capturing Form Values
+            
+            //Sanitize post array
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
             //selling info
             $for_sale = $_POST['for_sale'];
             $price_min = $_POST['price_min'];

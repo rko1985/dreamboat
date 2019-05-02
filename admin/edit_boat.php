@@ -20,6 +20,9 @@ if($_SESSION['user_role'] != 'admin'){
 
 
     if(isset($_POST['Edit_Boat'])){
+        //Sanitize post array
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
         //Selling Info
         $for_sale = $_POST['for_sale'];
         $contact_info = $_POST['contact_info'];
@@ -103,6 +106,7 @@ if($_SESSION['user_role'] != 'admin'){
 
         //Making sure picture remains if not updated
         if(empty($boat_image)){
+            $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
             $query = "SELECT boat_image FROM boats WHERE boat_id = '{$_GET['boat_id']}' ";
             $get_boat_image = mysqli_query($connection, $query);
             if(!$get_boat_image){
@@ -247,6 +251,7 @@ if($_SESSION['user_role'] != 'admin'){
 
 <?php 
 // Getting data to insert into edit form
+$_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 $query = "SELECT * FROM boats WHERE boat_id = {$_GET['boat_id']} ";
 $find_form_values_query = mysqli_query($connection, $query);
 

@@ -21,6 +21,9 @@ if($_SESSION['user_role'] == 'admin'){
 
 
     if(isset($_POST['Add_Boat'])){
+        //Sanitize post array
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        
         //Selling Info
         $for_sale = $_POST['for_sale'];
         $contact_info = $_POST['contact_info'];
@@ -104,9 +107,10 @@ if($_SESSION['user_role'] == 'admin'){
         if(isset($_POST['spreaders'])){$spreaders = $_POST['spreaders'];} //multiselect
         if(isset($_POST['boom'])){$boom = $_POST['boom'];} //multiselect
 
-
-        $boat_image = time() . $boat_image; //adds timestampe to boat name to create unique image name
-        move_uploaded_file($boat_image_temp, "../images/$boat_image");
+        if(!empty($boat_image)){
+            $boat_image = time() . $boat_image; //adds timestampe to boat name to create unique image name
+            move_uploaded_file($boat_image_temp, "../images/$boat_image");
+        }        
 
         //Array to string conversion
         isset($boat_type) ? $boat_type = implode(", ", $boat_type) : $boat_type = NULL;

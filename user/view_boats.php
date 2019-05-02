@@ -84,6 +84,7 @@ if(mysqli_num_rows($select_boats) == 0){
 <?php 
 
 if(isset($_GET['delete'])){
+    $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 
     $the_boat_id = $_GET['delete'];
 

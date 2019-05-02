@@ -78,6 +78,7 @@ if(!isset($_SESSION['user_role']) && $_SESSION['user_role'] != 'admin'){
 <?php 
 
 if(isset($_GET['delete'])){
+    $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 
     $the_boat_id = $_GET['delete'];
 

@@ -3,6 +3,9 @@
 <?php include("includes/functions.php"); ?>
 <?php 
     if(isset($_GET['b_id'])){
+
+        //Sanitize post array
+        $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
         
         $boat_id = $_GET['b_id'];
 
