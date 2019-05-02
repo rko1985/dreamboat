@@ -83,7 +83,7 @@
             } else {
 
                 // How many items to list per page
-                $limit = 6;
+                $limit = 10;
 
                 // How many pages will there be
                 $pages = ceil($total / $limit);
@@ -153,6 +153,7 @@
                     echo (empty($price) || $price == 0 || $for_sale == 'No') ? "<td class='align-middle'>Not for sale</a></td>" : "<td class='align-middle'>$".number_format($price)."</a></td>";                
                     echo "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id>$boat_model</a></td>";
                     echo "<td class='align-middle'>$LOA</td>";
+                    echo "</tr>";
                     
                 }
 

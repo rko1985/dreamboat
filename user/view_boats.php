@@ -21,15 +21,8 @@ if($_SESSION['user_role'] == 'admin'){
     <thead>
         <tr>
             <th>Boat Id</th>
-            <th>Image</th>
             <th>Boat Name</th>
-            <th>Boat Type</th>
-            <th>Mast</th>
-            <th>Keel Design</th>
-            <th>Builder</th>
-            <th>Designer</th>
-            <th>LOA</th>
-            <th>Ballast Displacement</th>
+            <th>Model</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -42,29 +35,16 @@ if($_SESSION['user_role'] == 'admin'){
 
         while($row = mysqli_fetch_assoc($select_boats)) {
             $boat_id = $row['boat_id'];
-            $boat_image = $row['boat_image'];
             $boat_name = $row['boat_name'];
-            $boat_type = $row['boat_type'];
-            $mast = $row['mast'];
-            $keel_design = $row['keel_design']; 
-            $builder = $row['builder'];
-            $designer = $row['designer'];
-            $LOA = $row['LOA'];
-            $ballast_displacement = $row['ballast_displacement'];
+            $boat_model = $row['boat_model'];
             
             echo "<tr>";
-            echo "<td><a href=../boat_profile.php?b_id=$boat_id>$boat_id</a></td>";
-            echo "<td><img width='50' src='../images/$boat_image' alt='image'></td>";
-            echo "<td>$boat_name</td>";
-            echo "<td>$boat_type</td>";
-            echo "<td>$mast</td>";
-            echo "<td>$keel_design</td>";
-            echo "<td>$builder</td>";
-            echo "<td>$designer</td>";
-            echo "<td>$LOA</td>";  
-            echo "<td>$ballast_displacement</td>";
+            echo "<td>$boat_id</td>";
+            echo "<td><a href=../boat_profile.php?b_id=$boat_id>$boat_name</a></td>";
+            echo "<td>$boat_model</td>";
             echo "<td><a href='edit_boat.php?boat_id={$boat_id}'>Edit</a></td>";            
-            echo "<td><a href='index.php?delete={$boat_id}'>Delete</a></td>";                                            
+            echo "<td><a href='index.php?delete={$boat_id}'>Delete</a></td>";
+            echo "</tr>";                                              
             
         }
         

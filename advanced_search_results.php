@@ -1,29 +1,15 @@
-<?php include("includes/header.php"); ?> <!-- Remove when finished testing -->
-
+<?php include("includes/header.php"); ?>
 <?php include("includes/navbar.php"); ?>
 <?php include("includes/functions.php"); ?>
-<?php
 
-if(isset($_POST['Search_Boat'])){
-echo "<table class='table table-bordered table-hover'>
-    <thead>
-        <tr>
-            <th>Boat Id</th>
-            <th>Name</th>
-            <th>Year</th>
-            <th>Type</th>
-            <th>Image</th>
-        </tr>
-    </thead>                        
-    <tbody>";
-}
-?>
+<div class="container mt-5">
+<?php 
 
-        <?php 
+if(isset($_POST['Search_Boat']) || isset($_GET['page'])){ //Pagination check for page from GET
 
-        if(isset($_POST['Search_Boat'])){
+    if(isset($_POST['Search_Boat'])){ //Pagination check for post
             //Capturing Form Values
-            
+
             //Sanitize post array
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -222,7 +208,7 @@ echo "<table class='table table-bordered table-hover'>
                 $hatches_min = 0;
             }
 
-
+            //Pagination Begin
 
             $query = "SELECT * FROM boats WHERE ";
             //Basic
@@ -293,6 +279,131 @@ echo "<table class='table table-bordered table-hover'>
             if(isset($bimini)) $query .= "AND bimini LIKE '%" . implode("%' AND bimini LIKE '%", $bimini) . "%' ";
             if(isset($spreaders)) $query .= "AND spreaders LIKE '%" . implode("%' AND spreaders LIKE '%", $spreaders) . "%' ";
             if(isset($boom)) $query .= "AND boom LIKE '%" . implode("%' AND boom LIKE '%", $boom) . "%' ";
+            
+            //Saving query for pagination
+            $_SESSION['advanced_query'] = $query;
+        }
+
+        if(isset($_SESSION['advanced_query'])){ //Pagination saving query for GET page
+            $query = $_SESSION['advanced_query'];
+        }
+
+        $boat_search_query = mysqli_query($connection, $query);
+
+        if(!$boat_search_query){
+            echo mysqli_error($connection);
+        }
+
+        // How many items to list per page
+        $total = mysqli_num_rows($boat_search_query);
+
+        if($total == 0){
+            echo "<div class='jumbotron h-100 d-flex'>
+                    <div class='my-auto mx-auto'>
+                    <h1 class='display-4'>No Results Found</h1>
+                    <p class='lead text-center'>Please refine your search.</p>
+                    </div>
+                </div>";
+        } else {
+
+            // How many items to list per page
+            $limit = 10;
+
+            // How many pages will there be
+            $pages = ceil($total / $limit);
+
+            // What page are we currently on?
+            $page = min($pages, filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, array(
+                'options' => array(
+                    'default'   => 1,
+                    'min_range' => 1,
+                ),
+            )));
+
+            // Calculate the offset for the query
+            $offset = ($page - 1)  * $limit;
+
+            // Some information to display to the user
+            $start = $offset + 1;
+            $end = min(($offset + $limit), $total);
+
+            //Pagination End
+
+            //Generating query
+            if(isset($_GET['page'])){
+                $query = $_SESSION['advanced_query'];
+            } else {
+            $query = "SELECT * FROM boats WHERE ";
+            //Basic
+            $query .= "boat_year BETWEEN $year_beg AND $year_end ";
+            $query .= "AND ballast_displacement BETWEEN $ballast_displacement_min AND $ballast_displacement_max ";
+            if(isset($boat_type)) $query .= "AND boat_type LIKE '%" . implode("%' AND boat_type LIKE '%", $boat_type) . "%' ";
+            if(isset($rig_design)) $query .= "AND rig_design LIKE '%" . implode("%' AND rig_design LIKE '%", $rig_design) . "%' ";
+            $query .= "AND boat_model LIKE '%{$boat_model}%' ";
+            $query .= "AND boat_submodel LIKE '%{$boat_submodel}%' ";
+            $query .= "AND builder LIKE '%{$builder}%' ";
+            $query .= "AND designer LIKE '%{$designer}%' ";
+            $query .= "AND LOA BETWEEN $loa_min AND $loa_max ";
+            $query .= "AND LOD BETWEEN $lod_min AND $lod_max ";
+            $query .= "AND LWL BETWEEN $lwl_min AND $lwl_max ";
+            $query .= "AND beam BETWEEN $beam_min AND $beam_max ";
+            $query .= "AND draft BETWEEN $draft_min AND $draft_max ";
+            //selling info
+            $query .= "AND for_sale LIKE '%{$for_sale}%' ";
+            $query .= "AND price BETWEEN $price_min AND $price_max ";
+            $query .= "AND state LIKE '%{$state}%' ";
+            $query .= "AND city LIKE '%{$city}%' ";
+            $query .= "AND region LIKE '%{$region}%' ";
+            $query .= "AND country LIKE '%{$country}%' ";
+            //underwater
+            if(isset($rudder_design)) $query .= "AND rudder_design LIKE '%" . implode("%' AND rudder_design LIKE '%", $rudder_design) . "%' ";
+            if(isset($ballast_type)) $query .= "AND ballast_type LIKE '%" . implode("%' AND ballast_type LIKE '%", $ballast_type) . "%' ";
+            if(isset($keel_design)) $query .= "AND keel_design LIKE '%" . implode("%' AND keel_design LIKE '%", $keel_design) . "%' ";
+            if(isset($hull_material)) $query .= "AND hull_material LIKE '%" . implode("%' AND hull_material LIKE '%", $hull_material) . "%' ";
+            if(isset($bow)) $query .= "AND bow LIKE '%" . implode("%' AND bow LIKE '%", $bow) . "%' ";
+            if(isset($stern)) $query .= "AND stern LIKE '%" . implode("%' AND stern LIKE '%", $stern) . "%' ";
+            if(isset($transom)) $query .= "AND transom LIKE '%" . implode("%' AND transom LIKE '%", $transom) . "%' ";
+            //below deck
+            if(isset($engine_type)) $query .= "AND engine_type LIKE '%" . implode("%' AND engine_type LIKE '%", $engine_type) . "%' ";
+            if(isset($engine_make)) $query .= "AND engine_make LIKE '%" . implode("%' AND engine_make LIKE '%", $engine_make) . "%' ";
+            if(isset($forepeak)) $query .= "AND forepeak LIKE '%" . implode("%' AND forepeak LIKE '%", $forepeak) . "%' ";
+            if(isset($midships)) $query .= "AND midships LIKE '%" . implode("%' AND midships LIKE '%", $midships) . "%' ";
+            if(isset($salon)) $query .= "AND salon LIKE '%" . implode("%' AND salon LIKE '%", $salon) . "%' ";
+            if(isset($galley)) $query .= "AND galley LIKE '%" . implode("%' AND galley LIKE '%", $galley) . "%' ";
+            if(isset($quarter)) $query .= "AND quarter LIKE '%" . implode("%' AND quarter LIKE '%", $quarter) . "%' ";
+            if(isset($aft)) $query .= "AND aft LIKE '%" . implode("%' AND aft LIKE '%", $aft) . "%' ";
+            if(isset($navigation_comm)) $query .= "AND navigation_comm LIKE '%" . implode("%' AND navigation_comm LIKE '%", $navigation_comm) . "%' ";
+            $query .= "AND engine_horsepower BETWEEN $engine_horsepower_min AND $engine_horsepower_max ";
+            $query .= "AND fuel_capacity BETWEEN $fuel_capacity_min AND $fuel_capacity_max ";
+            $query .= "AND water_capacity BETWEEN $water_capacity_min AND $water_capacity_max ";
+            $query .= "AND cabins BETWEEN $cabins_min AND $cabins_max ";
+            $query .= "AND heads BETWEEN $heads_min AND $heads_max ";
+            $query .= "AND berths BETWEEN $berths_min AND $berths_max ";
+            $query .= "AND salon_seating BETWEEN $salon_seating_min AND $salon_seating_max ";
+            //on deck
+            if(isset($helm)) $query .= "AND helm LIKE '%" . implode("%' AND helm LIKE '%", $helm) . "%' ";
+            if(isset($cockpit)) $query .= "AND cockpit LIKE '%" . implode("%' AND cockpit LIKE '%", $cockpit) . "%' ";
+            if(isset($scuppers)) $query .= "AND scuppers LIKE '%" . implode("%' AND scuppers LIKE '%", $scuppers) . "%' ";
+            if(isset($coaming)) $query .= "AND coaming LIKE '%" . implode("%' AND coaming LIKE '%", $coaming) . "%' ";
+            if(isset($gunwales_bullwarks)) $query .= "AND gunwales_bullwarks LIKE '%" . implode("%' AND gunwales_bullwarks LIKE '%", $gunwales_bullwarks) . "%' ";
+            if(isset($companionway)) $query .= "AND companionway LIKE '%" . implode("%' AND companionway LIKE '%", $companionway) . "%' ";
+            if(isset($cabin)) $query .= "AND cabin LIKE '%" . implode("%' AND cabin LIKE '%", $cabin) . "%' ";
+            $query .= "AND hatches BETWEEN $hatches_min AND $hatches_max ";
+            $query .= "AND dorades_vents BETWEEN $dorades_vents_min AND $dorades_vents_max ";
+            $query .= "AND ports_openning LIKE '%{$ports_openning}%' ";
+            $query .= "AND ports_fixed LIKE '%{$ports_fixed}%' ";
+            $query .= "AND rail LIKE '%{$rail}%' ";
+            if(!empty($ladder))($query .= "AND ladder = '{$ladder}' ");
+            //above deck
+            if(isset($mast)) $query .= "AND mast LIKE '%" . implode("%' AND mast LIKE '%", $mast) . "%' ";
+            if(isset($standing_rigging)) $query .= "AND standing_rigging LIKE '%" . implode("%' AND standing_rigging LIKE '%", $standing_rigging) . "%' ";
+            if(isset($chain_plates)) $query .= "AND chain_plates LIKE '%" . implode("%' AND chain_plates LIKE '%", $chain_plates) . "%' ";
+            if(isset($dodger)) $query .= "AND dodger LIKE '%" . implode("%' AND dodger LIKE '%", $dodger) . "%' ";
+            if(isset($bimini)) $query .= "AND bimini LIKE '%" . implode("%' AND bimini LIKE '%", $bimini) . "%' ";
+            if(isset($spreaders)) $query .= "AND spreaders LIKE '%" . implode("%' AND spreaders LIKE '%", $spreaders) . "%' ";
+            if(isset($boom)) $query .= "AND boom LIKE '%" . implode("%' AND boom LIKE '%", $boom) . "%' ";
+            }
+            $query .= "LIMIT {$limit} OFFSET {$offset} "; //Offset for paginated query
 
             $boat_search_query = mysqli_query($connection, $query);
 
@@ -300,36 +411,128 @@ echo "<table class='table table-bordered table-hover'>
                 echo mysqli_error($connection);
             }
 
+            echo "<table class='table table-bordered table-hover'>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Model</th>
+                            <th>LOA</th>
+                        </tr>
+                    </thead>                        
+                    <tbody>";
+
                         
 
             while($row = mysqli_fetch_assoc($boat_search_query)) {
                 $boat_id = $row['boat_id'];
-                $boat_name = $row['boat_name'];
-                $boat_year = $row['boat_year'];
-                $boat_type = $row['boat_type'];
                 $boat_image = $row['boat_image'];
-                                
-                echo "<tr>";
-                echo "<td>$boat_id</td>";
-                echo "<td><a href=boat_profile.php?b_id=$boat_id>$boat_name</a></td>";
-                echo "<td>$boat_year</td>";
-                echo "<td>$boat_type</td>";
+                $price = $row['price'];
+                $boat_model = $row['boat_model'];
+                $LOA = $row['LOA'];
+                $for_sale = $row['for_sale'];
                 
-
-                echo "<td><img width='50' src='images/$boat_image' alt='image'></td>";            
-                                            
+                echo "<tr>";
+                echo empty($boat_image) ? "<td class='align-middle'>No Image Available</td>" : "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id><img width='50' src='images/$boat_image' alt='image'></a></td>";                    
+                echo (empty($price) || $price == 0 || $for_sale == 'No') ? "<td class='align-middle'>Not for sale</a></td>" : "<td class='align-middle'>$".number_format($price)."</a></td>";                
+                echo "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id>$boat_model</a></td>";
+                echo "<td class='align-middle'>$LOA</td>";      
+                echo "</tr>";
                 
                                             
             }
 
-            
+            echo "
+                </tbody>
+                </table>            
+            ";
 
-        }
+        } // End else for $total
+
+    }
 
         ?>
    
-        
-    </tbody>
-</table>
+<?php
+    if($total > 0){ 
+    //Pagination Buttons
+    // The "back" link    
+    $prevlink = ($page > 1) ? '<li class="page-item">
+    <a class="page-link" href="?page=1" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">First</span>
+    </a>
+    </li>
+
+    <li class="page-item">
+    <a class="page-link" href="?page=' . ($page - 1) . '" aria-label="Previous">
+        <span aria-hidden="true">&lsaquo;</span>
+        <span class="sr-only">Previous</span>
+    </a>
+    </li>' : '<li class="page-item disabled">
+    <a class="page-link" href="?page=1" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">First</span>
+    </a>
+    </li>
+
+    <li class="page-item disabled">
+    <a class="page-link" href="?page=' . ($page - 1) . '" aria-label="Previous">
+        <span aria-hidden="true">&lsaquo;</span>
+        <span class="sr-only">Previous</span>
+    </a>
+    </li>';
+
+    // The "forward" link
+    $nextlink = ($page < $pages) ? '<li class="page-item">
+    <a class="page-link" href="?page=' . ($page + 1) . '" aria-label="Next">
+        <span aria-hidden="true">&rsaquo;</span>
+        <span class="sr-only">Next</span>
+    </a>
+    </li>
+
+
+    <li class="page-item">
+    <a class="page-link" href="?page=' . $pages . '" aria-label="Previous">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Last</span>
+    </a>
+    </li>' : '<li class="page-item disabled">
+    <a class="page-link" href="?page=' . ($page + 1) . '" aria-label="Next">
+        <span aria-hidden="true">&rsaquo;</span>
+        <span class="sr-only">Next</span>
+    </a>
+    </li>
+
+
+    <li class="page-item disabled">
+    <a class="page-link" href="?page=' . $pages . '" aria-label="Previous">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Last</span>
+    </a>
+    </li>';
+    // Display the paging information
+
+    echo '    
+    <nav aria-label="Page navigation example" style="opacity: 0.95;" class="my-3">
+        <div class="text-center">
+            <ul class="pagination justify-content-center">
+
+                '.$prevlink.'
+
+                <li class="page-item"><a class="page-link btn-disabled" >Page '.$page.' of '.$pages.', displaying '.$start.'-'.$end.' of '.$total.' results</a></li>
+                
+                '. $nextlink.'
+                
+
+
+            </ul>
+        </div>
+    </nav>
+    ';
+    }
+?>
+
+</div>
 
 <?php include("includes/footer.php"); ?> <!-- Remove when finished testing -->

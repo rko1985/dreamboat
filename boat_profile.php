@@ -98,7 +98,8 @@
 <div class="container py-2">
     <div class="row row-eq-height">
         <div class="col-lg-8">
-            <img class="img-responsive w-100"  src="images/<?php echo $boat_image?>" alt="">
+            <?php echo (empty($boat_image)) ? '<div class="d-flex h-100"><div class="display-4 mx-auto my-auto">No Image Available</div></div>' : '<img class="img-responsive w-100"  src="images/'.$boat_image.'" alt="">' ?>
+            
         </div>
         <div class="col-lg-4 border p-4 d-flex align-items-center">
             <p><b>Name:</b>  <?php echo $boat_name;?><br>
@@ -315,117 +316,6 @@
         </tbody>
     </table>
 </div>
-
-<!-- Below -->
-<!-- <div class="display-4">Below Deck</div> 
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Engine Type</th>
-            <th>Engine Make</th>
-            <th>Engine Horsepower</th>
-            <th>Fuel Capacity</th>
-            <th>Wather Capacity</th>
-            <th>Cabins</th>
-            <th>Heads</th>
-            <th>Berths</th>
-            <th>Salon Seating</th>
-            <th>Forepeak</th>
-            <th>Midships</th>
-            <th>Salon</th>
-            <th>Galley</th>
-            <th>Quarter</th>
-            <th>Aft</th>
-            <th>Navigation/Communication</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><?php readMultiSelect('boat_engine_type', 'engine_type', 'engine_type_id', 'engine_type_name');?></td>
-            <td><?php readMultiSelect('boat_engine_make', 'engine_make', 'engine_make_id', 'engine_make_name');?></td>
-            <td><?php echo $engine_horsepower;?></td>
-            <td><?php echo $fuel_capacity;?></td>
-            <td><?php echo $water_capacity;?></td>
-            <td><?php echo $cabins;?></td>
-            <td><?php echo $heads;?></td>
-            <td><?php echo $berths;?></td>
-            <td><?php echo $salon_seating;?></td>
-            <td><?php readMultiSelect('boat_forepeak', 'forepeak', 'forepeak_id', 'forepeak_name');?></td>
-            <td><?php readMultiSelect('boat_midships', 'midships', 'midships_id', 'midships_name');?></td>
-            <td><?php readMultiSelect('boat_salon', 'salon', 'salon_id', 'salon_name');?></td>
-            <td><?php readMultiSelect('boat_galley', 'galley', 'galley_id', 'galley_name');?></td>
-            <td><?php readMultiSelect('boat_quarter', 'quarter', 'quarter_id', 'quarter_name');?></td>
-            <td><?php readMultiSelect('boat_aft', 'aft', 'aft_id', 'aft_name');?></td>
-            <td><?php readMultiSelect('boat_navigation_comm', 'navigation_comm', 'navigation_comm_id', 'navigation_comm_name');?></td></td>
-        </tr>
-    </tbody>
-</table> --> 
-
-<!-- On Deck -->
-<!-- <div class="display-4">On Deck</div>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Helm</th>
-            <th>Cockpit</th>
-            <th>Scuppers</th>
-            <th>Coaming</th>
-            <th>Gunwales/Bullwarks</th>
-            <th>Companionway</th>
-            <th>Cabin</th>
-            <th>Hatches</th>
-            <th>Ports Openning</th>
-            <th>Ports Fixed</th>
-            <th>Dorades Vents</th>
-            <th>Transom</th>
-            <th>Bow</th>
-            <th>Stern</th>
-            <th>Rail</th>
-            <th>Ladder</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><?php readMultiSelect('boat_helm', 'helm', 'helm_id', 'helm_name');?></td>
-            <td><?php readMultiSelect('boat_cockpit', 'cockpit', 'cockpit_id', 'cockpit_name');?></td>
-            <td><?php readMultiSelect('boat_scuppers', 'scuppers', 'scuppers_id', 'scuppers_name');?></td>
-            <td><?php readMultiSelect('boat_coaming', 'coaming', 'coaming_id', 'coaming_name');?></td>
-            <td><?php readMultiSelect('boat_gunwales_bullwarks', 'gunwales_bullwarks', 'gunwales_bullwarks_id', 'gunwales_bullwarks_name');?></td>
-            <td><?php readMultiSelect('boat_coaming', 'coaming', 'coaming_id', 'coaming_name');?></td>
-            <td><?php readMultiSelect('boat_companionway', 'companionway', 'companionway_id', 'companionway_name');?></td>
-            <td><?php echo $hatches;?></td>
-            <td><?php echo $ports_openning;?></td>
-            <td><?php echo $ports_fixed;?></td>
-            <td><?php echo $dorades_vents;?></td>
-            <td><?php readMultiSelect('boat_transom', 'transom', 'transom_id', 'transom_name');?></td>
-            <td><?php readMultiSelect('boat_bow', 'bow', 'bow_id', 'bow_name');?></td>
-            <td><?php readMultiSelect('boat_stern', 'stern', 'stern_id', 'stern_name');?></td>
-            <td><?php echo $rail;?></td>
-            <td><?php echo $ladder;?></td></td>
-        </tr>
-    </tbody>
-</table> -->
-
-<!-- Above Deck -->
-<!-- <div class="display-4">Above Deck</div>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Standing Rigging</th>
-            <th>Chain Plates</th>
-            <th>Dodger</th>
-            <th>Bimini</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><?php readMultiSelect('boat_standing_rigging', 'standing_rigging', 'standing_rigging_id', 'standing_rigging_name');?></td>
-            <td><?php readMultiSelect('boat_chain_plates', 'chain_plates', 'chain_plates_id', 'chain_plates_name');?></td>
-            <td><?php readMultiSelect('boat_dodger', 'dodger', 'dodger_id', 'dodger_name');?></td>
-            <td><?php readMultiSelect('boat_bimini', 'bimini', 'bimini_id', 'bimini_name')?></td>
-        </tr>
-    </tbody>
-</table> --> 
 
 
 <?php include("includes/footer.php"); ?>

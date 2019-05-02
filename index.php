@@ -5,7 +5,7 @@
     
     <div class="row row-eq-height my-4">
                 
-        <div class="col-lg-9">
+        <div class="col-md-9 my-1">
 
             <?php 
             if(isset($_GET['page']) || isset($_POST['Search_Boat'])){
@@ -17,10 +17,10 @@
 
         </div>
 
-        <div class="col-lg-3">
+        <div class="col-md-3 my-1">
             <?php include("boat_search.php") ?>
         </div>
-                
+
     </div>
 </div>
 
