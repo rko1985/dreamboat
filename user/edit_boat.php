@@ -15,7 +15,7 @@ if($_SESSION['user_role'] == 'admin'){
 }
 
 //Check if user is authorized to edit boat
-    $query = "SELECT * FROM boats WHERE user_id = '{$_SESSION['user_id']} AND boat_id = '{$_GET['boat_id']}'";
+    $query = "SELECT * FROM boats WHERE user_id = '{$_SESSION['user_id']}' AND boat_id = '{$_GET['boat_id']}'";
     $find_user_query = mysqli_query($connection, $query);
     if(mysqli_num_rows($find_user_query) < 1){
         header("Location: ../index.php");
@@ -492,7 +492,7 @@ $boom = explode(", ", $boom);
         <div class="col">
             <label for="for_sale">Country: </label><br>
             <select class="form-control" name="country" id="country" value="">
-                <option value="<?php echo $state; ?>"><?php echo $state; ?></option>
+                <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
                 <option value="">Select</option>                
                 <option value="USA">United States</option>
                 <option value="AFG">Afghanistan</option>

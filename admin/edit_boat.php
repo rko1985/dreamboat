@@ -8,10 +8,8 @@ ob_start();
 session_start();
 
 
-if($_SESSION['user_role'] == 'admin'){
-    header("Location: ../admin/");
-} elseif ($_SESSION['user_role'] !== 'subscriber' || !isset($_SESSION['user_role'])){
-    header("Location: ../login.php");
+if($_SESSION['user_role'] != 'admin'){
+    header("Location: ../index.php");
 }
 
 
@@ -486,7 +484,7 @@ $boom = explode(", ", $boom);
         <div class="col">
             <label for="for_sale">Country: </label><br>
             <select class="form-control" name="country" id="country" value="">
-                <option value="<?php echo $state; ?>"><?php echo $state; ?></option>
+                <option value="<?php echo $country; ?>"><?php echo $country; ?></option>
                 <option value="">Select</option>                
                 <option value="USA">United States</option>
                 <option value="AFG">Afghanistan</option>

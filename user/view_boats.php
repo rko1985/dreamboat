@@ -88,7 +88,7 @@ if(isset($_GET['delete'])){
     $the_boat_id = $_GET['delete'];
 
     //find if boat is authorized to be deleted
-    $query = "SELECT * FROM boats WHERE user_id = '{$_SESSION['user_id']} AND boat_id = '{$the_boat_id}'";
+    $query = "SELECT * FROM boats WHERE user_id = '{$_SESSION['user_id']}' AND boat_id = '{$the_boat_id}'";
     $find_user_query = mysqli_query($connection, $query);
     if(mysqli_num_rows($find_user_query) < 1){
         header("Location: ../index.php");
