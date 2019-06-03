@@ -98,7 +98,7 @@
 <div class="container py-2">
     <div class="row row-eq-height">
         <div class="col-lg-8">
-            <?php echo (empty($boat_image)) ? '<div class="d-flex h-100"><div class="display-4 mx-auto my-auto">No Image Available</div></div>' : '<img class="img-responsive w-100"  src="images/'.$boat_image.'" alt="">' ?>
+            <?php echo (empty($boat_image)) ? '<div class="d-flex h-100"><div class="display-4 mx-auto my-auto">No Image Available</div></div>' : '<img class="img-responsive mw-100 justify-content-center d-block mx-auto" style="max-height: 500px; height: auto;"  src="images/'.$boat_image.'" alt="">' ?>
             
         </div>
         <div class="col-lg-4 border p-4 d-flex align-items-center">

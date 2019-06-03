@@ -549,16 +549,16 @@
         <div class="col">
             <label for="rig_design">Rig Design:</label><br>
             <div class="form-check form-check-inline">
-                <label class="form-check-input" for="sloop"><input class="form-check-input" type="checkbox" id="sloop" name="rig_design[]" value ="1">Sloop</label>
+                <label class="form-check-input" for="sloop"><input class="form-check-input" type="checkbox" id="sloop" name="rig_design[]" value ="Sloop">Sloop</label>
             </div>
             <div class="form-check form-check-inline">
-                <label class="form-check-input" for="ketch"><input class="form-check-input" type="checkbox" id="ketch" name="rig_design[]" value ="2">Ketch</label>
+                <label class="form-check-input" for="ketch"><input class="form-check-input" type="checkbox" id="ketch" name="rig_design[]" value ="Ketch">Ketch</label>
             </div>
             <div class="form-check form-check-inline">
-                <label class="form-check-input" for="yawl"><input class="form-check-input" type="checkbox" id="yawl" name="rig_design[]" value ="3">Yawl</label>
+                <label class="form-check-input" for="yawl"><input class="form-check-input" type="checkbox" id="yawl" name="rig_design[]" value ="Yawl">Yawl</label>
             </div>
             <div class="form-check form-check-inline">
-                <label class="form-check-input" for="cutter"><input class="form-check-input" type="checkbox" id="cutter" name="rig_design[]" value ="4">Cutter</label>
+                <label class="form-check-input" for="cutter"><input class="form-check-input" type="checkbox" id="cutter" name="rig_design[]" value ="Cutter">Cutter</label>
             </div>
         </div>
     </div>

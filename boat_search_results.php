@@ -129,13 +129,11 @@
                     echo mysqli_error($connection);
                 }
 
-                echo "<table class='table table-bordered table-hover justify-content-center'>
+                echo "<table class='table table-bordered table-hover text-center'>
                         <thead>
                             <tr>
                                 <th>Image</th>
-                                <th>Price</th>
-                                <th>Model</th>
-                                <th>LOA</th>
+                                <th>Info</th>                                
                             </tr>
                         </thead>                        
                         <tbody>";  
@@ -147,13 +145,16 @@
                     $boat_model = $row['boat_model'];
                     $LOA = $row['LOA'];
                     $for_sale = $row['for_sale'];
+                    $description = $row['description'];
                     
                     echo "<tr>";
-                    echo empty($boat_image) ? "<td class='align-middle'>No Image Available</td>" : "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id><img width='50' src='images/$boat_image' alt='image'></a></td>";                    
-                    echo (empty($price) || $price == 0 || $for_sale == 'No') ? "<td class='align-middle'>Not for sale</a></td>" : "<td class='align-middle'>$".number_format($price)."</a></td>";                
-                    echo "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id>$boat_model</a></td>";
-                    echo "<td class='align-middle'>$LOA</td>";
-                    echo "</tr>";
+                    echo empty($boat_image) ? "<td class='align-middle'>No Image Available</td>" : "<td class='align-middle'><a href=boat_profile.php?b_id=$boat_id><img width='150' class='d-block mx-auto' src='images/$boat_image' alt='image'></a></td>";
+                    echo "<td class='align-middle'>";
+                    echo (empty($price) || $price == 0 || $for_sale == 'No') ? "Price: Not for sale</a><br>" : "Price: $".number_format($price)."</a><br>";
+                    echo "Boat Model: <a href=boat_profile.php?b_id=$boat_id>$boat_model</a><br>";
+                    echo "LOA: $LOA<br>";
+                    echo "Description: $description";
+                    echo "</td>";
                     
                 }
 

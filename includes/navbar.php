@@ -4,7 +4,9 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">      
+
+      <?php if(isset($_SESSION['user_role'])) : ?>
       <li class="nav-item">
         <a class="nav-link" href="advanced_search.php">Advanced Search</a>
       </li>
@@ -14,8 +16,6 @@
       <li class="nav-item">
         <a class="nav-link" href="contact.php">Contact</a>
       </li>
-
-      <?php if(isset($_SESSION['user_role'])) : ?>
         <li class="nav-item">
           <a class="nav-link" href="includes/logout.php">Logout</a>
         </li>
@@ -27,6 +27,15 @@
         <li class="nav-item">
           <a class="nav-link" href="register.php">Register</a>
         </li>
+        <li class="nav-item">
+        <a class="nav-link" href="advanced_search.php">Advanced Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="user/">User Area</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.php">Contact</a>
+      </li>
       <?php endif ?>
      
     </ul>

@@ -8,6 +8,9 @@
 $error_array = [];
 
 if(isset($_POST['submit'])){
+    //Sanitize post array
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    
     $username = $_POST['username'];
     $password1 = $_POST['password1'];
     $password2 = $_POST['password2'];
