@@ -9,6 +9,7 @@ html {
     height: cover !important;
 }
 
+
 form {
     background-color: rgba(0,0,0,.5);
     padding: 10px;
@@ -27,4 +28,5 @@ form {
     background-color: rgba(0,0,0,.9) !important;    
     color: white;
 }
+
 

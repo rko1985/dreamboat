@@ -23,6 +23,7 @@ if($_SESSION['user_role'] == 'admin'){
             <th>Boat Id</th>
             <th>Boat Name</th>
             <th>Model</th>
+            <th>Submodel</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -37,11 +38,13 @@ if($_SESSION['user_role'] == 'admin'){
             $boat_id = $row['boat_id'];
             $boat_name = $row['boat_name'];
             $boat_model = $row['boat_model'];
+            $boat_submodel = $row['boat_submodel'];
             
             echo "<tr>";
             echo "<td>$boat_id</td>";
             echo "<td><a href=../boat_profile.php?b_id=$boat_id>$boat_name</a></td>";
             echo "<td>$boat_model</td>";
+            echo "<td>$boat_submodel</td>";
             echo "<td><a href='edit_boat.php?boat_id={$boat_id}'>Edit</a></td>";            
             echo "<td><a href='index.php?delete={$boat_id}'>Delete</a></td>";
             echo "</tr>";                                              

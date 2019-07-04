@@ -1,6 +1,6 @@
     
 
-<footer id="main-footer" class=" pr-3 bg-dark text-white fixed-bottom">
+<footer id="main-footer" class=" pr-3 bg-dark text-white">
     <div class="container">
         <div class="row text-center">
             <p class="ml-auto">

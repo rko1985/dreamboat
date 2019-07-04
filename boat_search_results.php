@@ -143,6 +143,7 @@
                     $boat_image = $row['boat_image'];
                     $price = $row['price'];
                     $boat_model = $row['boat_model'];
+                    $boat_submodel = $row['boat_submodel'];
                     $LOA = $row['LOA'];
                     $for_sale = $row['for_sale'];
                     $description = $row['description'];
@@ -152,6 +153,7 @@
                     echo "<td class='align-middle'>";
                     echo (empty($price) || $price == 0 || $for_sale == 'No') ? "Price: Not for sale</a><br>" : "Price: $".number_format($price)."</a><br>";
                     echo "Boat Model: <a href=boat_profile.php?b_id=$boat_id>$boat_model</a><br>";
+                    echo "Submodel: <a href=boat_profile.php?b_id=$boat_id>$boat_submodel</a><br>";
                     echo "LOA: $LOA<br>";
                     echo "Description: $description";
                     echo "</td>";

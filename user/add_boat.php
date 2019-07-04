@@ -580,7 +580,7 @@ if($_SESSION['user_role'] == 'admin'){
     <div class="form-row">
         <div class="col">
             <label for="boat_model">Model: </label>
-            <input type="text" class="form-control" name="boat_model">
+            <input type="text" class="form-control" name="boat_model" required>
         </div>
         <div class="col">
             <label for="boat_submodel">Sub-Model: </label>
